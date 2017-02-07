@@ -9,12 +9,21 @@
 import Foundation
 
 class BoggleModel {
-    func populateGrid(viewController: BoggleViewControllerProtocol) {
-        var letters = Array<String>()
-        for _ in 0...16 {
-            letters += [getRandomString()]
+    var viewController: BoggleViewControllerProtocol?
+    
+    func populateGrid() {
+        if let viewController = viewController {
+            var letters = Array<String>()
+            for _ in 0...16 {
+                letters += [getRandomString()]
+            }
+            
+            viewController.populateNewLettersToGrid(letters)
         }
-        viewController.setRandomizedLetters(letters)
+    }
+    
+    func setViewController(_ viewController: BoggleViewControllerProtocol) {
+        self.viewController = viewController
     }
     
     func getRandomString() -> String {

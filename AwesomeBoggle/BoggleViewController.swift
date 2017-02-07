@@ -10,7 +10,9 @@ import UIKit
 
 
 protocol BoggleViewControllerProtocol: class {
-    func setRandomizedLetters(_ letters: Array<String>)
+    func populateNewLettersToGrid(_ letters: Array<String>)
+    
+    func resetGrid()
 }
 
 class BoggleViewController: UIViewController, BoggleViewControllerProtocol {
@@ -30,15 +32,24 @@ class BoggleViewController: UIViewController, BoggleViewControllerProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = boggleView
-        boggleModel.populateGrid(viewController: self)
+        
+        boggleView.setViewController(self)
+        boggleModel.setViewController(self)
+        
+        boggleModel.populateGrid()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func setRandomizedLetters(_ letters: Array<String>) {
+    func populateNewLettersToGrid(_ letters: Array<String>) {
+        boggleView.clearGrid()
         boggleView.setRandomizedLetters(letters)
+    }
+    
+    func resetGrid() {
+        boggleModel.populateGrid()
     }
 }
 
