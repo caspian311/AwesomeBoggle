@@ -3,7 +3,7 @@ import UIKit
 
 class BoggleView: UIView {
     let colors: Array<UIColor>
-    let gridRows: UIStackView
+    var gridButtons = [UIButton]()
     var viewController: BoggleViewControllerProtocol?
     
     init() {
@@ -11,7 +11,6 @@ class BoggleView: UIView {
                        UIColor.brown, UIColor.cyan, UIColor.darkGray, UIColor.green,
                        UIColor.magenta, UIColor.orange, UIColor.yellow, UIColor.lightGray,
                        UIColor.red, UIColor.blue, UIColor.green, UIColor.yellow]
-        self.gridRows = UIStackView()
         
         super.init(frame: CGRect.zero)
         self.backgroundColor = .gray
@@ -24,12 +23,15 @@ class BoggleView: UIView {
         resultsStack.axis = .horizontal
         resultsStack.backgroundColor = .gray
         
+        let gridRows = UIStackView()
+        
+        
         addSubview(mainVerticalStack)
         
         let resetButton = UIButton()
         
         mainVerticalStack.addArrangedSubview(resetButton)
-        mainVerticalStack.addArrangedSubview(self.gridRows)
+        mainVerticalStack.addArrangedSubview(gridRows)
         mainVerticalStack.addArrangedSubview(resultsStack)
         
         mainVerticalStack.translatesAutoresizingMaskIntoConstraints = false
@@ -50,12 +52,14 @@ class BoggleView: UIView {
         resetButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         resetButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-        self.gridRows.axis = .vertical
-        self.gridRows.translatesAutoresizingMaskIntoConstraints = false
-        self.gridRows.leadingAnchor.constraint(equalTo: mainVerticalStack.leadingAnchor).isActive = true
-        self.gridRows.topAnchor.constraint(equalTo: resetButton.bottomAnchor, constant: 30).isActive = true
-        self.gridRows.widthAnchor.constraint(equalTo: mainVerticalStack.widthAnchor).isActive = true
-        self.gridRows.backgroundColor = .white
+        gridRows.axis = .vertical
+        gridRows.translatesAutoresizingMaskIntoConstraints = false
+        gridRows.leadingAnchor.constraint(equalTo: mainVerticalStack.leadingAnchor).isActive = true
+        gridRows.topAnchor.constraint(equalTo: resetButton.bottomAnchor, constant: 30).isActive = true
+        gridRows.widthAnchor.constraint(equalTo: mainVerticalStack.widthAnchor).isActive = true
+        gridRows.backgroundColor = .white
+        
+        createButtons(gridRows)
         
         resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
         
@@ -69,7 +73,7 @@ class BoggleView: UIView {
         currentWorldLabel.layer.cornerRadius = 10
         
         currentWorldLabel.translatesAutoresizingMaskIntoConstraints = false
-        currentWorldLabel.topAnchor.constraint(equalTo: self.gridRows.bottomAnchor, constant: 20).isActive = true
+        currentWorldLabel.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 20).isActive = true
         currentWorldLabel.leadingAnchor.constraint(equalTo: mainVerticalStack.leadingAnchor).isActive = true
         currentWorldLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
@@ -85,29 +89,24 @@ class BoggleView: UIView {
         submitWordButton.layer.cornerRadius = 10
         
         submitWordButton.translatesAutoresizingMaskIntoConstraints = false
-        submitWordButton.topAnchor.constraint(equalTo: self.gridRows.bottomAnchor, constant: 20).isActive = true
+        submitWordButton.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 20).isActive = true
         submitWordButton.leadingAnchor.constraint(equalTo: currentWorldLabel.trailingAnchor, constant: 10).isActive = true
         submitWordButton.heightAnchor.constraint(equalTo: currentWorldLabel.heightAnchor).isActive = true
         submitWordButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
-    func clearGrid() {
-        self.gridRows.subviews.forEach({ $0.removeFromSuperview() })
-    }
-    
-    func createButtonsFromLetters(_ letters: Array<String>) {
-        var colorCounter = 0
-        
+    func createButtons(_ gridRows: UIStackView) {
         for _ in 0...3 {
             let stackView = UIStackView()
             stackView.axis = .horizontal
-            self.gridRows.addArrangedSubview(stackView)
+            gridRows.addArrangedSubview(stackView)
             
             stackView.backgroundColor = .white
             
             for _ in 0...3 {
                 let buttonToAdd = UIButton()
                 stackView.addArrangedSubview(buttonToAdd)
+                
                 buttonToAdd.translatesAutoresizingMaskIntoConstraints = false
                 buttonToAdd.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1/4).isActive = true
                 buttonToAdd.heightAnchor.constraint(equalTo: buttonToAdd.widthAnchor).isActive = true
@@ -117,15 +116,19 @@ class BoggleView: UIView {
                 buttonToAdd.layer.borderWidth = 1
                 buttonToAdd.layer.cornerRadius = 10
                 
-                
-                buttonToAdd.setTitle(letters[colorCounter], for: .normal)
-                
-                colorCounter += 1
-                
                 buttonToAdd.setTitleColor(.black, for: .normal)
                 
                 buttonToAdd.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+                
+                self.gridButtons.append(buttonToAdd)
             }
+        }
+    }
+
+    
+    func updateLetters(_ letters: Array<String>) {
+        for (index, button) in self.gridButtons.enumerated() {
+            button.setTitle(letters[index], for: .normal)
         }
     }
     
