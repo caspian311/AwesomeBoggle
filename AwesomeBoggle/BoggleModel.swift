@@ -13,7 +13,7 @@ class BoggleModel {
     
     func populateGrid() {
         if let viewController = viewController {
-            var letters = Array<String>()
+            var letters = [String]()
             for _ in 0...16 {
                 letters += [getRandomString()]
             }
@@ -26,7 +26,7 @@ class BoggleModel {
         self.viewController = viewController
     }
     
-    func getRandomString() -> String {
+    private func getRandomString() -> String {
         let letters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters)
         let random_int = Int(arc4random_uniform(26))
         return String(letters[random_int])

@@ -45,7 +45,7 @@ class BoggleViewController: UIViewController, BoggleViewControllerProtocol {
     
     func populateNewLettersToGrid(_ letters: Array<String>) {
         boggleView.clearGrid()
-        boggleView.setRandomizedLetters(letters)
+        boggleView.createButtonsFromLetters(letters)
     }
     
     func resetGrid() {

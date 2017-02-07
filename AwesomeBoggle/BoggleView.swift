@@ -1,12 +1,7 @@
 import UIKit
 
-protocol BoggleViewProtocol: class {
-    func clearGrid()
-    
-    func setRandomizedLetters(_ letters: Array<String>)
-}
 
-class BoggleView: UIView, BoggleViewProtocol {
+class BoggleView: UIView {
     let colors: Array<UIColor>
     let gridRows: UIStackView
     var viewController: BoggleViewControllerProtocol?
@@ -59,7 +54,7 @@ class BoggleView: UIView, BoggleViewProtocol {
         self.gridRows.subviews.forEach({ $0.removeFromSuperview() })
     }
     
-    func setRandomizedLetters(_ letters: Array<String>) {
+    func createButtonsFromLetters(_ letters: Array<String>) {
         var colorCounter = 0
         
         for _ in 0...3 {
