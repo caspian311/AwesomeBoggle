@@ -13,6 +13,12 @@ protocol BoggleViewControllerProtocol: class {
     func populateNewLettersToGrid(_ letters: Array<String>)
     
     func resetGrid()
+    
+    func letterSelected(_ letter: String?)
+    
+    func currentWordChanged()
+    
+    func submitWord()
 }
 
 class BoggleViewController: UIViewController, BoggleViewControllerProtocol {
@@ -49,6 +55,20 @@ class BoggleViewController: UIViewController, BoggleViewControllerProtocol {
     
     func resetGrid() {
         boggleModel.populateGrid()
+    }
+    
+    func letterSelected(_ letter: String?) {
+        if let letter = letter {
+            boggleModel.addLetter(letter)
+        }
+    }
+    
+    func currentWordChanged() {
+        boggleView.setCurrentWord(boggleModel.getCurrentWord())
+    }
+    
+    func submitWord() {
+        boggleModel.submitWord()
     }
 }
 

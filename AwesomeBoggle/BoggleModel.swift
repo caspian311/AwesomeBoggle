@@ -9,7 +9,10 @@
 import Foundation
 
 class BoggleModel {
-    var viewController: BoggleViewControllerProtocol?
+    private var currentWord = ""
+    private var submittedWords = [String]()
+    
+    private var viewController: BoggleViewControllerProtocol?
     
     func populateGrid() {
         if let viewController = viewController {
@@ -24,6 +27,25 @@ class BoggleModel {
     
     func setViewController(_ viewController: BoggleViewControllerProtocol) {
         self.viewController = viewController
+    }
+    
+    func addLetter(_ letter: String) {
+        self.currentWord.append(letter)
+        if let viewController = self.viewController {
+            viewController.currentWordChanged()
+        }
+    }
+    
+    func getCurrentWord() -> String {
+        return self.currentWord
+    }
+    
+    func submitWord() {
+        self.submittedWords.append(self.currentWord)
+        self.currentWord = ""
+        if let viewController = self.viewController {
+            viewController.currentWordChanged()
+        }
     }
     
     private func getRandomString() -> String {

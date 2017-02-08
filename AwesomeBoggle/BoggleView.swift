@@ -2,15 +2,12 @@ import UIKit
 
 
 class BoggleView: UIView {
-    let colors: Array<UIColor>
-    var gridButtons = [UIButton]()
-    var viewController: BoggleViewControllerProtocol?
+    private var gridButtons = [UIButton]()
+    private var currentWorldLabel: UILabel
+    private var viewController: BoggleViewControllerProtocol?
     
     init() {
-        self.colors = [UIColor.black, UIColor.white, UIColor.red, UIColor.purple,
-                       UIColor.brown, UIColor.cyan, UIColor.darkGray, UIColor.green,
-                       UIColor.magenta, UIColor.orange, UIColor.yellow, UIColor.lightGray,
-                       UIColor.red, UIColor.blue, UIColor.green, UIColor.yellow]
+        self.currentWorldLabel = UILabel()
         
         super.init(frame: CGRect.zero)
         self.backgroundColor = .gray
@@ -63,19 +60,19 @@ class BoggleView: UIView {
         
         resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
         
-        let currentWorldLabel = UILabel()
-        resultsStack.addArrangedSubview(currentWorldLabel)
         
-        currentWorldLabel.backgroundColor = .white
-        currentWorldLabel.layer.masksToBounds = true
-        currentWorldLabel.layer.borderColor = UIColor.red.cgColor
-        currentWorldLabel.layer.borderWidth = 1
-        currentWorldLabel.layer.cornerRadius = 10
+        resultsStack.addArrangedSubview(self.currentWorldLabel)
         
-        currentWorldLabel.translatesAutoresizingMaskIntoConstraints = false
-        currentWorldLabel.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 20).isActive = true
-        currentWorldLabel.leadingAnchor.constraint(equalTo: mainVerticalStack.leadingAnchor).isActive = true
-        currentWorldLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        self.currentWorldLabel.backgroundColor = .white
+        self.currentWorldLabel.layer.masksToBounds = true
+        self.currentWorldLabel.layer.borderColor = UIColor.red.cgColor
+        self.currentWorldLabel.layer.borderWidth = 1
+        self.currentWorldLabel.layer.cornerRadius = 10
+        
+        self.currentWorldLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.currentWorldLabel.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 20).isActive = true
+        self.currentWorldLabel.leadingAnchor.constraint(equalTo: mainVerticalStack.leadingAnchor).isActive = true
+        self.currentWorldLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         let submitWordButton = UIButton()
         resultsStack.addArrangedSubview(submitWordButton)
@@ -93,6 +90,8 @@ class BoggleView: UIView {
         submitWordButton.leadingAnchor.constraint(equalTo: currentWorldLabel.trailingAnchor, constant: 10).isActive = true
         submitWordButton.heightAnchor.constraint(equalTo: currentWorldLabel.heightAnchor).isActive = true
         submitWordButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        submitWordButton.addTarget(self, action: #selector(submitWordButtonPressed), for: .touchUpInside)
     }
     
     func createButtons(_ gridRows: UIStackView) {
@@ -136,19 +135,32 @@ class BoggleView: UIView {
         self.viewController = viewController
     }
     
+    func setCurrentWord(_ currentWord: String) {
+        self.currentWorldLabel.text = currentWord
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     @objc
     private func buttonTapped(sender: UIButton, forEvent event: UIEvent) {
-        
+        if let viewController = self.viewController {
+            viewController.letterSelected(sender.title(for: .normal))
+        }
     }
     
     @objc
     private func resetButtonTapped(sender: UIButton, forEvent event: UIEvent) {
         if let viewController = self.viewController {
             viewController.resetGrid()
+        }
+    }
+    
+    @objc
+    private func submitWordButtonPressed(sender: UIButton, forEvent event: UIEvent) {
+        if let viewController = self.viewController {
+            viewController.submitWord()
         }
     }
 }
