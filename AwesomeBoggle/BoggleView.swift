@@ -1,11 +1,18 @@
 import UIKit
 
+protocol BoggleViewProtocol: class {
+    func resetGrid()
+    func letterSelected(_ letter: String?)
+    func submitWord()
+}
+
 class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
     private var gridButtons: [UIButton] = []
     private var currentWordLabel: PaddedUILabel
-    private var viewController: BoggleViewControllerProtocol?
     private var wordList: [String] = []
     private var wordListTableView = UITableView()
+
+    weak var delegate: BoggleViewProtocol?
     
     private let tableViewIdentifier = "wordCell"
     
@@ -24,7 +31,6 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         resultsStack.backgroundColor = .gray
         
         let gridRows = UIStackView()
-        
         
         addSubview(mainVerticalStack)
         
@@ -137,16 +143,11 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-
     
     func updateLetters(_ letters: Array<String>) {
         for (index, button) in self.gridButtons.enumerated() {
             button.setTitle(letters[index], for: .normal)
         }
-    }
-    
-    func setViewController(_ viewController: BoggleViewControllerProtocol) {
-        self.viewController = viewController
     }
     
     func setCurrentWord(_ currentWord: String) {
@@ -174,22 +175,16 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     @objc
     private func buttonTapped(sender: UIButton, forEvent event: UIEvent) {
-        if let viewController = self.viewController {
-            viewController.letterSelected(sender.title(for: .normal))
-        }
+        self.delegate?.letterSelected(sender.title(for: .normal))
     }
     
     @objc
     private func resetButtonTapped(sender: UIButton, forEvent event: UIEvent) {
-        if let viewController = self.viewController {
-            viewController.resetGrid()
-        }
+        self.delegate?.resetGrid()
     }
     
     @objc
     private func submitWordButtonPressed(sender: UIButton, forEvent event: UIEvent) {
-        if let viewController = self.viewController {
-            viewController.submitWord()
-        }
+        self.delegate?.submitWord()
     }
 }

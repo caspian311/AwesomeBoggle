@@ -1,53 +1,43 @@
-//
-//  BoggleModel.swift
-//  AwesomeBoggle
-//
-//  Created by mtodd on 2/6/17.
-//  Copyright © 2017 Matt Todd. All rights reserved.
-//
-
 import Foundation
 
+protocol BoggleModelProtocol: class {
+    func populateNewLettersToGrid(_ letters: Array<String>)
+    func currentWordChanged()
+    func wordListUpdated(_ wordList: [String])
+}
 
 class BoggleModel {
     private var currentWord = ""
     private var submittedWords = [String]()
     
-    private var viewController: BoggleViewControllerProtocol?
+    weak var delegate: BoggleModelProtocol?
     
     func populateGrid() {
-        if let viewController = viewController {
-            var letters = [String]()
-            for _ in 0...16 {
-                letters += [getRandomString()]
-            }
-            
-            viewController.populateNewLettersToGrid(letters)
+        var letters = [String]()
+        for _ in 0...16 {
+            letters += [getRandomString()]
         }
-    }
-    
-    func setViewController(_ viewController: BoggleViewControllerProtocol) {
-        self.viewController = viewController
+            
+        self.delegate?.populateNewLettersToGrid(letters)
     }
     
     func addLetter(_ letter: String) {
         self.currentWord.append(letter)
-        if let viewController = self.viewController {
-            viewController.currentWordChanged()
-        }
+        self.delegate?.currentWordChanged()
     }
     
     func getCurrentWord() -> String {
         return self.currentWord
     }
     
-    func submitWord() {
+    func addCurrentWordToList() {
         self.submittedWords.append(self.currentWord)
+        self.delegate?.wordListUpdated(self.submittedWords)
+    }
+    
+    func clearWord() {
         self.currentWord = ""
-        if let viewController = self.viewController {
-            viewController.currentWordChanged()
-            viewController.wordListUpdated(self.submittedWords)
-        }
+        self.delegate?.currentWordChanged()
     }
     
     private func getRandomString() -> String {

@@ -1,29 +1,6 @@
-//
-//  ViewController.swift
-//  AwesomeBoggle
-//
-//  Created by mtodd on 1/26/17.
-//  Copyright © 2017 Matt Todd. All rights reserved.
-//
-
 import UIKit
 
-
-protocol BoggleViewControllerProtocol: class {
-    func populateNewLettersToGrid(_ letters: Array<String>)
-    
-    func resetGrid()
-    
-    func letterSelected(_ letter: String?)
-    
-    func currentWordChanged()
-    
-    func submitWord()
-    
-    func wordListUpdated(_ wordList: [String])
-}
-
-class BoggleViewController: UIViewController, BoggleViewControllerProtocol {
+class BoggleViewController: UIViewController {
     let boggleView: BoggleView
     let boggleModel: BoggleModel
     
@@ -41,41 +18,44 @@ class BoggleViewController: UIViewController, BoggleViewControllerProtocol {
         super.viewDidLoad()
         self.view = boggleView
         
-        boggleView.setViewController(self)
-        boggleModel.setViewController(self)
+        self.boggleView.delegate = self
+        self.boggleModel.delegate = self
         
-        boggleModel.populateGrid()
+        self.boggleModel.populateGrid()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+}
+
+extension BoggleViewController: BoggleModelProtocol {
     func populateNewLettersToGrid(_ letters: Array<String>) {
-        boggleView.updateLetters(letters)
+        self.boggleView.updateLetters(letters)
     }
     
+    func currentWordChanged() {
+        self.boggleView.setCurrentWord(boggleModel.getCurrentWord())
+    }
+    
+    func wordListUpdated(_ wordList: [String]) {
+        self.boggleView.updateWordList(wordList)
+    }
+}
+
+extension BoggleViewController: BoggleViewProtocol {
     func resetGrid() {
-        boggleModel.populateGrid()
+        self.boggleModel.populateGrid()
     }
     
     func letterSelected(_ letter: String?) {
         if let letter = letter {
-            boggleModel.addLetter(letter)
+            self.boggleModel.addLetter(letter)
         }
     }
     
-    func currentWordChanged() {
-        boggleView.setCurrentWord(boggleModel.getCurrentWord())
-    }
-    
     func submitWord() {
-        boggleModel.submitWord()
+        self.boggleModel.addCurrentWordToList()
+        self.boggleModel.clearWord()
     }
-    
-    func wordListUpdated(_ wordList: [String]) {
-        boggleView.updateWordList(wordList)
-    }
-    
 }
-
