@@ -16,6 +16,7 @@
 		E77677051E3A394B006B8739 /* AwesomeBoggleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77677041E3A394B006B8739 /* AwesomeBoggleUITests.swift */; };
 		E77677131E3A3BEF006B8739 /* BoggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77677121E3A3BEF006B8739 /* BoggleView.swift */; };
 		E7A608AB1E4CAC8500D120CC /* PaddedUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A608AA1E4CAC8500D120CC /* PaddedUILabel.swift */; };
+		E7A608AF1E4CB85300D120CC /* BoggleModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A608AE1E4CB85300D120CC /* BoggleModelTest.swift */; };
 		E7F19BCD1E48F7A600C0043F /* BoggleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F19BCC1E48F7A600C0043F /* BoggleModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		E77677061E3A394B006B8739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E77677121E3A3BEF006B8739 /* BoggleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleView.swift; sourceTree = "<group>"; };
 		E7A608AA1E4CAC8500D120CC /* PaddedUILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedUILabel.swift; sourceTree = "<group>"; };
+		E7A608AE1E4CB85300D120CC /* BoggleModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleModelTest.swift; sourceTree = "<group>"; };
 		E7F19BCC1E48F7A600C0043F /* BoggleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,7 @@
 			children = (
 				E77676F91E3A394B006B8739 /* AwesomeBoggleTests.swift */,
 				E77676FB1E3A394B006B8739 /* Info.plist */,
+				E7A608AE1E4CB85300D120CC /* BoggleModelTest.swift */,
 			);
 			path = AwesomeBoggleTests;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E77676FA1E3A394B006B8739 /* AwesomeBoggleTests.swift in Sources */,
+				E7A608AF1E4CB85300D120CC /* BoggleModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

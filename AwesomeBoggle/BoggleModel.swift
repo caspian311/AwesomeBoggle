@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class BoggleModel {
     private var currentWord = ""
     private var submittedWords = [String]()
@@ -45,6 +46,7 @@ class BoggleModel {
         self.currentWord = ""
         if let viewController = self.viewController {
             viewController.currentWordChanged()
+            viewController.wordListUpdated(self.submittedWords)
         }
     }
     

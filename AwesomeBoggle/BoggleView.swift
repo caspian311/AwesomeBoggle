@@ -1,9 +1,13 @@
 import UIKit
 
-class BoggleView: UIView {
-    private var gridButtons = [UIButton]()
+class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
+    private var gridButtons: [UIButton] = []
     private var currentWordLabel: PaddedUILabel
     private var viewController: BoggleViewControllerProtocol?
+    private var wordList: [String] = []
+    private var wordListTableView = UITableView()
+    
+    private let tableViewIdentifier = "wordCell"
     
     init() {
         self.currentWordLabel = PaddedUILabel()
@@ -92,6 +96,16 @@ class BoggleView: UIView {
         submitWordButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         submitWordButton.addTarget(self, action: #selector(submitWordButtonPressed), for: .touchUpInside)
+        
+        self.wordListTableView.register(UITableViewCell.self, forCellReuseIdentifier: self.tableViewIdentifier)
+        self.wordListTableView.delegate = self
+        self.wordListTableView.dataSource = self
+        
+        self.addSubview(wordListTableView)
+        wordListTableView.translatesAutoresizingMaskIntoConstraints = false
+        wordListTableView.topAnchor.constraint(equalTo: resultsStack.bottomAnchor, constant: 10).isActive = true
+        wordListTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
+        wordListTableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
     }
     
     func createButtons(_ gridRows: UIStackView) {
@@ -141,6 +155,21 @@ class BoggleView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateWordList(_ wordList: [String]) {
+        self.wordList = wordList
+        self.wordListTableView.reloadData()
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.wordList.count
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.tableViewIdentifier, for: indexPath)
+        cell.textLabel?.text = wordList[indexPath.row]
+        return cell
     }
     
     @objc

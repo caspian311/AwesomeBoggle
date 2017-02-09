@@ -19,6 +19,8 @@ protocol BoggleViewControllerProtocol: class {
     func currentWordChanged()
     
     func submitWord()
+    
+    func wordListUpdated(_ wordList: [String])
 }
 
 class BoggleViewController: UIViewController, BoggleViewControllerProtocol {
@@ -70,5 +72,10 @@ class BoggleViewController: UIViewController, BoggleViewControllerProtocol {
     func submitWord() {
         boggleModel.submitWord()
     }
+    
+    func wordListUpdated(_ wordList: [String]) {
+        boggleView.updateWordList(wordList)
+    }
+    
 }
 
