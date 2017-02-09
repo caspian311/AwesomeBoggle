@@ -1,13 +1,12 @@
 import UIKit
 
-
 class BoggleView: UIView {
     private var gridButtons = [UIButton]()
-    private var currentWorldLabel: UILabel
+    private var currentWordLabel: PaddedUILabel
     private var viewController: BoggleViewControllerProtocol?
     
     init() {
-        self.currentWorldLabel = UILabel()
+        self.currentWordLabel = PaddedUILabel()
         
         super.init(frame: CGRect.zero)
         self.backgroundColor = .gray
@@ -61,18 +60,19 @@ class BoggleView: UIView {
         resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
         
         
-        resultsStack.addArrangedSubview(self.currentWorldLabel)
+        resultsStack.addArrangedSubview(self.currentWordLabel)
         
-        self.currentWorldLabel.backgroundColor = .white
-        self.currentWorldLabel.layer.masksToBounds = true
-        self.currentWorldLabel.layer.borderColor = UIColor.red.cgColor
-        self.currentWorldLabel.layer.borderWidth = 1
-        self.currentWorldLabel.layer.cornerRadius = 10
+        self.currentWordLabel.backgroundColor = .white
+        self.currentWordLabel.layer.masksToBounds = true
+        self.currentWordLabel.layer.borderColor = UIColor.red.cgColor
+        self.currentWordLabel.layer.borderWidth = 1
+        self.currentWordLabel.layer.cornerRadius = 10
+        self.currentWordLabel.layer.contentsRect.insetBy(dx: 10, dy: 10)
         
-        self.currentWorldLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.currentWorldLabel.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 20).isActive = true
-        self.currentWorldLabel.leadingAnchor.constraint(equalTo: mainVerticalStack.leadingAnchor).isActive = true
-        self.currentWorldLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        self.currentWordLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.currentWordLabel.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 20).isActive = true
+        self.currentWordLabel.leadingAnchor.constraint(equalTo: mainVerticalStack.leadingAnchor).isActive = true
+        self.currentWordLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         let submitWordButton = UIButton()
         resultsStack.addArrangedSubview(submitWordButton)
@@ -87,8 +87,8 @@ class BoggleView: UIView {
         
         submitWordButton.translatesAutoresizingMaskIntoConstraints = false
         submitWordButton.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 20).isActive = true
-        submitWordButton.leadingAnchor.constraint(equalTo: currentWorldLabel.trailingAnchor, constant: 10).isActive = true
-        submitWordButton.heightAnchor.constraint(equalTo: currentWorldLabel.heightAnchor).isActive = true
+        submitWordButton.leadingAnchor.constraint(equalTo: currentWordLabel.trailingAnchor, constant: 10).isActive = true
+        submitWordButton.heightAnchor.constraint(equalTo: currentWordLabel.heightAnchor).isActive = true
         submitWordButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         submitWordButton.addTarget(self, action: #selector(submitWordButtonPressed), for: .touchUpInside)
@@ -136,7 +136,7 @@ class BoggleView: UIView {
     }
     
     func setCurrentWord(_ currentWord: String) {
-        self.currentWorldLabel.text = currentWord
+        self.currentWordLabel.text = currentWord
     }
     
     required init?(coder aDecoder: NSCoder) {
