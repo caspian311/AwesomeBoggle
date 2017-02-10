@@ -14,7 +14,7 @@ class BoggleModel {
     
     func populateGrid() {
         var letters = [String]()
-        for _ in 0...16 {
+        for _ in 0...15 {
             letters += [getRandomString()]
         }
             
