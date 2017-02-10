@@ -31,8 +31,10 @@ class BoggleModel {
     }
     
     func addCurrentWordToList() {
-        self.submittedWords.append(self.currentWord)
-        self.delegate?.wordListUpdated(self.submittedWords)
+        if (!self.currentWord.isEmpty) {
+            self.submittedWords.append(self.currentWord)
+            self.delegate?.wordListUpdated(self.submittedWords)
+        }
     }
     
     func clearWord() {

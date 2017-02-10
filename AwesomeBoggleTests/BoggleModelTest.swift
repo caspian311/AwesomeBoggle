@@ -46,19 +46,25 @@ class BoggleModelTest: XCTestCase {
         
         testObject?.addCurrentWordToList()
         
-        XCTAssertEqual(["hi"], (testDelegate?.updatedWordList!)!)
+        XCTAssertEqual(["hi"], (testDelegate?.updatedWordList)!)
+    }
+    
+    func test_addCurrentWordToList_whenThereIsNoCurrentWord_emptyListGivenToDelegate() {
+        testObject?.addCurrentWordToList()
+        
+        XCTAssertEqual(0, (testDelegate?.updatedWordList.count))
     }
     
     func test_populateGrid_givesDelegateArrayOf16Letters() {
         testObject?.populateGrid()
         
-        XCTAssertEqual(16, testDelegate?.populatedNewLettersToGrid?.count)
+        XCTAssertEqual(16, testDelegate?.populatedNewLettersToGrid.count)
     }
 }
 
 class TestBoggleModelDelegate: BoggleModelProtocol {
-    var populatedNewLettersToGrid: [String]?
-    var updatedWordList: [String]?
+    var populatedNewLettersToGrid = [String]()
+    var updatedWordList = [String]()
     var currentWordHasChanged = false
     
     func populateNewLettersToGrid(_ letters: [String]) {
