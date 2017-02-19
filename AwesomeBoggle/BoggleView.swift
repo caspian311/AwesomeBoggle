@@ -40,7 +40,7 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         gridRows.axis = .vertical
         gridRows.translatesAutoresizingMaskIntoConstraints = false
         gridRows.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        gridRows.topAnchor.constraint(equalTo: resetButton.bottomAnchor, constant: 10).isActive = true
+        gridRows.topAnchor.constraint(equalTo: resetButton.bottomAnchor).isActive = true
         gridRows.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         gridRows.backgroundColor = .white
         
@@ -58,7 +58,7 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.currentWordLabel.layer.cornerRadius = 10
         self.currentWordLabel.layer.contentsRect.insetBy(dx: 10, dy: 10)
         
-        self.currentWordLabel.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 20).isActive = true
+        self.currentWordLabel.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 10).isActive = true
         self.currentWordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.currentWordLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         self.currentWordLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -110).isActive = true
@@ -75,7 +75,7 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         submitWordButton.layer.cornerRadius = 10
         
         submitWordButton.translatesAutoresizingMaskIntoConstraints = false
-        submitWordButton.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 20).isActive = true
+        submitWordButton.topAnchor.constraint(equalTo: self.currentWordLabel.topAnchor).isActive = true
         submitWordButton.leadingAnchor.constraint(equalTo: currentWordLabel.trailingAnchor, constant: 10).isActive = true
         submitWordButton.heightAnchor.constraint(equalTo: currentWordLabel.heightAnchor).isActive = true
         submitWordButton.widthAnchor.constraint(equalToConstant: 100).isActive = true

@@ -38,11 +38,11 @@ class BoggleModel {
     
     func addCurrentWordToList() {
         if (!self.currentWord.isEmpty) {
-            self.dictionaryService.checkValidityOf(word: self.currentWord) { (isValid, theWord) in
+            self.dictionaryService.checkValidityOf(word: self.currentWord) { (isValid, score) in
                 if isValid {
-                    self.submittedWords.append(theWord!)
-                    self.delegate?.wordListUpdated(self.submittedWords)
+                    self.submittedWords.append(self.currentWord)
                 }
+                self.delegate?.wordListUpdated(self.submittedWords)
             }
         }
     }

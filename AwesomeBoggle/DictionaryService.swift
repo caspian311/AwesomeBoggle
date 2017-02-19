@@ -1,4 +1,4 @@
-
+import Foundation
 import UIKit
 
 class DictionaryService {
@@ -8,7 +8,7 @@ class DictionaryService {
     let language = "en"
     let baseUrl = URL(string: "https://od-api.oxforddictionaries.com:443/api/v1/")!
     
-    func checkValidityOf(word: String, callback: @escaping (Bool, String?) -> ()) {
+    func checkValidityOf(word: String, callback: @escaping (Bool, Int?) -> ()) {
         let word_id = word.lowercased()
         let url = baseUrl.appendingPathComponent("entries/\(language)/\(word_id)")
         var request = URLRequest(url: url)
@@ -22,21 +22,9 @@ class DictionaryService {
             let httpResponse = responseOptional as! HTTPURLResponse
             
             if httpResponse.statusCode == 200 {
-                if let data = dataOptional {
-                    do {
-                        let jsonObject = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! Dictionary<String, Any>
-                        let results = jsonObject["results"] as! Array<Dictionary<String, Any>>
-                        let wordResult = results.first!["id"] as! String
-                        
-                        callback(true, wordResult)
-                    } catch {
-                        callback(false, nil)
-                    }
-                } else {
-                    callback(false, nil)
-                }
+                callback(true, word.characters.count)
             } else {
-                callback(false, nil)
+                callback(false, 0)
             }
         }
         task.resume()
