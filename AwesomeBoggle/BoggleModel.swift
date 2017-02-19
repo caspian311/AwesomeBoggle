@@ -12,6 +12,12 @@ class BoggleModel {
     
     weak var delegate: BoggleModelProtocol?
     
+    private let dictionaryService: DictionaryService
+    
+    init(dictionaryService: DictionaryService = DictionaryService()) {
+        self.dictionaryService = dictionaryService
+    }
+    
     func populateGrid() {
         var letters = [String]()
         for _ in 0...15 {
@@ -32,8 +38,14 @@ class BoggleModel {
     
     func addCurrentWordToList() {
         if (!self.currentWord.isEmpty) {
-            self.submittedWords.append(self.currentWord)
-            self.delegate?.wordListUpdated(self.submittedWords)
+            DispatchQueue.main.async {
+                self.dictionaryService.checkValidityOf(word: self.currentWord) { (isValid, theWord) in
+                    if isValid {
+                        self.submittedWords.append(theWord!)
+                        self.delegate?.wordListUpdated(self.submittedWords)
+                    }
+                }
+            }
         }
     }
     

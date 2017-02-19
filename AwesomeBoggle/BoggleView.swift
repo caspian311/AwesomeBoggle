@@ -22,56 +22,35 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         super.init(frame: CGRect.zero)
         self.backgroundColor = .gray
         
-        let mainVerticalStack = UIStackView()
-        mainVerticalStack.axis = .vertical
-        mainVerticalStack.backgroundColor = .gray
-        
-        let resultsStack = UIStackView()
-        resultsStack.axis = .horizontal
-        resultsStack.backgroundColor = .gray
-        
         let gridRows = UIStackView()
-        
-        addSubview(mainVerticalStack)
         
         let resetButton = UIButton()
         
-        mainVerticalStack.addArrangedSubview(resetButton)
-        mainVerticalStack.addArrangedSubview(gridRows)
-        mainVerticalStack.addArrangedSubview(resultsStack)
-        
-        mainVerticalStack.translatesAutoresizingMaskIntoConstraints = false
-        mainVerticalStack.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        mainVerticalStack.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        mainVerticalStack.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        
-        resetButton.backgroundColor = .white
-        resetButton.layer.borderColor = UIColor.red.cgColor
-        resetButton.layer.borderWidth = 1
-        resetButton.layer.cornerRadius = 10
+        self.addSubview(resetButton)
         
         resetButton.setTitle("Reset", for: .normal)
-        resetButton.setTitleColor(.black, for: .normal)
         
         resetButton.translatesAutoresizingMaskIntoConstraints = false
-        resetButton.topAnchor.constraint(equalTo: mainVerticalStack.topAnchor, constant: 20).isActive = true
+        resetButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         resetButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        resetButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        resetButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        self.addSubview(gridRows)
         
         gridRows.axis = .vertical
         gridRows.translatesAutoresizingMaskIntoConstraints = false
-        gridRows.leadingAnchor.constraint(equalTo: mainVerticalStack.leadingAnchor).isActive = true
-        gridRows.topAnchor.constraint(equalTo: resetButton.bottomAnchor, constant: 30).isActive = true
-        gridRows.widthAnchor.constraint(equalTo: mainVerticalStack.widthAnchor).isActive = true
+        gridRows.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        gridRows.topAnchor.constraint(equalTo: resetButton.bottomAnchor, constant: 10).isActive = true
+        gridRows.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         gridRows.backgroundColor = .white
         
         createButtons(gridRows)
         
         resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
         
+        self.addSubview(self.currentWordLabel)
         
-        resultsStack.addArrangedSubview(self.currentWordLabel)
-        
+        self.currentWordLabel.translatesAutoresizingMaskIntoConstraints = false
         self.currentWordLabel.backgroundColor = .white
         self.currentWordLabel.layer.masksToBounds = true
         self.currentWordLabel.layer.borderColor = UIColor.red.cgColor
@@ -79,13 +58,13 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.currentWordLabel.layer.cornerRadius = 10
         self.currentWordLabel.layer.contentsRect.insetBy(dx: 10, dy: 10)
         
-        self.currentWordLabel.translatesAutoresizingMaskIntoConstraints = false
         self.currentWordLabel.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 20).isActive = true
-        self.currentWordLabel.leadingAnchor.constraint(equalTo: mainVerticalStack.leadingAnchor).isActive = true
+        self.currentWordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.currentWordLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        self.currentWordLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -110).isActive = true
         
         let submitWordButton = UIButton()
-        resultsStack.addArrangedSubview(submitWordButton)
+        self.addSubview(submitWordButton)
         
         submitWordButton.setTitle("Enter", for: .normal)
         submitWordButton.setTitleColor(.black, for: .normal)
@@ -109,7 +88,7 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         self.addSubview(wordListTableView)
         wordListTableView.translatesAutoresizingMaskIntoConstraints = false
-        wordListTableView.topAnchor.constraint(equalTo: resultsStack.bottomAnchor, constant: 10).isActive = true
+        wordListTableView.topAnchor.constraint(equalTo: self.currentWordLabel.bottomAnchor, constant: 10).isActive = true
         wordListTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
         wordListTableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
     }
