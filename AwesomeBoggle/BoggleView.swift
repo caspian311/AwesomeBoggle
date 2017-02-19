@@ -87,6 +87,9 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.wordListTableView.dataSource = self
         
         self.addSubview(wordListTableView)
+        
+        wordListTableView.register(TableViewCell.self, forCellReuseIdentifier: "TableViewCell")
+        
         wordListTableView.translatesAutoresizingMaskIntoConstraints = false
         wordListTableView.topAnchor.constraint(equalTo: self.currentWordLabel.bottomAnchor, constant: 10).isActive = true
         wordListTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
@@ -147,8 +150,16 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.tableViewIdentifier, for: indexPath)
-        cell.textLabel?.text = wordList[indexPath.row]
+        let cellIdendifier: String = "TableViewCell"
+        
+//        var cell: TableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdendifier, forIndexPath: indexPath) as TableViewCell
+        let cell = TableViewCell(style: .default, reuseIdentifier: cellIdendifier)
+        
+        cell.column1Text = wordList[indexPath.row]
+        cell.column2Text = "\(wordList[indexPath.row].characters.count)"
+        
+        cell.sizeToFit()
+        
         return cell
     }
     

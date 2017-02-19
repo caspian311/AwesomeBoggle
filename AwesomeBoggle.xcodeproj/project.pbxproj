@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E74DF91D1E5A5A810061275E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DF91C1E5A5A810061275E /* TableViewCell.swift */; };
 		E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77676E11E3A394B006B8739 /* AppDelegate.swift */; };
 		E77676E41E3A394B006B8739 /* BoggleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77676E31E3A394B006B8739 /* BoggleViewController.swift */; };
 		E77676EA1E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E77676E81E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E74DF91C1E5A5A810061275E /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		E77676DE1E3A394B006B8739 /* AwesomeBoggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeBoggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77676E11E3A394B006B8739 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E77676E31E3A394B006B8739 /* BoggleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoggleViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				E7F19BCC1E48F7A600C0043F /* BoggleModel.swift */,
 				E7A608AA1E4CAC8500D120CC /* PaddedUILabel.swift */,
 				E799D9421E55E98C00C19CC7 /* DictionaryService.swift */,
+				E74DF91C1E5A5A810061275E /* TableViewCell.swift */,
 			);
 			path = AwesomeBoggle;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7A608AB1E4CAC8500D120CC /* PaddedUILabel.swift in Sources */,
+				E74DF91D1E5A5A810061275E /* TableViewCell.swift in Sources */,
 				E77676EA1E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld in Sources */,
 				E7F19BCD1E48F7A600C0043F /* BoggleModel.swift in Sources */,
 				E77676E41E3A394B006B8739 /* BoggleViewController.swift in Sources */,
