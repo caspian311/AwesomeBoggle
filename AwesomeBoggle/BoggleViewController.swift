@@ -39,8 +39,10 @@ extension BoggleViewController: BoggleModelProtocol {
     }
     
     func wordListUpdated(_ wordList: [String]) {
-        self.boggleModel.clearWord()
-        self.boggleView.updateWordList(wordList)
+        DispatchQueue.main.async {
+            self.boggleModel.clearWord()
+            self.boggleView.updateWordList(wordList)
+        }
     }
 }
 
