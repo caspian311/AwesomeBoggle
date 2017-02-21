@@ -49,6 +49,8 @@ extension BoggleViewController: BoggleModelProtocol {
 extension BoggleViewController: BoggleViewProtocol {
     func resetGrid() {
         self.boggleModel.populateGrid()
+        self.boggleModel.clearWordList()
+        self.boggleModel.clearWord()
     }
     
     func letterSelected(_ letter: String?) {
