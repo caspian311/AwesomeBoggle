@@ -1,6 +1,6 @@
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class BoggleTableViewCell: UITableViewCell {
     @IBOutlet var column1Text: String!
     @IBOutlet var column2Text: String!
     
