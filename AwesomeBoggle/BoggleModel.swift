@@ -12,9 +12,9 @@ class BoggleModel {
     
     weak var delegate: BoggleModelProtocol?
     
-    private let dictionaryService: DictionaryService
+    private let dictionaryService: DictionaryServiceProtocol
     
-    init(dictionaryService: DictionaryService = DictionaryService()) {
+    init(dictionaryService: DictionaryServiceProtocol = DictionaryService()) {
         self.dictionaryService = dictionaryService
     }
     

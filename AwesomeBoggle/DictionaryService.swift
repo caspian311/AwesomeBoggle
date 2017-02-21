@@ -1,7 +1,11 @@
 import Foundation
 import UIKit
 
-class DictionaryService {
+protocol DictionaryServiceProtocol: class {
+    func checkValidityOf(word: String, callback: @escaping (Bool, Int?) -> ())
+}
+
+class DictionaryService: DictionaryServiceProtocol {
     
     let appID = "72562bc6"
     let appKey = "1ca3b176a71b51ecb6bf5efdbf545bcf"

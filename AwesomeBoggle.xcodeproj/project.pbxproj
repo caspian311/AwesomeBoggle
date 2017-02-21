@@ -13,7 +13,6 @@
 		E77676EA1E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E77676E81E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld */; };
 		E77676EC1E3A394B006B8739 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77676EB1E3A394B006B8739 /* Assets.xcassets */; };
 		E77676EF1E3A394B006B8739 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */; };
-		E77676FA1E3A394B006B8739 /* AwesomeBoggleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77676F91E3A394B006B8739 /* AwesomeBoggleTests.swift */; };
 		E77677051E3A394B006B8739 /* AwesomeBoggleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77677041E3A394B006B8739 /* AwesomeBoggleUITests.swift */; };
 		E77677131E3A3BEF006B8739 /* BoggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77677121E3A3BEF006B8739 /* BoggleView.swift */; };
 		E799D9431E55E98C00C19CC7 /* DictionaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E799D9421E55E98C00C19CC7 /* DictionaryService.swift */; };
@@ -49,7 +48,6 @@
 		E77676EE1E3A394B006B8739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E77676F01E3A394B006B8739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E77676F51E3A394B006B8739 /* AwesomeBoggleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeBoggleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E77676F91E3A394B006B8739 /* AwesomeBoggleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeBoggleTests.swift; sourceTree = "<group>"; };
 		E77676FB1E3A394B006B8739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E77677001E3A394B006B8739 /* AwesomeBoggleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwesomeBoggleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77677041E3A394B006B8739 /* AwesomeBoggleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeBoggleUITests.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 		E77676F81E3A394B006B8739 /* AwesomeBoggleTests */ = {
 			isa = PBXGroup;
 			children = (
-				E77676F91E3A394B006B8739 /* AwesomeBoggleTests.swift */,
 				E77676FB1E3A394B006B8739 /* Info.plist */,
 				E7A608AE1E4CB85300D120CC /* BoggleModelTest.swift */,
 			);
@@ -294,7 +291,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E77676FA1E3A394B006B8739 /* AwesomeBoggleTests.swift in Sources */,
 				E7A608AF1E4CB85300D120CC /* BoggleModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
