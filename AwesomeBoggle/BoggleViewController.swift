@@ -27,6 +27,17 @@ class BoggleViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
 }
 
 extension BoggleViewController: BoggleModelProtocol {
@@ -47,6 +58,10 @@ extension BoggleViewController: BoggleModelProtocol {
 }
 
 extension BoggleViewController: BoggleViewProtocol {
+    internal func wordTapped(_ word: String) {
+        self.navigationController?.pushViewController(WordDetailViewController(), animated: true)
+    }
+
     func resetGrid() {
         self.boggleModel.populateGrid()
         self.boggleModel.clearWordList()

@@ -4,6 +4,7 @@ protocol BoggleViewProtocol: class {
     func resetGrid()
     func letterSelected(_ letter: String?)
     func submitWord()
+    func wordTapped(_ word: String)
 }
 
 class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -82,7 +83,6 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         submitWordButton.addTarget(self, action: #selector(submitWordButtonPressed), for: .touchUpInside)
         
-        self.wordListTableView.register(UITableViewCell.self, forCellReuseIdentifier: self.tableViewIdentifier)
         self.wordListTableView.delegate = self
         self.wordListTableView.dataSource = self
         
@@ -152,15 +152,20 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdendifier: String = "BoggleTableViewCell"
         
-//        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdendifier, for: indexPath) as? TableViewCell
-        let cell = BoggleTableViewCell(style: .default, reuseIdentifier: cellIdendifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdendifier, for: indexPath) as! BoggleTableViewCell
         
-        cell.column1Text = wordList[indexPath.row]
-        cell.column2Text = "\(wordList[indexPath.row].characters.count)"
+        cell.column1.text = wordList[indexPath.row]
+        cell.column2.text = "\(wordList[indexPath.row].characters.count)"
         
         cell.sizeToFit()
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = wordList[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.delegate?.wordTapped(selectedItem)
     }
     
     @objc
