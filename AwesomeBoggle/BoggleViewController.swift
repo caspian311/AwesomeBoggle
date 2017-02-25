@@ -49,9 +49,11 @@ extension BoggleViewController: BoggleModelProtocol {
         self.boggleView.setCurrentWord(boggleModel.getCurrentWord())
     }
     
-    func wordListUpdated(_ wordList: [String]) {
+    func updateSubmissionResultMessage(_ message: String) {
         DispatchQueue.main.async {
+            self.boggleView.updateSubmitResults(message)
             self.boggleModel.clearWord()
+            self.boggleView.enableInputs()
         }
     }
 }
@@ -74,6 +76,7 @@ extension BoggleViewController: BoggleViewProtocol {
     }
     
     func submitWord() {
+        self.boggleView.disableInputs()
         self.boggleModel.addCurrentWordToList()
     }
     

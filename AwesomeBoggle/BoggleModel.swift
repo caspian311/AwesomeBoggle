@@ -3,7 +3,7 @@ import Foundation
 protocol BoggleModelProtocol: class {
     func populateNewLettersToGrid(_ letters: Array<String>)
     func currentWordChanged()
-    func wordListUpdated(_ wordList: [String])
+    func updateSubmissionResultMessage(_ message: String)
 }
 
 class BoggleModel {
@@ -38,7 +38,6 @@ class BoggleModel {
     
     func clearWordList() {
         self.submittedWords = []
-        self.delegate?.wordListUpdated(self.submittedWords)
     }
     
     func getWordList() -> [String] {
@@ -48,10 +47,14 @@ class BoggleModel {
     func addCurrentWordToList() {
         if (!self.currentWord.isEmpty) {
             self.dictionaryService.checkValidityOf(word: self.currentWord) { (isValid, score) in
+                let message: String
                 if isValid {
                     self.submittedWords.append(self.currentWord)
+                    message = self.createSuccessMessage()
+                } else {
+                    message = self.createFailureMessage()
                 }
-                self.delegate?.wordListUpdated(self.submittedWords)
+                self.self.delegate?.updateSubmissionResultMessage(message)
             }
         }
     }
@@ -59,6 +62,14 @@ class BoggleModel {
     func clearWord() {
         self.currentWord = ""
         self.delegate?.currentWordChanged()
+    }
+    
+    private func createSuccessMessage() -> String {
+        return "\(self.currentWord) is worth \(self.currentWord.characters.count) points!"
+    }
+    
+    private func createFailureMessage() -> String {
+        return "No, \(self.currentWord) is not a word."
     }
     
     private func getRandomString() -> String {

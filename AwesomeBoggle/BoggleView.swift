@@ -12,18 +12,24 @@ class BoggleView: UIView {
     private var gridButtons: [UIButton] = []
     private var currentWordLabel: PaddedUILabel
     private var wordList: [String] = []
+    private var submitResultsLabel: UILabel
+    private let doneButton: UIButton
+    private let submitWordButton: UIButton
+    private let resetButton: UIButton
 
     weak var delegate: BoggleViewProtocol?
     
     init() {
         self.currentWordLabel = PaddedUILabel()
+        self.submitResultsLabel = UILabel()
+        self.doneButton = UIButton()
+        self.submitWordButton = UIButton()
+        self.resetButton = UIButton()
         
         super.init(frame: CGRect.zero)
         self.backgroundColor = .gray
         
         let gridRows = UIStackView()
-        
-        let resetButton = UIButton()
         
         self.addSubview(resetButton)
         
@@ -62,7 +68,6 @@ class BoggleView: UIView {
         self.currentWordLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         self.currentWordLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -110).isActive = true
         
-        let submitWordButton = UIButton()
         self.addSubview(submitWordButton)
         
         submitWordButton.setTitle("Enter", for: .normal)
@@ -81,18 +86,33 @@ class BoggleView: UIView {
         
         submitWordButton.addTarget(self, action: #selector(submitWordButtonPressed), for: .touchUpInside)
         
-        let doneButton = UIButton()
+        self.addSubview(self.submitResultsLabel)
+        
+        self.submitResultsLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.submitResultsLabel.backgroundColor = .white
+        self.submitResultsLabel.layer.masksToBounds = true
+        self.submitResultsLabel.layer.borderColor = UIColor.red.cgColor
+        self.submitResultsLabel.layer.borderWidth = 1
+        self.submitResultsLabel.layer.cornerRadius = 10
+        self.submitResultsLabel.layer.contentsRect.insetBy(dx: 10, dy: 10)
+        
+        self.submitResultsLabel.topAnchor.constraint(equalTo: submitWordButton.bottomAnchor, constant: 10).isActive = true
+        self.submitResultsLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        self.submitResultsLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        self.submitResultsLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.submitResultsLabel.textAlignment = NSTextAlignment.center
+        
         self.addSubview(doneButton)
         
-        doneButton.setTitle("Done", for: .normal)
+        self.doneButton.setTitle("Done", for: .normal)
         
-        doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        doneButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        doneButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
-        doneButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.doneButton.translatesAutoresizingMaskIntoConstraints = false
+        self.doneButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        self.doneButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.doneButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
+        self.doneButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        self.doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
     }
     
     private func createButtons(_ gridRows: UIStackView) {
@@ -125,6 +145,10 @@ class BoggleView: UIView {
         }
     }
     
+    func updateSubmitResults(_ message: String) {
+        self.submitResultsLabel.text = message
+    }
+    
     func updateLetters(_ letters: Array<String>) {
         for (index, button) in self.gridButtons.enumerated() {
             button.setTitle(letters[index], for: .normal)
@@ -133,6 +157,24 @@ class BoggleView: UIView {
     
     func setCurrentWord(_ currentWord: String) {
         self.currentWordLabel.text = currentWord
+    }
+    
+    func disableInputs() {
+        for button in self.gridButtons {
+            button.isEnabled = false
+        }
+        self.doneButton.isEnabled = false
+        self.submitWordButton.isEnabled = false
+        self.resetButton.isEnabled = false
+    }
+    
+    func enableInputs() {
+        for button in self.gridButtons {
+            button.isEnabled = true
+        }
+        self.doneButton.isEnabled = true
+        self.submitWordButton.isEnabled = true
+        self.resetButton.isEnabled = true
     }
     
     required init?(coder aDecoder: NSCoder) {
