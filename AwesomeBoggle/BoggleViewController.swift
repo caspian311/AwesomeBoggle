@@ -52,7 +52,6 @@ extension BoggleViewController: BoggleModelProtocol {
     func wordListUpdated(_ wordList: [String]) {
         DispatchQueue.main.async {
             self.boggleModel.clearWord()
-            self.boggleView.updateWordList(wordList)
         }
     }
 }
@@ -76,5 +75,9 @@ extension BoggleViewController: BoggleViewProtocol {
     
     func submitWord() {
         self.boggleModel.addCurrentWordToList()
+    }
+    
+    func done() {
+        self.navigationController?.pushViewController(ResultsViewController(resultsModel: ResultsModel(self.boggleModel.getWordList())), animated: true)
     }
 }
