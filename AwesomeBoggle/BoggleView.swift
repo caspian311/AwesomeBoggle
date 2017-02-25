@@ -4,27 +4,32 @@ protocol BoggleViewProtocol: class {
     func resetGrid()
     func letterSelected(_ letter: String?)
     func submitWord()
+    func wordTapped(_ word: String)
+    func done()
 }
 
-class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
+class BoggleView: UIView {
     private var gridButtons: [UIButton] = []
     private var currentWordLabel: PaddedUILabel
     private var wordList: [String] = []
-    private var wordListTableView = UITableView()
+    private var submitResultsLabel: UILabel
+    private let doneButton: UIButton
+    private let submitWordButton: UIButton
+    private let resetButton: UIButton
 
     weak var delegate: BoggleViewProtocol?
     
-    private let tableViewIdentifier = "wordCell"
-    
     init() {
         self.currentWordLabel = PaddedUILabel()
+        self.submitResultsLabel = UILabel()
+        self.doneButton = UIButton()
+        self.submitWordButton = UIButton()
+        self.resetButton = UIButton()
         
         super.init(frame: CGRect.zero)
         self.backgroundColor = .gray
         
         let gridRows = UIStackView()
-        
-        let resetButton = UIButton()
         
         self.addSubview(resetButton)
         
@@ -63,7 +68,6 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.currentWordLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         self.currentWordLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -110).isActive = true
         
-        let submitWordButton = UIButton()
         self.addSubview(submitWordButton)
         
         submitWordButton.setTitle("Enter", for: .normal)
@@ -82,21 +86,36 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         submitWordButton.addTarget(self, action: #selector(submitWordButtonPressed), for: .touchUpInside)
         
-        self.wordListTableView.register(UITableViewCell.self, forCellReuseIdentifier: self.tableViewIdentifier)
-        self.wordListTableView.delegate = self
-        self.wordListTableView.dataSource = self
+        self.addSubview(self.submitResultsLabel)
         
-        self.addSubview(wordListTableView)
+        self.submitResultsLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.submitResultsLabel.backgroundColor = .white
+        self.submitResultsLabel.layer.masksToBounds = true
+        self.submitResultsLabel.layer.borderColor = UIColor.red.cgColor
+        self.submitResultsLabel.layer.borderWidth = 1
+        self.submitResultsLabel.layer.cornerRadius = 10
+        self.submitResultsLabel.layer.contentsRect.insetBy(dx: 10, dy: 10)
         
-        wordListTableView.register(BoggleTableViewCell.self, forCellReuseIdentifier: "BoggleTableViewCell")
+        self.submitResultsLabel.topAnchor.constraint(equalTo: submitWordButton.bottomAnchor, constant: 10).isActive = true
+        self.submitResultsLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        self.submitResultsLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        self.submitResultsLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.submitResultsLabel.textAlignment = NSTextAlignment.center
         
-        wordListTableView.translatesAutoresizingMaskIntoConstraints = false
-        wordListTableView.topAnchor.constraint(equalTo: self.currentWordLabel.bottomAnchor, constant: 10).isActive = true
-        wordListTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
-        wordListTableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        self.addSubview(doneButton)
+        
+        self.doneButton.setTitle("Done", for: .normal)
+        
+        self.doneButton.translatesAutoresizingMaskIntoConstraints = false
+        self.doneButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        self.doneButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.doneButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
+        self.doneButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        self.doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
     }
     
-    func createButtons(_ gridRows: UIStackView) {
+    private func createButtons(_ gridRows: UIStackView) {
         for _ in 0...3 {
             let stackView = UIStackView()
             stackView.axis = .horizontal
@@ -126,6 +145,10 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func updateSubmitResults(_ message: String) {
+        self.submitResultsLabel.text = message
+    }
+    
     func updateLetters(_ letters: Array<String>) {
         for (index, button) in self.gridButtons.enumerated() {
             button.setTitle(letters[index], for: .normal)
@@ -136,36 +159,36 @@ class BoggleView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.currentWordLabel.text = currentWord
     }
     
+    func disableInputs() {
+        for button in self.gridButtons {
+            button.isEnabled = false
+        }
+        self.doneButton.isEnabled = false
+        self.submitWordButton.isEnabled = false
+        self.resetButton.isEnabled = false
+    }
+    
+    func enableInputs() {
+        for button in self.gridButtons {
+            button.isEnabled = true
+        }
+        self.doneButton.isEnabled = true
+        self.submitWordButton.isEnabled = true
+        self.resetButton.isEnabled = true
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func updateWordList(_ wordList: [String]) {
-        self.wordList = wordList
-        self.wordListTableView.reloadData()
-    }
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.wordList.count
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdendifier: String = "BoggleTableViewCell"
-        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdendifier, for: indexPath) as? TableViewCell
-        let cell = BoggleTableViewCell(style: .default, reuseIdentifier: cellIdendifier)
-        
-        cell.column1Text = wordList[indexPath.row]
-        cell.column2Text = "\(wordList[indexPath.row].characters.count)"
-        
-        cell.sizeToFit()
-        
-        return cell
     }
     
     @objc
     private func buttonTapped(sender: UIButton, forEvent event: UIEvent) {
         self.delegate?.letterSelected(sender.title(for: .normal))
+    }
+    
+    @objc
+    private func doneButtonTapped() {
+        self.delegate?.done()
     }
     
     @objc

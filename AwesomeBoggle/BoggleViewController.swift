@@ -27,6 +27,17 @@ class BoggleViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
 }
 
 extension BoggleViewController: BoggleModelProtocol {
@@ -38,15 +49,20 @@ extension BoggleViewController: BoggleModelProtocol {
         self.boggleView.setCurrentWord(boggleModel.getCurrentWord())
     }
     
-    func wordListUpdated(_ wordList: [String]) {
+    func updateSubmissionResultMessage(_ message: String) {
         DispatchQueue.main.async {
+            self.boggleView.updateSubmitResults(message)
             self.boggleModel.clearWord()
-            self.boggleView.updateWordList(wordList)
+            self.boggleView.enableInputs()
         }
     }
 }
 
 extension BoggleViewController: BoggleViewProtocol {
+    internal func wordTapped(_ word: String) {
+        self.navigationController?.pushViewController(WordDetailViewController(), animated: true)
+    }
+
     func resetGrid() {
         self.boggleModel.populateGrid()
         self.boggleModel.clearWordList()
@@ -60,6 +76,11 @@ extension BoggleViewController: BoggleViewProtocol {
     }
     
     func submitWord() {
+        self.boggleView.disableInputs()
         self.boggleModel.addCurrentWordToList()
+    }
+    
+    func done() {
+        self.navigationController?.pushViewController(ResultsViewController(resultsModel: ResultsModel(self.boggleModel.getWordList())), animated: true)
     }
 }
