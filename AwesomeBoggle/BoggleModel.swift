@@ -36,7 +36,9 @@ class BoggleModel {
     }
     
     private func updateReadyToReceive() {
-        self.delegate?.readyToReceiveWord(self.currentWord.characters.count > 1)
+        let longEnough = self.currentWord.characters.count > 1
+        let isOriginalWord = !self.submittedWords.contains(self.currentWord)
+        self.delegate?.readyToReceiveWord(longEnough && isOriginalWord)
     }
     
     func getCurrentWord() -> String {

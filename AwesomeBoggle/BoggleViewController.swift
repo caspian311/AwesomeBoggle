@@ -20,8 +20,6 @@ class BoggleViewController: UIViewController {
         
         self.boggleView.delegate = self
         self.boggleModel.delegate = self
-        
-        self.boggleModel.populateGrid()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +30,9 @@ class BoggleViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.isHidden = true
+        
+        resetGrid()
+        self.boggleView.updateSubmitResults("")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
