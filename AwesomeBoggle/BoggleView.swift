@@ -140,6 +140,7 @@ class BoggleView: UIView {
                 buttonToAdd.layer.cornerRadius = 10
                 
                 buttonToAdd.setTitleColor(.black, for: .normal)
+                buttonToAdd.setTitleColor(.gray, for: .disabled)
                 
                 buttonToAdd.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
                 
@@ -189,6 +190,7 @@ class BoggleView: UIView {
     
     @objc
     private func buttonTapped(sender: UIButton, forEvent event: UIEvent) {
+        sender.isEnabled = false
         self.delegate?.letterSelected(sender.title(for: .normal))
     }
     
