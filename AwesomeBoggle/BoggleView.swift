@@ -34,6 +34,8 @@ class BoggleView: UIView {
         self.addSubview(resetButton)
         
         resetButton.setTitle("Reset", for: .normal)
+        resetButton.setTitleColor(.white, for: .normal)
+        resetButton.setTitleColor(.gray, for: .disabled)
         
         resetButton.translatesAutoresizingMaskIntoConstraints = false
         resetButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
@@ -72,6 +74,7 @@ class BoggleView: UIView {
         
         submitWordButton.setTitle("Enter", for: .normal)
         submitWordButton.setTitleColor(.black, for: .normal)
+        submitWordButton.setTitleColor(.gray, for: .disabled)
         
         submitWordButton.backgroundColor = .white
         submitWordButton.layer.borderColor = UIColor.red.cgColor
@@ -145,6 +148,10 @@ class BoggleView: UIView {
         }
     }
     
+    func readyToReceiveWord(_ ready: Bool) {
+        self.submitWordButton.isEnabled = ready
+    }
+    
     func updateSubmitResults(_ message: String) {
         self.submitResultsLabel.text = message
     }
@@ -173,7 +180,6 @@ class BoggleView: UIView {
             button.isEnabled = true
         }
         self.doneButton.isEnabled = true
-        self.submitWordButton.isEnabled = true
         self.resetButton.isEnabled = true
     }
     

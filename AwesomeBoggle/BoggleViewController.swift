@@ -56,6 +56,10 @@ extension BoggleViewController: BoggleModelProtocol {
             self.boggleView.enableInputs()
         }
     }
+    
+    func readyToReceiveWord(_ ready: Bool) {
+        self.boggleView.readyToReceiveWord(ready)
+    }
 }
 
 extension BoggleViewController: BoggleViewProtocol {

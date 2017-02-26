@@ -4,6 +4,7 @@ protocol BoggleModelProtocol: class {
     func populateNewLettersToGrid(_ letters: Array<String>)
     func currentWordChanged()
     func updateSubmissionResultMessage(_ message: String)
+    func readyToReceiveWord(_ ready: Bool)
 }
 
 class BoggleModel {
@@ -23,13 +24,19 @@ class BoggleModel {
         for _ in 0...15 {
             letters += [getRandomString()]
         }
-            
+        
         self.delegate?.populateNewLettersToGrid(letters)
+        updateReadyToReceive()
     }
     
     func addLetter(_ letter: String) {
         self.currentWord.append(letter)
         self.delegate?.currentWordChanged()
+        updateReadyToReceive()
+    }
+    
+    private func updateReadyToReceive() {
+        self.delegate?.readyToReceiveWord(self.currentWord.characters.count > 1)
     }
     
     func getCurrentWord() -> String {
@@ -45,22 +52,21 @@ class BoggleModel {
     }
     
     func addCurrentWordToList() {
-        if (!self.currentWord.isEmpty) {
-            self.dictionaryService.checkValidityOf(word: self.currentWord) { (isValid, score) in
-                let message: String
-                if isValid {
-                    self.submittedWords.append(self.currentWord)
-                    message = self.createSuccessMessage()
-                } else {
-                    message = self.createFailureMessage()
-                }
-                self.self.delegate?.updateSubmissionResultMessage(message)
+        self.dictionaryService.checkValidityOf(word: self.currentWord) { (isValid, score) in
+            let message: String
+            if isValid {
+                self.submittedWords.append(self.currentWord)
+                message = self.createSuccessMessage()
+            } else {
+                message = self.createFailureMessage()
             }
+            self.self.delegate?.updateSubmissionResultMessage(message)
         }
     }
     
     func clearWord() {
         self.currentWord = ""
+        updateReadyToReceive()
         self.delegate?.currentWordChanged()
     }
     
