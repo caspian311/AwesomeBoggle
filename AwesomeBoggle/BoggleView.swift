@@ -6,6 +6,7 @@ protocol BoggleViewProtocol: class {
     func submitWord()
     func wordTapped(_ word: String)
     func done()
+    func clearWord()
 }
 
 class BoggleView: UIView {
@@ -70,24 +71,28 @@ class BoggleView: UIView {
         self.currentWordLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         self.currentWordLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -110).isActive = true
         
-        self.addSubview(submitWordButton)
+        self.currentWordLabel.isUserInteractionEnabled = true
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(currentWordLabelTapped))
+        self.currentWordLabel.addGestureRecognizer(tap)
         
-        submitWordButton.setTitle("Enter", for: .normal)
-        submitWordButton.setTitleColor(.black, for: .normal)
-        submitWordButton.setTitleColor(.gray, for: .disabled)
+        self.addSubview(self.submitWordButton)
         
-        submitWordButton.backgroundColor = .white
-        submitWordButton.layer.borderColor = UIColor.red.cgColor
-        submitWordButton.layer.borderWidth = 1
-        submitWordButton.layer.cornerRadius = 10
+        self.submitWordButton.setTitle("Enter", for: .normal)
+        self.submitWordButton.setTitleColor(.black, for: .normal)
+        self.submitWordButton.setTitleColor(.gray, for: .disabled)
         
-        submitWordButton.translatesAutoresizingMaskIntoConstraints = false
-        submitWordButton.topAnchor.constraint(equalTo: self.currentWordLabel.topAnchor).isActive = true
-        submitWordButton.leadingAnchor.constraint(equalTo: currentWordLabel.trailingAnchor, constant: 10).isActive = true
-        submitWordButton.heightAnchor.constraint(equalTo: currentWordLabel.heightAnchor).isActive = true
-        submitWordButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.submitWordButton.backgroundColor = .white
+        self.submitWordButton.layer.borderColor = UIColor.red.cgColor
+        self.submitWordButton.layer.borderWidth = 1
+        self.submitWordButton.layer.cornerRadius = 10
         
-        submitWordButton.addTarget(self, action: #selector(submitWordButtonPressed), for: .touchUpInside)
+        self.submitWordButton.translatesAutoresizingMaskIntoConstraints = false
+        self.submitWordButton.topAnchor.constraint(equalTo: self.currentWordLabel.topAnchor).isActive = true
+        self.submitWordButton.leadingAnchor.constraint(equalTo: currentWordLabel.trailingAnchor, constant: 10).isActive = true
+        self.submitWordButton.heightAnchor.constraint(equalTo: currentWordLabel.heightAnchor).isActive = true
+        self.submitWordButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        self.submitWordButton.addTarget(self, action: #selector(submitWordButtonPressed), for: .touchUpInside)
         
         self.addSubview(self.submitResultsLabel)
         
@@ -116,6 +121,11 @@ class BoggleView: UIView {
         self.doneButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
         self.doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc
+    private func currentWordLabelTapped() {
+        self.delegate?.clearWord()
     }
     
     private func createButtons(_ gridRows: UIStackView) {

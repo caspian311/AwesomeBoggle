@@ -32,7 +32,6 @@ class BoggleViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         resetGrid()
-        self.boggleView.updateSubmitResults("")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,6 +71,7 @@ extension BoggleViewController: BoggleViewProtocol {
         self.boggleModel.populateGrid()
         self.boggleModel.clearWordList()
         self.boggleModel.clearWord()
+        self.boggleView.updateSubmitResults("")
     }
     
     func letterSelected(_ letter: String?) {
@@ -87,5 +87,10 @@ extension BoggleViewController: BoggleViewProtocol {
     
     func done() {
         self.navigationController?.pushViewController(ResultsViewController(resultsModel: ResultsModel(self.boggleModel.getWordList())), animated: true)
+    }
+    
+    func clearWord() {
+        self.boggleModel.clearWord()
+        self.boggleView.enableInputs()
     }
 }
