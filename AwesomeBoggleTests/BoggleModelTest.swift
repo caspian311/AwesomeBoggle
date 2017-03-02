@@ -103,4 +103,7 @@ class TestBoggleModelDelegate: BoggleModelProtocol {
     func wordListUpdated(_ wordList: [String]) {
         updatedWordList = wordList
     }
+    
+    func readyToReceiveWord(_ ready: Bool) {
+    }
 }

@@ -26,6 +26,7 @@
 		E7B3D2AB1E61B500001579D6 /* BoggleWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B3D2AA1E61B500001579D6 /* BoggleWord.swift */; };
 		E7B3D2AD1E622698001579D6 /* ResultsModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B3D2AC1E622698001579D6 /* ResultsModelTest.swift */; };
 		E7F19BCD1E48F7A600C0043F /* BoggleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F19BCC1E48F7A600C0043F /* BoggleModel.swift */; };
+		E7FD0EBA1E65C0CE00C2E2F1 /* WordDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD0EB91E65C0CE00C2E2F1 /* WordDetailModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		E7B3D2AA1E61B500001579D6 /* BoggleWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleWord.swift; sourceTree = "<group>"; };
 		E7B3D2AC1E622698001579D6 /* ResultsModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsModelTest.swift; sourceTree = "<group>"; };
 		E7F19BCC1E48F7A600C0043F /* BoggleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleModel.swift; sourceTree = "<group>"; };
+		E7FD0EB91E65C0CE00C2E2F1 /* WordDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDetailModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,21 +125,22 @@
 			children = (
 				E77676E11E3A394B006B8739 /* AppDelegate.swift */,
 				E77676EB1E3A394B006B8739 /* Assets.xcassets */,
-				E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */,
-				E77676F01E3A394B006B8739 /* Info.plist */,
 				E77676E81E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld */,
 				E7F19BCC1E48F7A600C0043F /* BoggleModel.swift */,
+				E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */,
 				E77677121E3A3BEF006B8739 /* BoggleView.swift */,
 				E77676E31E3A394B006B8739 /* BoggleViewController.swift */,
-				E7A608AA1E4CAC8500D120CC /* PaddedUILabel.swift */,
+				E7B3D2AA1E61B500001579D6 /* BoggleWord.swift */,
 				E799D9421E55E98C00C19CC7 /* DictionaryService.swift */,
-				E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */,
+				E77676F01E3A394B006B8739 /* Info.plist */,
+				E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */,
+				E7A608AA1E4CAC8500D120CC /* PaddedUILabel.swift */,
+				E7B3D2A61E61AFD1001579D6 /* ResultsModel.swift */,
+				E7B3D2A81E61AFEB001579D6 /* ResultsView.swift */,
+				E7B3D2A41E61AF12001579D6 /* ResultsViewController.swift */,
+				E7FD0EB91E65C0CE00C2E2F1 /* WordDetailModel.swift */,
 				E7B3D2A01E5F2648001579D6 /* WordDetailView.swift */,
 				E7B3D2A21E5F2661001579D6 /* WordDetailViewController.swift */,
-				E7B3D2A61E61AFD1001579D6 /* ResultsModel.swift */,
-				E7B3D2A41E61AF12001579D6 /* ResultsViewController.swift */,
-				E7B3D2A81E61AFEB001579D6 /* ResultsView.swift */,
-				E7B3D2AA1E61B500001579D6 /* BoggleWord.swift */,
 			);
 			path = AwesomeBoggle;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				E7B3D2AB1E61B500001579D6 /* BoggleWord.swift in Sources */,
 				E799D9431E55E98C00C19CC7 /* DictionaryService.swift in Sources */,
 				E7B3D2A11E5F2648001579D6 /* WordDetailView.swift in Sources */,
+				E7FD0EBA1E65C0CE00C2E2F1 /* WordDetailModel.swift in Sources */,
 				E77677131E3A3BEF006B8739 /* BoggleView.swift in Sources */,
 				E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */,
 			);

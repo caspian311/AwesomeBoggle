@@ -4,7 +4,6 @@ protocol BoggleViewProtocol: class {
     func resetGrid()
     func letterSelected(_ letter: String?)
     func submitWord()
-    func wordTapped(_ word: String)
     func done()
     func clearWord()
 }

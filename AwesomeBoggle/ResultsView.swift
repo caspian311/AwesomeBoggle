@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 protocol ResultsViewProtocol: class {
+    func wordTapped(_ word: BoggleWord)
 }
 
 class ResultsView: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -66,11 +67,11 @@ class ResultsView: UIView, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selectedItem = wordList[indexPath.row]
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        self.delegate?.wordTapped(selectedItem)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = wordList[indexPath.row]
+        self.delegate?.wordTapped(selectedItem)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     func updateWordList(_ wordList: [BoggleWord]) {
         self.wordList = wordList

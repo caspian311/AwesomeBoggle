@@ -3,7 +3,7 @@ import UIKit
 
 class ResultsViewController: UIViewController {
     let resultsView: ResultsView
-    private let resultsModel: ResultsModel
+    let resultsModel: ResultsModel
     
     init(resultsView: ResultsView = ResultsView(), resultsModel: ResultsModel) {
         self.resultsView = resultsView
@@ -26,7 +26,9 @@ class ResultsViewController: UIViewController {
 }
 
 extension ResultsViewController: ResultsViewProtocol {
-
+    func wordTapped(_ word: BoggleWord) {
+        self.resultsModel.fetchExampleFor(word: word.text())
+    }
 }
 
 extension ResultsViewController: ResultsModelProtocol {
@@ -36,5 +38,12 @@ extension ResultsViewController: ResultsModelProtocol {
     
     func populateScore(_ score: Int) {
         self.resultsView.updateScore(score)
+    }
+    
+    func showSentence(_ sentence: String) {
+        self.present(WordDetailViewController(wordDetailModel: WordDetailModel(sentence: sentence)), animated: true, completion: nil)
+    }
+    
+    func showError() {
     }
 }

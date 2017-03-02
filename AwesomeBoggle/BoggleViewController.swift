@@ -63,10 +63,6 @@ extension BoggleViewController: BoggleModelProtocol {
 }
 
 extension BoggleViewController: BoggleViewProtocol {
-    internal func wordTapped(_ word: String) {
-        self.navigationController?.pushViewController(WordDetailViewController(), animated: true)
-    }
-
     func resetGrid() {
         self.boggleModel.populateGrid()
         self.boggleModel.clearWordList()

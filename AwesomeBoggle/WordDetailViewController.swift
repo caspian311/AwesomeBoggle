@@ -2,12 +2,12 @@ import Foundation
 import UIKit
 
 class WordDetailViewController: UIViewController {
-    private let wordDetailView: WordDetailView
-    private let boggleModel: BoggleModel
+    let wordDetailView: WordDetailView
+    let wordDetailModel: WordDetailModel
     
-    init(wordDetailView: WordDetailView = WordDetailView(), boggleModel: BoggleModel = BoggleModel()) {
+    init(wordDetailView: WordDetailView = WordDetailView(), wordDetailModel: WordDetailModel) {
         self.wordDetailView = wordDetailView
-        self.boggleModel = boggleModel
+        self.wordDetailModel = wordDetailModel
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -19,11 +19,20 @@ class WordDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = wordDetailView
-        wordDetailView.delegate = self
+        self.wordDetailView.delegate = self
+        self.wordDetailModel.delegate = self
+        self.wordDetailModel.populate()
+    }
+}
+
+extension WordDetailViewController: WordDetailModelProtocol {
+    func showSentence(_ sentence: String) {
+        self.wordDetailView.showSentence(sentence)
     }
 }
 
 extension WordDetailViewController: WordDetailViewProtocol {
     func modalTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
