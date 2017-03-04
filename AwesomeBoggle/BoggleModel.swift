@@ -13,10 +13,13 @@ class BoggleModel {
     
     weak var delegate: BoggleModelProtocol?
     
+    private let coreDataManager: CoreDataManagerProtocol
     private let dictionaryService: DictionaryServiceProtocol
     
-    init(dictionaryService: DictionaryServiceProtocol = DictionaryService()) {
+    init(dictionaryService: DictionaryServiceProtocol = DictionaryService(),
+         coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
         self.dictionaryService = dictionaryService
+        self.coreDataManager = coreDataManager
     }
     
     func populateGrid() {
@@ -58,6 +61,8 @@ class BoggleModel {
             let message: String
             if isValid {
                 self.submittedWords.append(self.currentWord)
+                self.coreDataManager.saveWord(text: self.currentWord, score: score!)
+
                 message = self.createSuccessMessage()
             } else {
                 message = self.createFailureMessage()

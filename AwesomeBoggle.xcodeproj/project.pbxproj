@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70D111F1E6861A3003932CB /* CoreDataManager.swift */; };
 		E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */; };
 		E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77676E11E3A394B006B8739 /* AppDelegate.swift */; };
 		E77676E41E3A394B006B8739 /* BoggleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77676E31E3A394B006B8739 /* BoggleViewController.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E70D111F1E6861A3003932CB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleTableViewCell.swift; sourceTree = "<group>"; };
 		E77676DE1E3A394B006B8739 /* AwesomeBoggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeBoggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77676E11E3A394B006B8739 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				E77677121E3A3BEF006B8739 /* BoggleView.swift */,
 				E77676E31E3A394B006B8739 /* BoggleViewController.swift */,
 				E7B3D2AA1E61B500001579D6 /* BoggleWord.swift */,
+				E70D111F1E6861A3003932CB /* CoreDataManager.swift */,
 				E799D9421E55E98C00C19CC7 /* DictionaryService.swift */,
 				E77676F01E3A394B006B8739 /* Info.plist */,
 				E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */,
@@ -314,6 +317,7 @@
 				E7B3D2A11E5F2648001579D6 /* WordDetailView.swift in Sources */,
 				E7FD0EBA1E65C0CE00C2E2F1 /* WordDetailModel.swift in Sources */,
 				E77677131E3A3BEF006B8739 /* BoggleView.swift in Sources */,
+				E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */,
 				E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

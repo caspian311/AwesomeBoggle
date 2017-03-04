@@ -50,4 +50,10 @@ class TestResultsModelDelegate: ResultsModelProtocol {
     func populateScore(_ score: Int) {
         self.populatedScore = score
     }
+    
+    func showSentence(_ sentence: String) {
+    }
+    
+    func showError() {
+    }
 }
