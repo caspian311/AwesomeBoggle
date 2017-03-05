@@ -5,6 +5,7 @@ protocol BoggleModelProtocol: class {
     func currentWordChanged()
     func updateSubmissionResultMessage(_ message: String)
     func readyToReceiveWord(_ ready: Bool)
+    func goToScoreBoard()
 }
 
 class BoggleModel {
@@ -15,6 +16,7 @@ class BoggleModel {
     
     private let coreDataManager: CoreDataManagerProtocol
     private let dictionaryService: DictionaryServiceProtocol
+    private var currentGame: BoggleGame?
     
     init(dictionaryService: DictionaryServiceProtocol = DictionaryService(),
          coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
@@ -61,7 +63,6 @@ class BoggleModel {
             let message: String
             if isValid {
                 self.submittedWords.append(self.currentWord)
-                self.coreDataManager.saveWord(text: self.currentWord, score: score!)
 
                 message = self.createSuccessMessage()
             } else {
@@ -75,6 +76,17 @@ class BoggleModel {
         self.currentWord = ""
         updateReadyToReceive()
         self.delegate?.currentWordChanged()
+    }
+    
+    func saveGame() {
+        let game = BoggleGame(
+            id: UUID.init().uuidString,
+            date: Date(),
+            score: self.submittedWords.map{ $0.characters.count }.reduce(0, { $0 + $1 }))
+        
+        self.coreDataManager.save(game: game)
+        
+        self.delegate?.goToScoreBoard()
     }
     
     private func createSuccessMessage() -> String {

@@ -60,6 +60,13 @@ extension BoggleViewController: BoggleModelProtocol {
     func readyToReceiveWord(_ ready: Bool) {
         self.boggleView.readyToReceiveWord(ready)
     }
+    
+    func goToScoreBoard() {
+        let resultsModel = ResultsModel(self.boggleModel.getWordList())
+//        TODO - make this work!
+//        self.navigationController?.pushViewController(ResultsViewController(resultsModel: resultsModel), animated: true)
+        self.present(ResultsViewController(resultsModel: resultsModel), animated: true, completion: nil)
+    }
 }
 
 extension BoggleViewController: BoggleViewProtocol {
@@ -82,7 +89,7 @@ extension BoggleViewController: BoggleViewProtocol {
     }
     
     func done() {
-        self.navigationController?.pushViewController(ResultsViewController(resultsModel: ResultsModel(self.boggleModel.getWordList())), animated: true)
+        self.boggleModel.saveGame()
     }
     
     func clearWord() {
