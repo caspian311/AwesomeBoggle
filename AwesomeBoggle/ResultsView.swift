@@ -3,10 +3,12 @@ import UIKit
 
 protocol ResultsViewProtocol: class {
     func wordTapped(_ word: BoggleWord)
+    func done()
 }
 
 class ResultsView: UIView, UITableViewDelegate, UITableViewDataSource {
     var delegate: ResultsViewProtocol?
+    weak var navigationItem: UINavigationItem?
     
     private var wordListTableView: UITableView
     private var wordList: [BoggleWord] = []
@@ -48,6 +50,16 @@ class ResultsView: UIView, UITableViewDelegate, UITableViewDataSource {
         self.wordListTableView.topAnchor.constraint(equalTo: self.scoreLabel.bottomAnchor, constant: 10).isActive = true
         self.wordListTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         self.wordListTableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+    }
+    
+    func setupNavigationBar(_ navigationItem: UINavigationItem) {
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonClicked))
+    }
+    
+    @objc
+    private func doneButtonClicked() {
+        self.delegate?.done()
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

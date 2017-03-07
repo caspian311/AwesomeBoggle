@@ -20,7 +20,9 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
         self.view = self.resultsView
         self.resultsView.delegate = self
+        self.resultsView.setupNavigationBar(self.navigationItem)
         self.resultsModel.delegate = self
+        
         self.resultsModel.populate()
     }
 }
@@ -28,6 +30,10 @@ class ResultsViewController: UIViewController {
 extension ResultsViewController: ResultsViewProtocol {
     func wordTapped(_ word: BoggleWord) {
         self.resultsModel.fetchExampleFor(word: word.text())
+    }
+    
+    func done() {
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }
 
