@@ -52,6 +52,22 @@ class MainView: UIView {
         gameHistoryButton.topAnchor.constraint(equalTo: startGameButton.bottomAnchor, constant: 10).isActive = true
         
         gameHistoryButton.addTarget(self, action: #selector(gameHistoryButtonPressed), for: .touchUpInside)
+        
+        let titleLabel = UILabel()
+        
+        self.addSubview(titleLabel)
+        
+        titleLabel.text = "Awesome\nBoggle"
+        
+        titleLabel.textColor = .white
+        titleLabel.textAlignment = .center
+        titleLabel.backgroundColor = .gray
+        titleLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 60)
+        titleLabel.numberOfLines = 0
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.bottomAnchor.constraint(equalTo: startGameButton.topAnchor, constant: -30).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
