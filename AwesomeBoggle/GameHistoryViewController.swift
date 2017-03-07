@@ -21,6 +21,13 @@ class GameHistoryViewController: UIViewController {
         self.gameHistoryModel.populate()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     required init?(coder aDecorder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

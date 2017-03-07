@@ -63,9 +63,7 @@ extension BoggleViewController: BoggleModelProtocol {
     
     func goToScoreBoard() {
         let resultsModel = ResultsModel(self.boggleModel.getWordList())
-//        TODO - make this work!
-//        self.navigationController?.pushViewController(ResultsViewController(resultsModel: resultsModel), animated: true)
-        self.present(ResultsViewController(resultsModel: resultsModel), animated: true, completion: nil)
+        self.navigationController?.pushViewController(ResultsViewController(resultsModel: resultsModel), animated: true)
     }
 }
 

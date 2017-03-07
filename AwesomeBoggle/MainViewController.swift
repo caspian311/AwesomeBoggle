@@ -19,6 +19,13 @@ class MainViewController: UIViewController {
         self.mainView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     required init?(coder aDecorder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -26,7 +33,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: MainModelProtocol {
     func startGame() {
-        self.present(BoggleViewController(), animated: true, completion: nil)
+        self.navigationController?.pushViewController(BoggleViewController(), animated: true)
     }
     
     func showGameHistory() {
