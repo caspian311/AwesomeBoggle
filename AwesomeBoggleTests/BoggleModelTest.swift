@@ -92,6 +92,9 @@ class TestDictionaryService: DictionaryServiceProtocol {
 }
 
 class TestBoggleModelDelegate: BoggleModelProtocol {
+    func goToScoreBoard() {
+    }
+    
     var populatedNewLettersToGrid = [String]()
     var updatedWordList = [String]()
     var currentWordHasChanged = false

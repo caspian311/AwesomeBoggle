@@ -22,7 +22,7 @@ class CoreDataManager: CoreDataManagerProtocol {
         do {
             let dataResults = try managedContext.fetch(fetchRequest)
             
-            gameList = (dataResults as! [Game]).map{ BoggleGame(id: $0.id!, date: $0.date as! Date, score: Int($0.score)) }
+            gameList = (dataResults as! [Game]).map{ BoggleGame(id: $0.id!, date: $0.date! as Date, score: Int($0.score)) }
         } catch let error as NSError {
             print("Could not fetch. \(error)")
         }
