@@ -5,13 +5,14 @@ protocol MainViewProtocol: class {
     func gameHistoryButtonPressed()
 }
 
-class MainView: UIView {
+class MainView: GradientView {
     weak var delegate: MainViewProtocol?
     
     init() {
         super.init(frame: CGRect.zero)
         
-        self.backgroundColor = .gray
+        self.startColor = UIColor(red: 0.6, green: 0.8, blue: 1.00, alpha: 1.00)
+        self.endColor = UIColor(red: 0.2, green: 0.6, blue: 1.00, alpha: 1.00)
         
         let startGameButton = UIButton()
         
@@ -21,8 +22,8 @@ class MainView: UIView {
         startGameButton.setTitleColor(.black, for: .normal)
         
         startGameButton.backgroundColor = .white
-        startGameButton.layer.borderColor = UIColor.red.cgColor
-        startGameButton.layer.borderWidth = 1
+        startGameButton.layer.borderColor = UIColor.black.cgColor
+        startGameButton.layer.borderWidth = 2
         startGameButton.layer.cornerRadius = 10
         
         startGameButton.translatesAutoresizingMaskIntoConstraints = false
@@ -41,8 +42,8 @@ class MainView: UIView {
         gameHistoryButton.setTitleColor(.black, for: .normal)
         
         gameHistoryButton.backgroundColor = .white
-        gameHistoryButton.layer.borderColor = UIColor.red.cgColor
-        gameHistoryButton.layer.borderWidth = 1
+        gameHistoryButton.layer.borderColor = UIColor.black.cgColor
+        gameHistoryButton.layer.borderWidth = 2
         gameHistoryButton.layer.cornerRadius = 10
         
         gameHistoryButton.translatesAutoresizingMaskIntoConstraints = false
@@ -59,11 +60,19 @@ class MainView: UIView {
         
         titleLabel.text = "Awesome\nBoggle"
         
-        titleLabel.textColor = .white
         titleLabel.textAlignment = .center
-        titleLabel.backgroundColor = .gray
+        titleLabel.backgroundColor = .clear
         titleLabel.font = UIFont(name:"HelveticaNeue-Bold", size: 60)
         titleLabel.numberOfLines = 0
+        
+        let strokeTextAttributes = [
+            NSAttributedStringKey.strokeColor : UIColor.black,
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.strokeWidth : -4.0,
+            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 60)!]
+            as [NSAttributedStringKey : Any]
+        //Making outline here
+        titleLabel.attributedText = NSMutableAttributedString(string: "Awesome\nBoggle", attributes: strokeTextAttributes)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.bottomAnchor.constraint(equalTo: startGameButton.topAnchor, constant: -30).isActive = true

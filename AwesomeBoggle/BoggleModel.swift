@@ -41,7 +41,7 @@ class BoggleModel {
     }
     
     private func updateReadyToReceive() {
-        let longEnough = self.currentWord.characters.count > 1
+        let longEnough = self.currentWord.count > 1
         let isOriginalWord = !self.submittedWords.contains(self.currentWord)
         self.delegate?.readyToReceiveWord(longEnough && isOriginalWord)
     }
@@ -82,7 +82,7 @@ class BoggleModel {
         let game = BoggleGame(
             id: UUID.init().uuidString,
             date: Date(),
-            score: self.submittedWords.map{ $0.characters.count }.reduce(0, { $0 + $1 }))
+            score: self.submittedWords.map{ $0.count }.reduce(0, { $0 + $1 }))
         
         self.coreDataManager.save(game: game)
         
@@ -90,7 +90,7 @@ class BoggleModel {
     }
     
     private func createSuccessMessage() -> String {
-        return "\(self.currentWord) is worth \(self.currentWord.characters.count) points!"
+        return "\(self.currentWord) is worth \(self.currentWord.count) points!"
     }
     
     private func createFailureMessage() -> String {
@@ -98,7 +98,7 @@ class BoggleModel {
     }
     
     private func getRandomString() -> String {
-        let letters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters)
+        let letters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         let random_int = Int(arc4random_uniform(26))
         return String(letters[random_int])
     }

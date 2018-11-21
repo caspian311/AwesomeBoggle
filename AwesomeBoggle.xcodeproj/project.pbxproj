@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A22AB21A5D6440027A7B4 /* GradientView.swift */; };
 		E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70D111F1E6861A3003932CB /* CoreDataManager.swift */; };
 		E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */; };
 		E74F01461E6B6C5D005065BB /* BoggleGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F01451E6B6C5D005065BB /* BoggleGame.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F9A22AB21A5D6440027A7B4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		E70D111F1E6861A3003932CB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleTableViewCell.swift; sourceTree = "<group>"; };
 		E74F01451E6B6C5D005065BB /* BoggleGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleGame.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				E7A525511E6CB27B00BCB328 /* MainModel.swift */,
 				E7A5254F1E6CB25300BCB328 /* MainView.swift */,
 				E7A5254D1E6CB1B500BCB328 /* MainViewController.swift */,
+				9F9A22AB21A5D6440027A7B4 /* GradientView.swift */,
 				E7A608AA1E4CAC8500D120CC /* PaddedUILabel.swift */,
 				E7B3D2A61E61AFD1001579D6 /* ResultsModel.swift */,
 				E7B3D2A81E61AFEB001579D6 /* ResultsView.swift */,
@@ -352,6 +355,7 @@
 				E77677131E3A3BEF006B8739 /* BoggleView.swift in Sources */,
 				E7A5254E1E6CB1B500BCB328 /* MainViewController.swift in Sources */,
 				E7A5255A1E6CBDFB00BCB328 /* BoggleGameTableViewCell.swift in Sources */,
+				9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */,
 				E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */,
 				E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */,
 			);

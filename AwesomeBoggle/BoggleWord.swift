@@ -12,6 +12,6 @@ class BoggleWord {
     }
     
     func score() -> Int {
-        return self.value.characters.count
+        return self.value.count
     }
 }
