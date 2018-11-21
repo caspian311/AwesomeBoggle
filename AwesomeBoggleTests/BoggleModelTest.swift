@@ -49,7 +49,7 @@ class BoggleModelTest: XCTestCase {
         testObject.addCurrentWordToList()
         testDictionaryService.callback!(true, 2)
         
-        XCTAssertEqual(["hi"], (testDelegate?.updatedWordList)!)
+        XCTAssertEqual(["hi"], testObject.getWordList())
     }
     
     func test_addCurrentWordToList_WhenNotAWord_NoListGivenToDelegate() {
