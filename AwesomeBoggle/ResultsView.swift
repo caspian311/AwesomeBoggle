@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 protocol ResultsViewProtocol: class {
-    func wordTapped(_ word: BoggleWord)
     func done()
 }
 
@@ -80,8 +79,6 @@ class ResultsView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedItem = wordList[indexPath.row]
-        self.delegate?.wordTapped(selectedItem)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

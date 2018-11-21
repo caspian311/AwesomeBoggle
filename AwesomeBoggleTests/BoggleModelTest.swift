@@ -85,10 +85,6 @@ class TestDictionaryService: DictionaryServiceProtocol {
         checkValidityCalled = true
         self.callback = callback
     }
-    
-    func getSentenceFor(word: String, callback: @escaping (Bool, String) -> ()) {
-    }
-    
 }
 
 class TestBoggleModelDelegate: BoggleModelProtocol {
@@ -105,10 +101,6 @@ class TestBoggleModelDelegate: BoggleModelProtocol {
     
     func currentWordChanged() {
         currentWordHasChanged = true
-    }
-    
-    func wordListUpdated(_ wordList: [String]) {
-        updatedWordList = wordList
     }
     
     func readyToReceiveWord(_ ready: Bool) {

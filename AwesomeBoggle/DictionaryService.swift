@@ -3,7 +3,6 @@ import UIKit
 
 protocol DictionaryServiceProtocol: class {
     func checkValidityOf(word: String, callback: @escaping (Bool, Int?) -> ())
-    func getSentenceFor(word: String, callback: @escaping (Bool, String) -> ())
 }
 
 class DictionaryService: DictionaryServiceProtocol {
@@ -21,37 +20,9 @@ class DictionaryService: DictionaryServiceProtocol {
         
         makeCall(url: url) { (response, data) in
             if response.statusCode == 200 {
-                callback(true, word.characters.count)
+                callback(true, word.count)
             } else {
                 callback(false, 0)
-            }
-        }
-    }
-    
-    func getSentenceFor(word: String, callback: @escaping (Bool, String) -> ()) {
-        let url = baseUrl.appendingPathComponent("\(word.lowercased())/sentences")
-        
-        makeCall(url: url) { (response, dataOptional) in
-            if response.statusCode == 200 {
-                if let data = dataOptional {
-                    do  {
-                        let jsonObject = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! Dictionary<String,Any>
-                        let results = jsonObject["results"] as! Array<Dictionary<String, Any>>
-                        let entries = results.first!["lexicalEntries"] as! Array<Dictionary<String, Any>>
-                        let sentences = entries.first!["sentences"] as! Array<Dictionary<String, Any>>
-                        let firstSentence = sentences.first!
-                        let firstSentenceText = firstSentence["text"] as! String
-                        
-                        callback(true, firstSentenceText)
-                    } catch {
-                        callback(false, "Could not find a sentence for \(word)")
-                    }
-                } else {
-                    callback(false, "Could not find a sentence for \(word)")
-                }
-                
-            } else {
-                callback(false, "Could not find a sentence for \(word)")
             }
         }
     }
@@ -71,5 +42,4 @@ class DictionaryService: DictionaryServiceProtocol {
         }
         task.resume()
     }
-    
 }

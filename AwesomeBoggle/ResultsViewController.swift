@@ -28,10 +28,6 @@ class ResultsViewController: UIViewController {
 }
 
 extension ResultsViewController: ResultsViewProtocol {
-    func wordTapped(_ word: BoggleWord) {
-        self.resultsModel.fetchExampleFor(word: word.text())
-    }
-    
     func done() {
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
@@ -44,10 +40,6 @@ extension ResultsViewController: ResultsModelProtocol {
     
     func populateScore(_ score: Int) {
         self.resultsView.updateScore(score)
-    }
-    
-    func showSentence(_ sentence: String) {
-        self.present(WordDetailViewController(wordDetailModel: WordDetailModel(sentence: sentence)), animated: true, completion: nil)
     }
     
     func showError() {
