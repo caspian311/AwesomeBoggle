@@ -8,7 +8,7 @@ protocol BoggleViewProtocol: class {
     func clearWord()
 }
 
-class BoggleView: UIView {
+class BoggleView: GradientView {
     private var gridButtons: [UIButton] = []
     private var currentWordLabel: PaddedUILabel
     private var wordList: [String] = []
@@ -27,7 +27,9 @@ class BoggleView: UIView {
         self.resetButton = UIButton()
         
         super.init(frame: CGRect.zero)
-        self.backgroundColor = .gray
+        
+        self.startColor = UIColor(red: 0.6, green: 0.8, blue: 1.00, alpha: 1.00)
+        self.endColor = UIColor(red: 0.2, green: 0.6, blue: 1.00, alpha: 1.00)
         
         let gridRows = UIStackView()
         
@@ -60,8 +62,8 @@ class BoggleView: UIView {
         self.currentWordLabel.translatesAutoresizingMaskIntoConstraints = false
         self.currentWordLabel.backgroundColor = .white
         self.currentWordLabel.layer.masksToBounds = true
-        self.currentWordLabel.layer.borderColor = UIColor.red.cgColor
-        self.currentWordLabel.layer.borderWidth = 1
+        self.currentWordLabel.layer.borderColor = UIColor.black.cgColor
+        self.currentWordLabel.layer.borderWidth = 2
         self.currentWordLabel.layer.cornerRadius = 10
         self.currentWordLabel.layer.contentsRect.insetBy(dx: 10, dy: 10)
         
@@ -81,8 +83,8 @@ class BoggleView: UIView {
         self.submitWordButton.setTitleColor(.gray, for: .disabled)
         
         self.submitWordButton.backgroundColor = .white
-        self.submitWordButton.layer.borderColor = UIColor.red.cgColor
-        self.submitWordButton.layer.borderWidth = 1
+        self.submitWordButton.layer.borderColor = UIColor.black.cgColor
+        self.submitWordButton.layer.borderWidth = 2
         self.submitWordButton.layer.cornerRadius = 10
         
         self.submitWordButton.translatesAutoresizingMaskIntoConstraints = false
@@ -98,8 +100,8 @@ class BoggleView: UIView {
         self.submitResultsLabel.translatesAutoresizingMaskIntoConstraints = false
         self.submitResultsLabel.backgroundColor = .white
         self.submitResultsLabel.layer.masksToBounds = true
-        self.submitResultsLabel.layer.borderColor = UIColor.red.cgColor
-        self.submitResultsLabel.layer.borderWidth = 1
+        self.submitResultsLabel.layer.borderColor = UIColor.black.cgColor
+        self.submitResultsLabel.layer.borderWidth = 2
         self.submitResultsLabel.layer.cornerRadius = 10
         self.submitResultsLabel.layer.contentsRect.insetBy(dx: 10, dy: 10)
         
@@ -144,8 +146,8 @@ class BoggleView: UIView {
                 buttonToAdd.heightAnchor.constraint(equalTo: buttonToAdd.widthAnchor).isActive = true
                 
                 buttonToAdd.backgroundColor = .white
-                buttonToAdd.layer.borderColor = UIColor.red.cgColor
-                buttonToAdd.layer.borderWidth = 1
+                buttonToAdd.layer.borderColor = UIColor.black.cgColor
+                buttonToAdd.layer.borderWidth = 2
                 buttonToAdd.layer.cornerRadius = 10
                 
                 buttonToAdd.setTitleColor(.black, for: .normal)
