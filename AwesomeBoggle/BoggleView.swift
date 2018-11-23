@@ -15,7 +15,8 @@ class BoggleView: GradientView {
     private var submitResultsLabel: UILabel
     private let quitButton: UIButton
     private let submitWordButton: UIButton
-    private let resetButton: UIButton
+    private var timer = PaddedUILabel()
+    private var timerTextAttributes: [NSAttributedStringKey : Any] = [:]
 
     weak var delegate: BoggleViewProtocol?
     
@@ -24,7 +25,7 @@ class BoggleView: GradientView {
         self.submitResultsLabel = UILabel()
         self.quitButton = UIButton()
         self.submitWordButton = UIButton()
-        self.resetButton = UIButton()
+        self.timer = PaddedUILabel()
         
         super.init(frame: CGRect.zero)
         
@@ -65,7 +66,7 @@ class BoggleView: GradientView {
         
         self.addSubview(self.submitWordButton)
         
-        self.submitWordButton.setTitle("Enter", for: .normal)
+        self.submitWordButton.setTitle("SUBMIT", for: .normal)
         self.submitWordButton.setTitleColor(.black, for: .normal)
         self.submitWordButton.setTitleColor(.gray, for: .disabled)
         
@@ -98,6 +99,25 @@ class BoggleView: GradientView {
         self.submitResultsLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.submitResultsLabel.textAlignment = NSTextAlignment.center
 
+        self.addSubview(self.timer)
+        
+        self.timer.textAlignment = .center
+        self.timer.backgroundColor = .clear
+        self.timer.text = "0:00"
+        
+        self.timerTextAttributes = [
+            NSAttributedStringKey.strokeColor : UIColor.black,
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.strokeWidth : -4.0,
+            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 30)!]
+            as [NSAttributedStringKey : Any]
+        self.updateTimer("0:00")
+        
+        self.timer.translatesAutoresizingMaskIntoConstraints = false
+        self.timer.topAnchor.constraint(equalTo: self.submitResultsLabel.bottomAnchor, constant: 10).isActive = true
+        self.timer.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.timer.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        
         self.addSubview(quitButton)
         
         self.quitButton.setTitle("QUIT", for: .normal)
@@ -171,7 +191,6 @@ class BoggleView: GradientView {
         }
         self.quitButton.isEnabled = false
         self.submitWordButton.isEnabled = false
-        self.resetButton.isEnabled = false
     }
     
     func enableInputs() {
@@ -179,7 +198,10 @@ class BoggleView: GradientView {
             button.isEnabled = true
         }
         self.quitButton.isEnabled = true
-        self.resetButton.isEnabled = true
+    }
+    
+    func updateTimer(_ timerText: String) {
+        self.timer.attributedText = NSMutableAttributedString(string: timerText, attributes: self.timerTextAttributes)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -6,11 +6,13 @@ protocol BoggleModelProtocol: class {
     func updateSubmissionResultMessage(_ message: String)
     func readyToReceiveWord(_ ready: Bool)
     func goToScoreBoard()
+    func startTimer()
 }
 
 class BoggleModel {
     private var currentWord = ""
     private var submittedWords = [String]()
+    private var timeRemaining = 60
     
     weak var delegate: BoggleModelProtocol?
     
@@ -87,6 +89,16 @@ class BoggleModel {
         self.coreDataManager.save(game: game)
         
         self.delegate?.goToScoreBoard()
+    }
+    
+    func isGameOver() -> Bool {
+        return self.timeRemaining == 0
+    }
+    
+    func getTimeRemaining() -> String {
+        self.timeRemaining -= 1
+        
+        return String(self.timeRemaining)
     }
     
     private func createSuccessMessage() -> String {

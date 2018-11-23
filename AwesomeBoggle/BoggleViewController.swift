@@ -32,6 +32,7 @@ class BoggleViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         resetGrid()
+        startTimer()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -64,6 +65,16 @@ extension BoggleViewController: BoggleModelProtocol {
     func goToScoreBoard() {
         let resultsModel = ResultsModel(self.boggleModel.getWordList())
         self.navigationController?.pushViewController(ResultsViewController(resultsModel: resultsModel), animated: true)
+    }
+    
+    func startTimer() {
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            if self.boggleModel.isGameOver() {
+                timer.invalidate()
+                self.done()
+            }
+            self.boggleView.updateTimer(self.boggleModel.getTimeRemaining())
+        }
     }
 }
 
