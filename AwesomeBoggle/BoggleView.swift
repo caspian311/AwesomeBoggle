@@ -13,7 +13,7 @@ class BoggleView: GradientView {
     private var currentWordLabel: PaddedUILabel
     private var wordList: [String] = []
     private var submitResultsLabel: UILabel
-    private let doneButton: UIButton
+    private let quitButton: UIButton
     private let submitWordButton: UIButton
     private let resetButton: UIButton
 
@@ -22,7 +22,7 @@ class BoggleView: GradientView {
     init() {
         self.currentWordLabel = PaddedUILabel()
         self.submitResultsLabel = UILabel()
-        self.doneButton = UIButton()
+        self.quitButton = UIButton()
         self.submitWordButton = UIButton()
         self.resetButton = UIButton()
         
@@ -106,22 +106,22 @@ class BoggleView: GradientView {
         self.submitResultsLabel.layer.contentsRect.insetBy(dx: 10, dy: 10)
         
         self.submitResultsLabel.topAnchor.constraint(equalTo: submitWordButton.bottomAnchor, constant: 10).isActive = true
-        self.submitResultsLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        self.submitResultsLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         self.submitResultsLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
         self.submitResultsLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.submitResultsLabel.textAlignment = NSTextAlignment.center
+
+        self.addSubview(quitButton)
         
-        self.addSubview(doneButton)
+        self.quitButton.setTitle("QUIT", for: .normal)
         
-        self.doneButton.setTitle("Done", for: .normal)
+        self.quitButton.translatesAutoresizingMaskIntoConstraints = false
+        self.quitButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        self.quitButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.quitButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
+        self.quitButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        self.doneButton.translatesAutoresizingMaskIntoConstraints = false
-        self.doneButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        self.doneButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        self.doneButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
-        self.doneButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
-        self.doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        self.quitButton.addTarget(self, action: #selector(quitButtonTapped), for: .touchUpInside)
     }
     
     @objc
@@ -182,7 +182,7 @@ class BoggleView: GradientView {
         for button in self.gridButtons {
             button.isEnabled = false
         }
-        self.doneButton.isEnabled = false
+        self.quitButton.isEnabled = false
         self.submitWordButton.isEnabled = false
         self.resetButton.isEnabled = false
     }
@@ -191,7 +191,7 @@ class BoggleView: GradientView {
         for button in self.gridButtons {
             button.isEnabled = true
         }
-        self.doneButton.isEnabled = true
+        self.quitButton.isEnabled = true
         self.resetButton.isEnabled = true
     }
     
