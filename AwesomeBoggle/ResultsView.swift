@@ -5,7 +5,7 @@ protocol ResultsViewProtocol: class {
     func done()
 }
 
-class ResultsView: UIView, UITableViewDelegate, UITableViewDataSource {
+class ResultsView: GradientView, UITableViewDelegate, UITableViewDataSource {
     var delegate: ResultsViewProtocol?
     weak var navigationItem: UINavigationItem?
     
@@ -14,29 +14,34 @@ class ResultsView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     private let scoreLabel: UILabel
     
+    private var resultsTextAttributes: [NSAttributedStringKey : Any] = [:]
+    
     init(){
         self.scoreLabel = UILabel()
         self.wordListTableView = UITableView()
         
         super.init(frame: CGRect.zero)
         
-        self.backgroundColor = .gray
+        self.startColor = UIColor(red: 0.6, green: 0.8, blue: 1.00, alpha: 1.00)
+        self.endColor = UIColor(red: 0.2, green: 0.6, blue: 1.00, alpha: 1.00)
         
         self.addSubview(self.scoreLabel)
         
-        self.scoreLabel.backgroundColor = .white
-        self.scoreLabel.layer.masksToBounds = true
-        self.scoreLabel.layer.borderColor = UIColor.red.cgColor
-        self.scoreLabel.layer.borderWidth = 1
-        self.scoreLabel.layer.cornerRadius = 10
-        self.scoreLabel.layer.contentsRect.insetBy(dx: 10, dy: 10)
-        self.scoreLabel.textAlignment = NSTextAlignment.center
+        self.addSubview(scoreLabel)
         
-        self.scoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.scoreLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        self.scoreLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        self.scoreLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        self.scoreLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        scoreLabel.textAlignment = .center
+        
+        self.resultsTextAttributes = [
+            NSAttributedStringKey.strokeColor : UIColor.black,
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.strokeWidth : -4.0,
+            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 30)!]
+            as [NSAttributedStringKey : Any]
+        scoreLabel.attributedText = NSMutableAttributedString(string: "", attributes: self.resultsTextAttributes)
+        
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        scoreLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        scoreLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
         self.wordListTableView.delegate = self
         self.wordListTableView.dataSource = self
@@ -47,8 +52,15 @@ class ResultsView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         self.wordListTableView.translatesAutoresizingMaskIntoConstraints = false
         self.wordListTableView.topAnchor.constraint(equalTo: self.scoreLabel.bottomAnchor, constant: 10).isActive = true
-        self.wordListTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.wordListTableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        self.wordListTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        self.wordListTableView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
+        self.wordListTableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        self.wordListTableView.layer.masksToBounds = true
+        self.wordListTableView.layer.borderColor = UIColor.black.cgColor
+        self.wordListTableView.layer.borderWidth = 2
+        self.wordListTableView.layer.cornerRadius = 10
+        self.wordListTableView.layer.contentsRect.insetBy(dx: 10, dy: 10)
     }
     
     func setupNavigationBar(_ navigationItem: UINavigationItem) {
@@ -88,7 +100,8 @@ class ResultsView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func updateScore(_ score: Int) {
-        self.scoreLabel.text = "Your score is \(score)!"
+        let text = "Your score is \(score)!"
+        scoreLabel.attributedText = NSMutableAttributedString(string: text, attributes: self.resultsTextAttributes)
     }
     
     required init?(coder aDecoder: NSCoder) {
