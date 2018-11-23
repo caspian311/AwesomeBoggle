@@ -33,29 +33,16 @@ class BoggleView: GradientView {
         
         let gridRows = UIStackView()
         
-        self.addSubview(resetButton)
-        
-        resetButton.setTitle("Reset", for: .normal)
-        resetButton.setTitleColor(.white, for: .normal)
-        resetButton.setTitleColor(.gray, for: .disabled)
-        
-        resetButton.translatesAutoresizingMaskIntoConstraints = false
-        resetButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        resetButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        resetButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        
         self.addSubview(gridRows)
         
         gridRows.axis = .vertical
         gridRows.translatesAutoresizingMaskIntoConstraints = false
-        gridRows.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        gridRows.topAnchor.constraint(equalTo: resetButton.bottomAnchor).isActive = true
-        gridRows.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        gridRows.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        gridRows.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
+        gridRows.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         gridRows.backgroundColor = .white
         
         createButtons(gridRows)
-        
-        resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
         
         self.addSubview(self.currentWordLabel)
         
@@ -68,7 +55,7 @@ class BoggleView: GradientView {
         self.currentWordLabel.layer.contentsRect.insetBy(dx: 10, dy: 10)
         
         self.currentWordLabel.topAnchor.constraint(equalTo: gridRows.bottomAnchor, constant: 10).isActive = true
-        self.currentWordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        self.currentWordLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         self.currentWordLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         self.currentWordLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -110).isActive = true
         
@@ -91,7 +78,7 @@ class BoggleView: GradientView {
         self.submitWordButton.topAnchor.constraint(equalTo: self.currentWordLabel.topAnchor).isActive = true
         self.submitWordButton.leadingAnchor.constraint(equalTo: currentWordLabel.trailingAnchor, constant: 10).isActive = true
         self.submitWordButton.heightAnchor.constraint(equalTo: currentWordLabel.heightAnchor).isActive = true
-        self.submitWordButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.submitWordButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         
         self.submitWordButton.addTarget(self, action: #selector(submitWordButtonPressed), for: .touchUpInside)
         
@@ -206,13 +193,8 @@ class BoggleView: GradientView {
     }
     
     @objc
-    private func doneButtonTapped() {
+    private func quitButtonTapped() {
         self.delegate?.done()
-    }
-    
-    @objc
-    private func resetButtonTapped(sender: UIButton, forEvent event: UIEvent) {
-        self.delegate?.resetGrid()
     }
     
     @objc
