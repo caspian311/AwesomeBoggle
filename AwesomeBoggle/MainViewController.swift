@@ -39,6 +39,10 @@ extension MainViewController: MainModelProtocol {
     func showGameHistory() {
         self.navigationController?.pushViewController(GameHistoryViewController(), animated: true)
     }
+    
+    func showRegistration() {
+        self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+    }
 }
 
 extension MainViewController: MainViewProtocol {
@@ -48,5 +52,9 @@ extension MainViewController: MainViewProtocol {
     
     func gameHistoryButtonPressed() {
         self.mainModel.showGameHistory()
+    }
+    
+    func registerButtonPressed() {
+        self.mainModel.registerButton()
     }
 }

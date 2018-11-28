@@ -3,6 +3,7 @@ import Foundation
 protocol MainModelProtocol: class {
     func startGame()
     func showGameHistory()
+    func showRegistration()
 }
 
 class MainModel {
@@ -17,5 +18,9 @@ class MainModel {
     
     func showGameHistory() {
         self.delegate?.showGameHistory()
+    }
+    
+    func registerButton() {
+        self.delegate?.showRegistration()
     }
 }

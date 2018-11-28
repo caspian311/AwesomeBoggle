@@ -3,6 +3,7 @@ import UIKit
 protocol MainViewProtocol: class {
     func newGameButtonPressed()
     func gameHistoryButtonPressed()
+    func registerButtonPressed()
 }
 
 class MainView: GradientView {
@@ -54,6 +55,28 @@ class MainView: GradientView {
         
         gameHistoryButton.addTarget(self, action: #selector(gameHistoryButtonPressed), for: .touchUpInside)
         
+        
+        let registerButton = UIButton()
+        
+        self.addSubview(registerButton)
+        
+        registerButton.setTitle("Register", for: .normal)
+        registerButton.setTitleColor(.black, for: .normal)
+        
+        registerButton.backgroundColor = .white
+        registerButton.layer.borderColor = UIColor.black.cgColor
+        registerButton.layer.borderWidth = 2
+        registerButton.layer.cornerRadius = 10
+        
+        registerButton.translatesAutoresizingMaskIntoConstraints = false
+        registerButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -30).isActive = true
+        registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        registerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        registerButton.topAnchor.constraint(equalTo: gameHistoryButton.bottomAnchor, constant: 10).isActive = true
+        
+        registerButton.addTarget(self, action: #selector(registerButtonPressed), for: .touchUpInside)
+        
+        
         let titleLabel = UILabel()
         
         self.addSubview(titleLabel)
@@ -91,5 +114,10 @@ class MainView: GradientView {
     @objc
     private func gameHistoryButtonPressed() {
         self.delegate?.gameHistoryButtonPressed()
+    }
+    
+    @objc
+    private func registerButtonPressed() {
+        self.delegate?.registerButtonPressed()
     }
 }

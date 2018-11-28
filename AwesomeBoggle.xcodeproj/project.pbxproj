@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F678A6D21AEB948002435A2 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A6C21AEB948002435A2 /* RegisterViewController.swift */; };
+		9F678A6F21AEBA5D002435A2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A6E21AEBA5D002435A2 /* RegisterView.swift */; };
+		9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A7021AEBA69002435A2 /* RegisterModel.swift */; };
+		9F678A7321AEC39F002435A2 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A7221AEC39F002435A2 /* RegistrationService.swift */; };
 		9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A22AB21A5D6440027A7B4 /* GradientView.swift */; };
+		9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE453E21AEF16E008AADC0 /* TextField.swift */; };
 		E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70D111F1E6861A3003932CB /* CoreDataManager.swift */; };
 		E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */; };
 		E74F01461E6B6C5D005065BB /* BoggleGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F01451E6B6C5D005065BB /* BoggleGame.swift */; };
@@ -57,7 +62,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F678A6C21AEB948002435A2 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		9F678A6E21AEBA5D002435A2 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		9F678A7021AEBA69002435A2 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
+		9F678A7221AEC39F002435A2 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		9F9A22AB21A5D6440027A7B4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		9FCE453E21AEF16E008AADC0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		E70D111F1E6861A3003932CB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleTableViewCell.swift; sourceTree = "<group>"; };
 		E74F01451E6B6C5D005065BB /* BoggleGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleGame.swift; sourceTree = "<group>"; };
@@ -158,19 +168,24 @@
 				E7A525571E6CB87C00BCB328 /* GameHistoryModel.swift */,
 				E7A525551E6CB87100BCB328 /* GameHistoryView.swift */,
 				E7A525531E6CB7D200BCB328 /* GameHistoryViewController.swift */,
+				9F9A22AB21A5D6440027A7B4 /* GradientView.swift */,
 				E77676F01E3A394B006B8739 /* Info.plist */,
 				E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */,
 				E7A525511E6CB27B00BCB328 /* MainModel.swift */,
 				E7A5254F1E6CB25300BCB328 /* MainView.swift */,
 				E7A5254D1E6CB1B500BCB328 /* MainViewController.swift */,
-				9F9A22AB21A5D6440027A7B4 /* GradientView.swift */,
 				E7A608AA1E4CAC8500D120CC /* PaddedUILabel.swift */,
+				9F678A7021AEBA69002435A2 /* RegisterModel.swift */,
+				9F678A6E21AEBA5D002435A2 /* RegisterView.swift */,
+				9F678A6C21AEB948002435A2 /* RegisterViewController.swift */,
+				9F678A7221AEC39F002435A2 /* RegistrationService.swift */,
 				E7B3D2A61E61AFD1001579D6 /* ResultsModel.swift */,
 				E7B3D2A81E61AFEB001579D6 /* ResultsView.swift */,
 				E7B3D2A41E61AF12001579D6 /* ResultsViewController.swift */,
 				E7FD0EB91E65C0CE00C2E2F1 /* WordDetailModel.swift */,
 				E7B3D2A01E5F2648001579D6 /* WordDetailView.swift */,
 				E7B3D2A21E5F2661001579D6 /* WordDetailViewController.swift */,
+				9FCE453E21AEF16E008AADC0 /* TextField.swift */,
 			);
 			path = AwesomeBoggle;
 			sourceTree = "<group>";
@@ -333,15 +348,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F678A7321AEC39F002435A2 /* RegistrationService.swift in Sources */,
 				E7B3D2A71E61AFD1001579D6 /* ResultsModel.swift in Sources */,
 				E7A608AB1E4CAC8500D120CC /* PaddedUILabel.swift in Sources */,
+				9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */,
 				E7B3D2A91E61AFEB001579D6 /* ResultsView.swift in Sources */,
 				E7B3D2A31E5F2661001579D6 /* WordDetailViewController.swift in Sources */,
 				E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */,
 				E7A525501E6CB25300BCB328 /* MainView.swift in Sources */,
 				E7B3D2A51E61AF12001579D6 /* ResultsViewController.swift in Sources */,
 				E77676EA1E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld in Sources */,
+				9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */,
 				E7A525521E6CB27B00BCB328 /* MainModel.swift in Sources */,
+				9F678A6F21AEBA5D002435A2 /* RegisterView.swift in Sources */,
 				E7F19BCD1E48F7A600C0043F /* BoggleModel.swift in Sources */,
 				E74F01461E6B6C5D005065BB /* BoggleGame.swift in Sources */,
 				E77676E41E3A394B006B8739 /* BoggleViewController.swift in Sources */,
@@ -356,6 +375,7 @@
 				E7A5254E1E6CB1B500BCB328 /* MainViewController.swift in Sources */,
 				E7A5255A1E6CBDFB00BCB328 /* BoggleGameTableViewCell.swift in Sources */,
 				9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */,
+				9F678A6D21AEB948002435A2 /* RegisterViewController.swift in Sources */,
 				E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */,
 				E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */,
 			);
@@ -459,6 +479,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -508,6 +529,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
