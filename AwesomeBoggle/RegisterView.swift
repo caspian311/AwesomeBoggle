@@ -146,7 +146,7 @@ class RegisterView: GradientView, UITextFieldDelegate {
         self.delegate?.registerButtonPressed()
     }
     
-    @objc func textFieldDidChange() -> Bool {
+    @objc private func textFieldDidChange() -> Bool {
         if let username = self.usernameField.text {
             self.delegate?.usernameChanged(username)
         } else {
