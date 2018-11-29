@@ -12,7 +12,8 @@ class RegisterView: GradientView, UITextFieldDelegate {
     private let checkUsernameButton: UIButton
     private let registerButton: UIButton
     private let usernameField: UITextField
-    private let availabilityLabel: UILabel
+    private let availabilityLabel: PaddedUILabel
+    private let availabilityLabelTextAttributes: [NSAttributedStringKey : Any]
     
     weak var delegate: RegisterViewProtocol?
     
@@ -21,7 +22,11 @@ class RegisterView: GradientView, UITextFieldDelegate {
         self.checkUsernameButton = UIButton()
         self.registerButton = UIButton()
         self.usernameField =  TextField(frame: CGRect(x: 20, y: 100, width: 300, height: 40))
-        self.availabilityLabel = UILabel()
+        self.availabilityLabel = PaddedUILabel()
+        self.availabilityLabelTextAttributes = [
+            NSAttributedStringKey.foregroundColor : UIColor.black,
+            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 15)!]
+            as [NSAttributedStringKey : Any]
         
         super.init(frame: CGRect.zero)
         
@@ -34,7 +39,7 @@ class RegisterView: GradientView, UITextFieldDelegate {
         self.startColor = UIColor(red: 0.6, green: 0.8, blue: 1.00, alpha: 1.00)
         self.endColor = UIColor(red: 0.2, green: 0.6, blue: 1.00, alpha: 1.00)
         
-        self.cancelButton.setTitle("CANCEL", for: .normal)
+        self.cancelButton.setTitle("Cancel", for: .normal)
         self.cancelButton.setTitleColor(.black, for: .normal)
         self.cancelButton.setTitleColor(.gray, for: .disabled)
         
@@ -46,10 +51,24 @@ class RegisterView: GradientView, UITextFieldDelegate {
         self.cancelButton.translatesAutoresizingMaskIntoConstraints = false
         self.cancelButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         self.cancelButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        self.cancelButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -30).isActive = true
+        self.cancelButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        self.cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4).isActive = true
         
-        self.cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
+        self.checkUsernameButton.setTitle("Check Availability", for: .normal)
+        self.checkUsernameButton.setTitleColor(.black, for: .normal)
+        self.checkUsernameButton.setTitleColor(.gray, for: .disabled)
+        
+        self.checkUsernameButton.backgroundColor = .white
+        self.checkUsernameButton.layer.borderColor = UIColor.black.cgColor
+        self.checkUsernameButton.layer.borderWidth = 2
+        self.checkUsernameButton.layer.cornerRadius = 10
+        
+        self.checkUsernameButton.translatesAutoresizingMaskIntoConstraints = false
+        self.checkUsernameButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.checkUsernameButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.checkUsernameButton.leadingAnchor.constraint(equalTo: self.cancelButton.trailingAnchor, constant: 10).isActive = true
+        self.checkUsernameButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
+        
         
         self.usernameField.backgroundColor = .white
         self.usernameField.layer.borderColor = UIColor.black.cgColor
@@ -61,30 +80,17 @@ class RegisterView: GradientView, UITextFieldDelegate {
         self.usernameField.translatesAutoresizingMaskIntoConstraints = false
         self.usernameField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         self.usernameField.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.usernameField.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -30).isActive = true
+        self.usernameField.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         self.usernameField.bottomAnchor.constraint(equalTo: self.cancelButton.topAnchor, constant: -30).isActive = true
         
-        self.usernameField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        self.availabilityLabel.textAlignment = .center
+        self.availabilityLabel.backgroundColor = .clear
         
+        self.availabilityLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.availabilityLabel.topAnchor.constraint(equalTo: self.usernameField.bottomAnchor, constant: 5).isActive = true
+        self.availabilityLabel.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         
-        self.checkUsernameButton.setTitle("Check Availability", for: .normal)
-        self.checkUsernameButton.setTitleColor(.black, for: .normal)
-        self.checkUsernameButton.setTitleColor(.gray, for: .disabled)
-
-        self.checkUsernameButton.backgroundColor = .white
-        self.checkUsernameButton.layer.borderColor = UIColor.black.cgColor
-        self.checkUsernameButton.layer.borderWidth = 2
-        self.checkUsernameButton.layer.cornerRadius = 10
-
-        self.checkUsernameButton.translatesAutoresizingMaskIntoConstraints = false
-        self.checkUsernameButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        self.checkUsernameButton.leadingAnchor.constraint(equalTo: self.cancelButton.trailingAnchor, constant: -10).isActive = true
-        self.checkUsernameButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-
-        self.checkUsernameButton.addTarget(self, action: #selector(checkUsernameButtonPressed), for: .touchUpInside)
-
-        
-        self.registerButton.setTitle("REGISTER", for: .normal)
+        self.registerButton.setTitle("Register", for: .normal)
         self.registerButton.setTitleColor(.black, for: .normal)
         self.registerButton.setTitleColor(.gray, for: .disabled)
 
@@ -101,6 +107,10 @@ class RegisterView: GradientView, UITextFieldDelegate {
 
         self.registerButton.isEnabled = false
 
+        
+        self.cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
+        self.checkUsernameButton.addTarget(self, action: #selector(checkUsernameButtonPressed), for: .touchUpInside)
+        self.usernameField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         self.registerButton.addTarget(self, action: #selector(registrationButtonPressed), for: .touchUpInside)
     }
     
@@ -131,11 +141,13 @@ class RegisterView: GradientView, UITextFieldDelegate {
     }
     
     func showUsernameAvailableMessage() {
-        print("username is available")
+        let message = "Username is available"
+        self.availabilityLabel.attributedText = NSMutableAttributedString(string: message, attributes: self.availabilityLabelTextAttributes)
     }
     
     func showUsernameTakenMessage() {
-        print("username is NOT available")
+        let message = "Username is NOT available"
+        self.availabilityLabel.attributedText = NSMutableAttributedString(string: message, attributes: self.availabilityLabelTextAttributes)
     }
     
     func enableRegisterButton() {
