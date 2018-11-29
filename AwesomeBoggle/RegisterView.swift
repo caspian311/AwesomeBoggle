@@ -27,6 +27,7 @@ class RegisterView: GradientView, UITextFieldDelegate {
             NSAttributedStringKey.foregroundColor : UIColor.black,
             NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 15)!]
             as [NSAttributedStringKey : Any]
+        let screenTitle = PaddedUILabel()
         
         super.init(frame: CGRect.zero)
         
@@ -35,9 +36,24 @@ class RegisterView: GradientView, UITextFieldDelegate {
         self.addSubview(self.checkUsernameButton)
         self.addSubview(self.registerButton)
         self.addSubview(self.availabilityLabel)
+        self.addSubview(screenTitle)
         
         self.startColor = UIColor(red: 0.6, green: 0.8, blue: 1.00, alpha: 1.00)
         self.endColor = UIColor(red: 0.2, green: 0.6, blue: 1.00, alpha: 1.00)
+        
+        screenTitle.textAlignment = .center
+        screenTitle.backgroundColor = .clear
+        let screenTitleTextAttributes = [
+            NSAttributedStringKey.strokeColor : UIColor.black,
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.strokeWidth : -4.0,
+            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 40)!]
+            as [NSAttributedStringKey : Any]
+        screenTitle.attributedText = NSMutableAttributedString(string: "Register", attributes: screenTitleTextAttributes)
+        
+        screenTitle.translatesAutoresizingMaskIntoConstraints = false
+        screenTitle.bottomAnchor.constraint(equalTo: self.usernameField.topAnchor, constant: -10).isActive = true
+        screenTitle.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         
         self.cancelButton.setTitle("Cancel", for: .normal)
         self.cancelButton.setTitleColor(.black, for: .normal)

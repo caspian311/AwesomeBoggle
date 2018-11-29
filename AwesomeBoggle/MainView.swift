@@ -94,7 +94,6 @@ class MainView: GradientView {
             NSAttributedStringKey.strokeWidth : -4.0,
             NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 60)!]
             as [NSAttributedStringKey : Any]
-        //Making outline here
         titleLabel.attributedText = NSMutableAttributedString(string: "Awesome\nBoggle", attributes: strokeTextAttributes)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
