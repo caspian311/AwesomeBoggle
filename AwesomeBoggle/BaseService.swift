@@ -14,22 +14,16 @@ class BaseService {
         let task = URLSession.shared.dataTask(with: request) { (dataOptional, responseOptional, errorOptional) in
             if let error = errorOptional {
                 callback(ErrorMessage(message: error.localizedDescription), nil)
-            } else if let httpResponse = responseOptional {
-                let response = httpResponse as! HTTPURLResponse
-                
-                if let data = dataOptional {
-                    do {
-                        let serializedData = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                        
-                        callback(nil, HttpResponse(status: response.statusCode, data: serializedData))
-                    } catch let parsingError {
-                        callback(ErrorMessage(message: parsingError.localizedDescription), HttpResponse(status: response.statusCode, data: [:]))
-                    }
-                } else {
-                    callback(nil, HttpResponse(status: response.statusCode, data: [:]))
-                }
             } else {
-                callback(ErrorMessage(message: "Unknown error"), nil)
+                do {
+                    let response = responseOptional as! HTTPURLResponse
+                    let serializedData = try JSONSerialization.jsonObject(with: dataOptional!, options: []) as! [String: Any]
+                    
+                    callback(nil, HttpResponse(status: response.statusCode, data: serializedData))
+                } catch let parsingError {
+                    print("Parsing error: \(parsingError.localizedDescription)")
+                    callback(ErrorMessage(message: parsingError.localizedDescription), nil)
+                }
             }
         }
         task.resume()
