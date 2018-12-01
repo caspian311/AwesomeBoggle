@@ -49,6 +49,12 @@ extension RegisterViewController: RegisterModelProtocol {
             self.registerView.disableRegisterButton()
         }
     }
+    
+    func showErrorMessage(_ errorMessage: String) {
+        DispatchQueue.main.async {
+            self.registerView.showErrorMessage(errorMessage)
+        }
+    }
 }
 
 extension RegisterViewController: RegisterViewProtocol {

@@ -11,6 +11,10 @@
 		9F678A6F21AEBA5D002435A2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A6E21AEBA5D002435A2 /* RegisterView.swift */; };
 		9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A7021AEBA69002435A2 /* RegisterModel.swift */; };
 		9F678A7321AEC39F002435A2 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A7221AEC39F002435A2 /* RegistrationService.swift */; };
+		9F7CCE7021B021AB000688D4 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE6F21B021AB000688D4 /* ErrorMessage.swift */; };
+		9F7CCE7221B17C9D000688D4 /* HttpReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7121B17C9D000688D4 /* HttpReponse.swift */; };
+		9F7CCE7421B196A6000688D4 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7321B196A6000688D4 /* BaseService.swift */; };
+		9F7CCE7621B2B7A1000688D4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7521B2B7A1000688D4 /* UserData.swift */; };
 		9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A22AB21A5D6440027A7B4 /* GradientView.swift */; };
 		9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE453E21AEF16E008AADC0 /* TextField.swift */; };
 		E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70D111F1E6861A3003932CB /* CoreDataManager.swift */; };
@@ -66,6 +70,10 @@
 		9F678A6E21AEBA5D002435A2 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		9F678A7021AEBA69002435A2 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		9F678A7221AEC39F002435A2 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		9F7CCE6F21B021AB000688D4 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		9F7CCE7121B17C9D000688D4 /* HttpReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpReponse.swift; sourceTree = "<group>"; };
+		9F7CCE7321B196A6000688D4 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
+		9F7CCE7521B2B7A1000688D4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		9F9A22AB21A5D6440027A7B4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		9FCE453E21AEF16E008AADC0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		E70D111F1E6861A3003932CB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -133,6 +141,7 @@
 		E77676D51E3A394B006B8739 = {
 			isa = PBXGroup;
 			children = (
+				9F7CCE7521B2B7A1000688D4 /* UserData.swift */,
 				E77676E01E3A394B006B8739 /* AwesomeBoggle */,
 				E77676F81E3A394B006B8739 /* AwesomeBoggleTests */,
 				E77677031E3A394B006B8739 /* AwesomeBoggleUITests */,
@@ -186,6 +195,9 @@
 				E7B3D2A01E5F2648001579D6 /* WordDetailView.swift */,
 				E7B3D2A21E5F2661001579D6 /* WordDetailViewController.swift */,
 				9FCE453E21AEF16E008AADC0 /* TextField.swift */,
+				9F7CCE6F21B021AB000688D4 /* ErrorMessage.swift */,
+				9F7CCE7121B17C9D000688D4 /* HttpReponse.swift */,
+				9F7CCE7321B196A6000688D4 /* BaseService.swift */,
 			);
 			path = AwesomeBoggle;
 			sourceTree = "<group>";
@@ -359,11 +371,13 @@
 				E7B3D2A51E61AF12001579D6 /* ResultsViewController.swift in Sources */,
 				E77676EA1E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld in Sources */,
 				9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */,
+				9F7CCE7421B196A6000688D4 /* BaseService.swift in Sources */,
 				E7A525521E6CB27B00BCB328 /* MainModel.swift in Sources */,
 				9F678A6F21AEBA5D002435A2 /* RegisterView.swift in Sources */,
 				E7F19BCD1E48F7A600C0043F /* BoggleModel.swift in Sources */,
 				E74F01461E6B6C5D005065BB /* BoggleGame.swift in Sources */,
 				E77676E41E3A394B006B8739 /* BoggleViewController.swift in Sources */,
+				9F7CCE7221B17C9D000688D4 /* HttpReponse.swift in Sources */,
 				E7B3D2AB1E61B500001579D6 /* BoggleWord.swift in Sources */,
 				E7A525541E6CB7D200BCB328 /* GameHistoryViewController.swift in Sources */,
 				E799D9431E55E98C00C19CC7 /* DictionaryService.swift in Sources */,
@@ -375,6 +389,8 @@
 				E7A5254E1E6CB1B500BCB328 /* MainViewController.swift in Sources */,
 				E7A5255A1E6CBDFB00BCB328 /* BoggleGameTableViewCell.swift in Sources */,
 				9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */,
+				9F7CCE7021B021AB000688D4 /* ErrorMessage.swift in Sources */,
+				9F7CCE7621B2B7A1000688D4 /* UserData.swift in Sources */,
 				9F678A6D21AEB948002435A2 /* RegisterViewController.swift in Sources */,
 				E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */,
 				E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */,

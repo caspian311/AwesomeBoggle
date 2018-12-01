@@ -2,44 +2,45 @@ import Foundation
 import UIKit
 
 protocol RegistrationServiceProtocol: class {
-    func checkAvailability(username: String, callback: @escaping (Bool) -> ())
+    func checkAvailability(username: String, callback: @escaping (ErrorMessage?, Bool) -> ())
+    func register(username: String, callback: @escaping (ErrorMessage?, UserData?) -> ())
 }
 
-class RegistrationService: RegistrationServiceProtocol {
-    let baseUrl: URL
-    
-    init() {
-        baseUrl = URL(string: "http://localhost:8080/api/v1.0/")!
+class RegistrationService: BaseService, RegistrationServiceProtocol {
+    func checkAvailability(username: String, callback: @escaping (ErrorMessage?, Bool) -> ()) {
+        let url = self.baseUrl.appendingPathComponent("users/\(username.lowercased())")
+        
+        self.makeCall(url: url) { (errorOptional, responseOptional) in
+            if let error = errorOptional {
+                callback(ErrorMessage(message: error.message), false)
+            } else if let response = responseOptional {
+                if response.status == 200 {
+                    callback(nil, true)
+                } else {
+                    callback(nil, false)
+                }
+            }
+        }
     }
     
-    func checkAvailability(username: String, callback: @escaping (Bool) -> ()) {
+    func register(username: String, callback: @escaping (ErrorMessage?, UserData?) -> ()) {
         let url = baseUrl.appendingPathComponent("users/\(username.lowercased())")
         
-        makeCall(url: url) { (response, data) in
-            if response.statusCode == 200 {
-                callback(true)
-            } else {
-                callback(false)
-            }
-        }
-    }
-    
-    private func makeCall(url: URL, callback: @escaping (HTTPURLResponse, Data?) -> ()) {
-        var request = URLRequest(url: url)
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: request) { (dataOptional, responseOptional, errorOptional) in
+        self.makeCall(url: url) { (errorOptional, responseOptional) in
             if let error = errorOptional {
-                print("error \(error.localizedDescription)")
-            } else if let httpResponse = responseOptional {
-                callback(httpResponse as! HTTPURLResponse, dataOptional)
+                callback(error, nil)
+            } else if let response = responseOptional {
+                if response.status == 200 {
+                    let user = UserData(id: response.data["id"] as! Int,
+                                        username: response.data["username"] as! String,
+                                        authToken: response.data["authToken"] as! String,
+                                        createdDate: response.data["createdDate"] as! Date)
+                    
+                    callback(nil, user)
+                } else {
+                    callback(ErrorMessage(message: response.data["message"] as! String), nil)
+                }
             }
-            
-            
         }
-        task.resume()
     }
-
 }

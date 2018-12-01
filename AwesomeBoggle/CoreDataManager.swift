@@ -5,15 +5,14 @@ import UIKit
 protocol CoreDataManagerProtocol: class {
     func save(game: BoggleGame)
     func fetchGames() -> [BoggleGame]
+    
+    func save(user: UserData)
+    func fetchUser() -> UserData?
 }
 
 class CoreDataManager: CoreDataManagerProtocol {
     func fetchGames() -> [BoggleGame] {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            else {
-                return []
-        }
-        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
@@ -30,11 +29,7 @@ class CoreDataManager: CoreDataManagerProtocol {
     }
 
     func save(game: BoggleGame) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            else {
-                return
-        }
-        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let entity = NSEntityDescription.entity(forEntityName: "Game", in: managedContext)
@@ -50,6 +45,49 @@ class CoreDataManager: CoreDataManagerProtocol {
             } catch let error as NSError {
                 print("Could not save. \(error)")
             }
+        }
+    }
+    
+    func fetchUser() -> UserData? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
+        
+        var user: UserData? = nil
+        do {
+                let dataResults = try managedContext.fetch(fetchRequest)
+            
+                if let data = dataResults.first {
+                let id = data.value(forKey: "id") as! Int
+                let username = data.value(forKey: "username") as! String
+                let authToken = data.value(forKey: "authToken") as! String
+                let createdDate = data.value(forKey: "createdDate") as! Date
+                
+                user = UserData(id: id, username: username, authToken: authToken, createdDate: createdDate)
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error)")
+        }
+        
+        return user
+    }
+    
+    func save(user: UserData) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "User", in: managedContext)
+        let item = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+        item.setValue(user.id, forKey: "id")
+        item.setValue(user.authToken, forKey: "authToken")
+        item.setValue(user.createdDate, forKey: "createdDate")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error)")
         }
     }
 }

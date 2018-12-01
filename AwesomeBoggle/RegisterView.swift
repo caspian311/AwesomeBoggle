@@ -173,4 +173,8 @@ class RegisterView: GradientView, UITextFieldDelegate {
     func disableRegisterButton() {
         self.registerButton.isEnabled = false
     }
+    
+    func showErrorMessage(_ errorMessage: String) {
+        // TODO display error message
+    }
 }
