@@ -8,8 +8,10 @@ protocol MainModelProtocol: class {
 
 class MainModel {
     weak var delegate: MainModelProtocol?
+    let coreDataManager: CoreDataManager
     
-    init() {
+    init(coreDataManager: CoreDataManager = CoreDataManager()) {
+        self.coreDataManager = coreDataManager
     }
     
     func startGame() {
@@ -22,5 +24,15 @@ class MainModel {
     
     func registerButton() {
         self.delegate?.showRegistration()
+    }
+    
+    func registrationCheck(_ callback: (Bool) -> ()) {
+        let userOptional = coreDataManager.fetchUser()
+        
+        if userOptional != nil {
+            callback(true)
+        } else {
+            callback(false)
+        }
     }
 }

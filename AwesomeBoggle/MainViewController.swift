@@ -17,6 +17,8 @@ class MainViewController: UIViewController {
         
         self.mainModel.delegate = self
         self.mainView.delegate = self
+        
+        self.mainView.initializeScreen()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,5 +58,15 @@ extension MainViewController: MainViewProtocol {
     
     func registerButtonPressed() {
         self.mainModel.registerButton()
+    }
+    
+    func initializeScreen() {
+        self.mainModel.registrationCheck() { (isRegistered) in
+            if isRegistered {
+                self.mainView.showUserMainScreen()
+            } else {
+                self.mainView.showNewUserMainScreen()
+            }
+        }
     }
 }
