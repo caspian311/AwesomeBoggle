@@ -12,7 +12,6 @@
 		9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A7021AEBA69002435A2 /* RegisterModel.swift */; };
 		9F678A7321AEC39F002435A2 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A7221AEC39F002435A2 /* RegistrationService.swift */; };
 		9F7CCE7021B021AB000688D4 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE6F21B021AB000688D4 /* ErrorMessage.swift */; };
-		9F7CCE7221B17C9D000688D4 /* HttpReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7121B17C9D000688D4 /* HttpReponse.swift */; };
 		9F7CCE7421B196A6000688D4 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7321B196A6000688D4 /* BaseService.swift */; };
 		9F7CCE7621B2B7A1000688D4 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7521B2B7A1000688D4 /* UserData.swift */; };
 		9F7CCE7821B3880D000688D4 /* AvailableGamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7721B3880D000688D4 /* AvailableGamesViewController.swift */; };
@@ -77,7 +76,6 @@
 		9F678A7021AEBA69002435A2 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		9F678A7221AEC39F002435A2 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		9F7CCE6F21B021AB000688D4 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
-		9F7CCE7121B17C9D000688D4 /* HttpReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpReponse.swift; sourceTree = "<group>"; };
 		9F7CCE7321B196A6000688D4 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		9F7CCE7521B2B7A1000688D4 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		9F7CCE7721B3880D000688D4 /* AvailableGamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGamesViewController.swift; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 				E7A525531E6CB7D200BCB328 /* GameHistoryViewController.swift */,
 				9F7CCE7D21B409DE000688D4 /* GamesService.swift */,
 				9F9A22AB21A5D6440027A7B4 /* GradientView.swift */,
-				9F7CCE7121B17C9D000688D4 /* HttpReponse.swift */,
 				E77676F01E3A394B006B8739 /* Info.plist */,
 				E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */,
 				E7A525511E6CB27B00BCB328 /* MainModel.swift */,
@@ -399,7 +396,6 @@
 				9F7CCE7C21B388D3000688D4 /* AvailableGamesModel.swift in Sources */,
 				9F7CCE7A21B388AE000688D4 /* AvailableGamesView.swift in Sources */,
 				E77676E41E3A394B006B8739 /* BoggleViewController.swift in Sources */,
-				9F7CCE7221B17C9D000688D4 /* HttpReponse.swift in Sources */,
 				E7B3D2AB1E61B500001579D6 /* BoggleWord.swift in Sources */,
 				E7A525541E6CB7D200BCB328 /* GameHistoryViewController.swift in Sources */,
 				E799D9431E55E98C00C19CC7 /* DictionaryService.swift in Sources */,
