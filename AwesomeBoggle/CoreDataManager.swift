@@ -8,6 +8,8 @@ protocol CoreDataManagerProtocol: class {
     
     func save(user: UserData)
     func fetchUser() -> UserData?
+    
+    func save(currentGame: GameData)
 }
 
 class CoreDataManager: CoreDataManagerProtocol {
@@ -82,6 +84,23 @@ class CoreDataManager: CoreDataManagerProtocol {
         item.setValue(user.id, forKey: "id")
         item.setValue(user.username, forKey: "username")
         item.setValue(user.authToken, forKey: "authToken")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error)")
+        }
+    }
+    
+    func save(currentGame: GameData) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Game", in: managedContext)
+        let item = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+        item.setValue(currentGame.id, forKey: "id")
+        item.setValue(currentGame.createdDate, forKey: "createdDate")
         
         do {
             try managedContext.save()

@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 protocol AvailableGamesViewProtocol: class {
+    func startGame(_ gameId: Int)
 }
 
 class AvailableGamesView: GradientView {
@@ -25,5 +26,9 @@ class AvailableGamesView: GradientView {
     
     func showNoUsersAreAvailable() {
         print("No users are available")
+    }
+    
+    @objc private func chooseGame(_ gameId: Int) {
+        self.delegate!.startGame(gameId)
     }
 }

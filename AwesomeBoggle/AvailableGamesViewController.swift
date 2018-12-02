@@ -2,12 +2,14 @@ import Foundation
 import UIKit
 
 class AvailableGamesViewController: UIViewController {
+    let coreDataManager: CoreDataManagerProtocol
     let availableGamesView: AvailableGamesView
     let availableGamesModel: AvailableGamesModel
     
-    init(availableGamesView: AvailableGamesView = AvailableGamesView(), availableGamesModel: AvailableGamesModel = AvailableGamesModel()) {
+    init(availableGamesView: AvailableGamesView = AvailableGamesView(), availableGamesModel: AvailableGamesModel = AvailableGamesModel(), coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
         self.availableGamesView = availableGamesView
         self.availableGamesModel = availableGamesModel
+        self.coreDataManager = coreDataManager
         
         super.init(nibName: nil, bundle: nil)
         
@@ -35,11 +37,17 @@ class AvailableGamesViewController: UIViewController {
 }
 
 extension AvailableGamesViewController: AvailableGamesViewProtocol {
+    func startGame(_ gameId: Int) {
+        self.availableGamesModel.startGame(gameId)
+    }
 }
 
 extension AvailableGamesViewController: AvailableGamesModelProtocol {
-    func play() {
-        self.navigationController?.pushViewController(BoggleViewController(), animated: true)
+    func gameStarted(_ game: GameData) {
+        DispatchQueue.main.async {
+            self.coreDataManager.save(currentGame: game)
+            self.navigationController?.pushViewController(BoggleViewController(), animated: true)
+        }
     }
     
     func errorOcurred(_ errorMessage: ErrorMessage) {
