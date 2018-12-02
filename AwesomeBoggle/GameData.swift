@@ -1,6 +1,9 @@
 import Foundation
 
-struct GameData {
+struct GameData: Codable {
     let id: Int
-    let opponent: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "gameId"
+    }
 }

@@ -100,7 +100,7 @@ class CoreDataManager: CoreDataManagerProtocol {
         let item = NSManagedObject(entity: entity!, insertInto: managedContext)
         
         item.setValue(currentGame.id, forKey: "id")
-        item.setValue(currentGame.createdDate, forKey: "createdDate")
+//        item.setValue(currentGame.createdDate, forKey: "createdDate")
         
         do {
             try managedContext.save()

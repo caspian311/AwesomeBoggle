@@ -14,6 +14,27 @@ class BaseService {
         makeCall(request, callback)
     }
     
+    func get<T:Decodable>(url: URL, auth: String, callback: @escaping (ErrorMessage?, T?) -> ()) {
+        var request = URLRequest(url: url)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("Api-Key \(auth)", forHTTPHeaderField: "Authorization")
+        
+        makeCall(request, callback)
+    }
+    
+    func post<T:Decodable>(url: URL, auth: String, requestData: [String:Any], callback: @escaping (ErrorMessage?, T?) -> ()) {
+        let jsonData = try? JSONSerialization.data(withJSONObject: requestData)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Api-Key \(auth)", forHTTPHeaderField: "Authorization")
+        request.httpBody = jsonData
+        
+        makeCall(request, callback)
+    }
+    
     func post<T:Decodable>(url: URL, requestData: [String:Any], callback: @escaping (ErrorMessage?, T?) -> ()) {
         let jsonData = try? JSONSerialization.data(withJSONObject: requestData)
         
@@ -27,7 +48,12 @@ class BaseService {
     }
 
     private func makeCall<T:Decodable>(_ request: URLRequest, _ callback: @escaping (ErrorMessage?, T?) -> ()) {
+        LogHelper.log(request: request)
+        
         let task = URLSession.shared.dataTask(with: request) { (dataOptional, responseOptional, errorOptional) in
+            let response = responseOptional as! HTTPURLResponse?
+            LogHelper.log(data: dataOptional, response: response, error: errorOptional)
+            
             if let error = errorOptional {
                 callback(ErrorMessage(message: error.localizedDescription), nil)
             } else {

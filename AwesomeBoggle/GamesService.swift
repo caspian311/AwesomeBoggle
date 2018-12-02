@@ -6,8 +6,16 @@ protocol GamesServiceProtocol: class {
 }
 
 class GamesService: BaseService, GamesServiceProtocol {
+    let coreDataManager: CoreDataManagerProtocol
+    
+    init(coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
+        self.coreDataManager = coreDataManager
+    }
+    
     func fetchAvailableGames(callback: @escaping (ErrorMessage?, [UserData]?) -> ()) {
-        self.get(url: self.baseUrl.appendingPathComponent("/users")) { (errorOptional, availableGames: [UserData]?) in
+        let authToken = getAuthToken()
+        
+        self.get(url: self.baseUrl.appendingPathComponent("/users"), auth: authToken) { (errorOptional, availableGames: [UserData]?) in
             if let error = errorOptional {
                 callback(error, nil)
             } else {
@@ -17,13 +25,23 @@ class GamesService: BaseService, GamesServiceProtocol {
     }
     
     func joinGame(_ gameId: Int, _ callback: @escaping (ErrorMessage?, GameData?) -> ()) {
+        let authToken = getAuthToken()
+        
         let data: [String:Any] = [:]
-        self.post(url: self.baseUrl.appendingPathComponent("/games"), requestData: data) { (errorOptional, game: GameData?) in
-            if let error = errorOpational {
+        self.post(url: self.baseUrl.appendingPathComponent("/games"), auth: authToken, requestData: data) { (errorOptional, game: GameData?) in
+            if let error = errorOptional {
                 callback(error, nil)
             } else {
                 callback(nil, game)
             }
         }
+    }
+    
+    private func getAuthToken() -> String {
+        let userData = self.coreDataManager.fetchUser()!
+        print("**********************************")
+        print(userData)
+        print("**********************************")
+        return userData.authToken
     }
 }

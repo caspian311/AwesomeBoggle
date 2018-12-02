@@ -10,6 +10,9 @@ class AvailableGamesView: GradientView {
     
     init() {
         super.init(frame: CGRect.zero)
+        
+        self.startColor = UIColor(red: 0.6, green: 0.8, blue: 1.00, alpha: 1.00)
+        self.endColor = UIColor(red: 0.2, green: 0.6, blue: 1.00, alpha: 1.00)
     }
     
     required init?(coder aDecoder: NSCoder) {
