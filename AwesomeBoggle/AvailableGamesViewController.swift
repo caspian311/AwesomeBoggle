@@ -35,11 +35,22 @@ class AvailableGamesViewController: UIViewController {
 }
 
 extension AvailableGamesViewController: AvailableGamesViewProtocol {
-    
 }
 
 extension AvailableGamesViewController: AvailableGamesModelProtocol {
     func play() {
         self.navigationController?.pushViewController(BoggleViewController(), animated: true)
+    }
+    
+    func errorOcurred(_ errorMessage: ErrorMessage) {
+        self.availableGamesView.showError(errorMessage.message)
+    }
+    
+    func showGames(_ availableGames: [UserData]) {
+        self.availableGamesView.populateAvailableGames(availableGames)
+    }
+    
+    func showNoUsersAreAvailable() {
+        self.availableGamesView.showNoUsersAreAvailable()
     }
 }
