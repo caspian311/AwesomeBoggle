@@ -10,7 +10,7 @@ class RegistrationService: BaseService, RegistrationServiceProtocol {
     func checkAvailability(username: String, callback: @escaping (ErrorMessage?, Bool) -> ()) {
         let url = self.baseUrl.appendingPathComponent("users/\(username.lowercased())")
         
-        self.makeCall(url: url) { (errorOptional, responseOptional) in
+        self.get(url: url) { (errorOptional, responseOptional) in
             if let error = errorOptional {
                 callback(ErrorMessage(message: error.message), false)
             } else if let response = responseOptional {
@@ -24,17 +24,17 @@ class RegistrationService: BaseService, RegistrationServiceProtocol {
     }
     
     func register(username: String, callback: @escaping (ErrorMessage?, UserData?) -> ()) {
-        let url = baseUrl.appendingPathComponent("users/\(username.lowercased())")
+        let url = baseUrl.appendingPathComponent("users")
+        let requestData: [String : Any] = ["username": username.lowercased()]
         
-        self.makeCall(url: url) { (errorOptional, responseOptional) in
+        self.post(url: url, requestData: requestData) { (errorOptional, responseOptional) in
             if let error = errorOptional {
                 callback(error, nil)
             } else if let response = responseOptional {
                 if response.status == 200 {
-                    let user = UserData(id: response.data["id"] as! Int,
+                    let user = UserData(id: response.data["userId"] as! Int,
                                         username: response.data["username"] as! String,
-                                        authToken: response.data["authToken"] as! String,
-                                        createdDate: response.data["createdDate"] as! Date)
+                                        authToken: response.data["authToken"] as! String)
                     
                     callback(nil, user)
                 } else {

@@ -4,77 +4,79 @@ protocol MainViewProtocol: class {
     func newGameButtonPressed()
     func gameHistoryButtonPressed()
     func registerButtonPressed()
+    func initializeScreen()
 }
 
 class MainView: GradientView {
+    let startGameButton: UIButton
+    let gameHistoryButton: UIButton
+    let registerButton: UIButton
+    
     weak var delegate: MainViewProtocol?
     
     init() {
+        self.startGameButton = UIButton()
+        self.gameHistoryButton = UIButton()
+        self.registerButton = UIButton()
+        
         super.init(frame: CGRect.zero)
+        
+        self.addSubview(self.startGameButton)
+        self.addSubview(self.gameHistoryButton)
+        self.addSubview(self.registerButton)
         
         self.startColor = UIColor(red: 0.6, green: 0.8, blue: 1.00, alpha: 1.00)
         self.endColor = UIColor(red: 0.2, green: 0.6, blue: 1.00, alpha: 1.00)
+
         
-        let startGameButton = UIButton()
+        self.startGameButton.setTitle("New Game", for: .normal)
+        self.startGameButton.setTitleColor(.black, for: .normal)
         
-        self.addSubview(startGameButton)
+        self.startGameButton.backgroundColor = .white
+        self.startGameButton.layer.borderColor = UIColor.black.cgColor
+        self.startGameButton.layer.borderWidth = 2
+        self.startGameButton.layer.cornerRadius = 10
         
-        startGameButton.setTitle("New Game", for: .normal)
-        startGameButton.setTitleColor(.black, for: .normal)
+        self.startGameButton.translatesAutoresizingMaskIntoConstraints = false
+        self.startGameButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -30).isActive = true
+        self.startGameButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.startGameButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.startGameButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
-        startGameButton.backgroundColor = .white
-        startGameButton.layer.borderColor = UIColor.black.cgColor
-        startGameButton.layer.borderWidth = 2
-        startGameButton.layer.cornerRadius = 10
-        
-        startGameButton.translatesAutoresizingMaskIntoConstraints = false
-        startGameButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -30).isActive = true
-        startGameButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        startGameButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        startGameButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        
-        startGameButton.addTarget(self, action: #selector(newGameButtonPressed), for: .touchUpInside)
-        
-        let gameHistoryButton = UIButton()
-        
-        self.addSubview(gameHistoryButton)
-        
-        gameHistoryButton.setTitle("Game History", for: .normal)
-        gameHistoryButton.setTitleColor(.black, for: .normal)
-        
-        gameHistoryButton.backgroundColor = .white
-        gameHistoryButton.layer.borderColor = UIColor.black.cgColor
-        gameHistoryButton.layer.borderWidth = 2
-        gameHistoryButton.layer.cornerRadius = 10
-        
-        gameHistoryButton.translatesAutoresizingMaskIntoConstraints = false
-        gameHistoryButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -30).isActive = true
-        gameHistoryButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        gameHistoryButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        gameHistoryButton.topAnchor.constraint(equalTo: startGameButton.bottomAnchor, constant: 10).isActive = true
-        
-        gameHistoryButton.addTarget(self, action: #selector(gameHistoryButtonPressed), for: .touchUpInside)
+        self.startGameButton.addTarget(self, action: #selector(newGameButtonPressed), for: .touchUpInside)
         
         
-        let registerButton = UIButton()
+        self.gameHistoryButton.setTitle("Game History", for: .normal)
+        self.gameHistoryButton.setTitleColor(.black, for: .normal)
         
-        self.addSubview(registerButton)
+        self.gameHistoryButton.backgroundColor = .white
+        self.gameHistoryButton.layer.borderColor = UIColor.black.cgColor
+        self.gameHistoryButton.layer.borderWidth = 2
+        self.gameHistoryButton.layer.cornerRadius = 10
         
-        registerButton.setTitle("Register", for: .normal)
-        registerButton.setTitleColor(.black, for: .normal)
+        self.gameHistoryButton.translatesAutoresizingMaskIntoConstraints = false
+        self.gameHistoryButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -30).isActive = true
+        self.gameHistoryButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.gameHistoryButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.gameHistoryButton.topAnchor.constraint(equalTo: startGameButton.bottomAnchor, constant: 10).isActive = true
         
-        registerButton.backgroundColor = .white
-        registerButton.layer.borderColor = UIColor.black.cgColor
-        registerButton.layer.borderWidth = 2
-        registerButton.layer.cornerRadius = 10
+        self.gameHistoryButton.addTarget(self, action: #selector(gameHistoryButtonPressed), for: .touchUpInside)
         
-        registerButton.translatesAutoresizingMaskIntoConstraints = false
-        registerButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -30).isActive = true
-        registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        registerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        registerButton.topAnchor.constraint(equalTo: gameHistoryButton.bottomAnchor, constant: 10).isActive = true
+        self.registerButton.setTitle("Register", for: .normal)
+        self.registerButton.setTitleColor(.black, for: .normal)
         
-        registerButton.addTarget(self, action: #selector(registerButtonPressed), for: .touchUpInside)
+        self.registerButton.backgroundColor = .white
+        self.registerButton.layer.borderColor = UIColor.black.cgColor
+        self.registerButton.layer.borderWidth = 2
+        self.registerButton.layer.cornerRadius = 10
+        
+        self.registerButton.translatesAutoresizingMaskIntoConstraints = false
+        self.registerButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -30).isActive = true
+        self.registerButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.registerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.registerButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        
+        self.registerButton.addTarget(self, action: #selector(registerButtonPressed), for: .touchUpInside)
         
         
         let titleLabel = UILabel()
@@ -118,5 +120,21 @@ class MainView: GradientView {
     @objc
     private func registerButtonPressed() {
         self.delegate?.registerButtonPressed()
+    }
+    
+    func initializeScreen() {
+        self.delegate?.initializeScreen()
+    }
+    
+    func showNewUserMainScreen(){
+        self.registerButton.isHidden = false
+        self.startGameButton.isHidden = true
+        self.gameHistoryButton.isHidden = true
+    }
+    
+    func showUserMainScreen() {
+        self.registerButton.isHidden = true
+        self.startGameButton.isHidden = false
+        self.gameHistoryButton.isHidden = false
     }
 }

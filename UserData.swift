@@ -4,5 +4,4 @@ struct UserData {
     let id: Int
     let username: String
     let authToken: String
-    let createdDate: Date
 }

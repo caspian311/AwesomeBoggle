@@ -33,7 +33,9 @@ class RegisterViewController: UIViewController {
 
 extension RegisterViewController: RegisterModelProtocol {
     func done() {
-        self.navigationController?.pushViewController(MainViewController(), animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(MainViewController(), animated: true)
+        }
     }
     
     func usernameAvailable() {

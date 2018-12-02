@@ -62,9 +62,8 @@ class CoreDataManager: CoreDataManagerProtocol {
                 let id = data.value(forKey: "id") as! Int
                 let username = data.value(forKey: "username") as! String
                 let authToken = data.value(forKey: "authToken") as! String
-                let createdDate = data.value(forKey: "createdDate") as! Date
                 
-                user = UserData(id: id, username: username, authToken: authToken, createdDate: createdDate)
+                user = UserData(id: id, username: username, authToken: authToken)
             }
         } catch let error as NSError {
             print("Could not fetch. \(error)")
@@ -81,8 +80,8 @@ class CoreDataManager: CoreDataManagerProtocol {
         let item = NSManagedObject(entity: entity!, insertInto: managedContext)
         
         item.setValue(user.id, forKey: "id")
+        item.setValue(user.username, forKey: "username")
         item.setValue(user.authToken, forKey: "authToken")
-        item.setValue(user.createdDate, forKey: "createdDate")
         
         do {
             try managedContext.save()
