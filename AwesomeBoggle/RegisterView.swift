@@ -176,5 +176,6 @@ class RegisterView: GradientView, UITextFieldDelegate {
     
     func showErrorMessage(_ errorMessage: String) {
         // TODO display error message
+        print("Error: \(errorMessage)")
     }
 }

@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: MainModelProtocol {
     func startGame() {
-        self.navigationController?.pushViewController(BoggleViewController(), animated: true)
+        self.navigationController?.pushViewController(AvailableGamesViewController(), animated: true)
     }
     
     func showGameHistory() {

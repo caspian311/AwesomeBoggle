@@ -1,12 +1,14 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
+    let coreDataManager: CoreDataManagerProtocol
     let registerView: RegisterView
     let registerModel: RegisterModel
     
-    init(registerView: RegisterView = RegisterView(), registerModel: RegisterModel = RegisterModel()) {
+    init(registerView: RegisterView = RegisterView(), registerModel: RegisterModel = RegisterModel(), coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
         self.registerView = registerView
         self.registerModel = registerModel
+        self.coreDataManager = coreDataManager
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -32,8 +34,11 @@ class RegisterViewController: UIViewController {
 }
 
 extension RegisterViewController: RegisterModelProtocol {
-    func done() {
+    func done(_ userOptional: UserData?) {
         DispatchQueue.main.async {
+            if let user = userOptional {
+                self.coreDataManager.save(user: user)
+            }
             self.navigationController?.pushViewController(MainViewController(), animated: true)
         }
     }

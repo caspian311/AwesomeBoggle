@@ -1,22 +1,19 @@
 import Foundation
 
 protocol RegisterModelProtocol: class {
-    func done()
+    func done(_ user: UserData?)
     func usernameAvailable()
     func usernameIsTaken()
     func showErrorMessage(_ errorMessage: String)
 }
 
 class RegisterModel {
-    let coreDataManager: CoreDataManagerProtocol
-    
     weak var delegate: RegisterModelProtocol?
     private var username = ""
     private let registrationService: RegistrationServiceProtocol
     
-    init(registrationService: RegistrationServiceProtocol = RegistrationService(), coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
+    init(registrationService: RegistrationServiceProtocol = RegistrationService()) {
         self.registrationService = registrationService
-        self.coreDataManager = coreDataManager
     }
     
     func setUsername(_ username: String) {
@@ -24,7 +21,7 @@ class RegisterModel {
     }
     
     func cancel() {
-        self.delegate?.done()
+        self.delegate?.done(nil)
     }
     
     func checkUsername() {
@@ -43,12 +40,8 @@ class RegisterModel {
 
     func register() {
         self.registrationService.register(username: self.username) { (errorOptional, userOptional) in
-            if let user = userOptional {
-                self.coreDataManager.save(user: user)
-                self.delegate?.done()
-            } else if let error = errorOptional {
-                self.delegate?.showErrorMessage(error.message)
-            }
+            self.delegate?.done(userOptional)
+//                self.delegate?.showErrorMessage(error.message)
         }
     }
 }

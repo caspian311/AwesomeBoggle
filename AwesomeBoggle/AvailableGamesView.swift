@@ -1,9 +1,18 @@
-//
-//  AvailableGamesView.swift
-//  AwesomeBoggle
-//
-//  Created by Todd, Matthew on 12/1/18.
-//  Copyright © 2018 Matt Todd. All rights reserved.
-//
-
 import Foundation
+import UIKit
+
+protocol AvailableGamesViewProtocol: class {
+    
+}
+
+class AvailableGamesView: GradientView {
+    weak var delegate: AvailableGamesViewProtocol?
+    
+    init() {
+        super.init(frame: CGRect.zero)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

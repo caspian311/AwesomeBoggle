@@ -1,6 +1,6 @@
 import Foundation
 
-struct HttpResponse {
+struct HttpResponse<T> {
     let status: Int
-    let data: [String: Any?]
+    let data: T
 }
