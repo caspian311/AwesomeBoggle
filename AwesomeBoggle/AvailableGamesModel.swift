@@ -10,10 +10,12 @@ protocol AvailableGamesModelProtocol: class {
 class AvailableGamesModel {
     weak var delegate: AvailableGamesModelProtocol?
     
-    let gameService: GamesServiceProtocol
+    private let gameService: GamesServiceProtocol
+    private let coreDataManager: CoreDataManagerProtocol
     
-    init(gameService: GamesServiceProtocol = GamesService()) {
+    init(gameService: GamesServiceProtocol = GamesService(), coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
         self.gameService = gameService
+        self.coreDataManager = coreDataManager
     }
     
     func fetchAvailableGames() {
@@ -32,8 +34,10 @@ class AvailableGamesModel {
         }
     }
     
-    func startGame(_ gameId: Int) {
-        self.gameService.joinGame(gameId) {(errorOptional, gameOptional) in
+    func startGame(with opponentUserId: Int) {
+        let userId = self.coreDataManager.fetchUser()!.id
+        
+        self.gameService.joinGame([userId, opponentUserId]) {(errorOptional, gameOptional) in
             if let error = errorOptional {
                 self.delegate!.errorOcurred(error)
             } else if let game = gameOptional {

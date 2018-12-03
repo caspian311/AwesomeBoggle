@@ -3,11 +3,11 @@ import Foundation
 struct UserData:Codable {
     let id: Int
     let username: String
-    let authToken: String
+    let authToken: String?
     
     enum CodingKeys: String, CodingKey {
-        case id = "userId"
+        case id = "id"
         case username = "username"
-        case authToken = "authToken"
+        case authToken = "auth_token"
     }
 }

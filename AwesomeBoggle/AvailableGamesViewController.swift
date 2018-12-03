@@ -37,8 +37,10 @@ class AvailableGamesViewController: UIViewController {
 }
 
 extension AvailableGamesViewController: AvailableGamesViewProtocol {
-    func startGame(_ gameId: Int) {
-        self.availableGamesModel.startGame(gameId)
+    func startGame(with userId: Int) {
+        DispatchQueue.main.async {
+            self.availableGamesModel.startGame(with: userId)
+        }
     }
 }
 
@@ -51,14 +53,20 @@ extension AvailableGamesViewController: AvailableGamesModelProtocol {
     }
     
     func errorOcurred(_ errorMessage: ErrorMessage) {
-        self.availableGamesView.showError(errorMessage.message)
+        DispatchQueue.main.async {
+            self.availableGamesView.showError(errorMessage.message)
+        }
     }
     
     func showGames(_ availableGames: [UserData]) {
-        self.availableGamesView.populateAvailableGames(availableGames)
+        DispatchQueue.main.async {
+            self.availableGamesView.populateAvailableGames(availableGames)
+        }
     }
     
     func showNoUsersAreAvailable() {
-        self.availableGamesView.showNoUsersAreAvailable()
+        DispatchQueue.main.async {
+            self.availableGamesView.showNoUsersAreAvailable()
+        }
     }
 }

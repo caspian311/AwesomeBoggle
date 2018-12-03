@@ -21,6 +21,7 @@
 		9F7CCE8021B40A5E000688D4 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7F21B40A5E000688D4 /* GameData.swift */; };
 		9F7CCE8221B42E91000688D4 /* CheckAvailabilityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE8121B42E91000688D4 /* CheckAvailabilityData.swift */; };
 		9F8139A721B499EE00930C5C /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8139A621B499EE00930C5C /* LogHelper.swift */; };
+		9F8139A921B4E80E00930C5C /* AvailableGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */; };
 		9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A22AB21A5D6440027A7B4 /* GradientView.swift */; };
 		9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE453E21AEF16E008AADC0 /* TextField.swift */; };
 		E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70D111F1E6861A3003932CB /* CoreDataManager.swift */; };
@@ -86,6 +87,7 @@
 		9F7CCE7F21B40A5E000688D4 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		9F7CCE8121B42E91000688D4 /* CheckAvailabilityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAvailabilityData.swift; sourceTree = "<group>"; };
 		9F8139A621B499EE00930C5C /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
+		9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGameTableViewCell.swift; sourceTree = "<group>"; };
 		9F9A22AB21A5D6440027A7B4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		9FCE453E21AEF16E008AADC0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		E70D111F1E6861A3003932CB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				9F678A7221AEC39F002435A2 /* RegistrationService.swift */,
 				E7B3D2A61E61AFD1001579D6 /* ResultsModel.swift */,
 				E7B3D2A81E61AFEB001579D6 /* ResultsView.swift */,
+				9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */,
 				E7B3D2A41E61AF12001579D6 /* ResultsViewController.swift */,
 				9FCE453E21AEF16E008AADC0 /* TextField.swift */,
 				9F7CCE7521B2B7A1000688D4 /* UserData.swift */,
@@ -380,6 +383,7 @@
 			files = (
 				9F678A7321AEC39F002435A2 /* RegistrationService.swift in Sources */,
 				9F7CCE8221B42E91000688D4 /* CheckAvailabilityData.swift in Sources */,
+				9F8139A921B4E80E00930C5C /* AvailableGameTableViewCell.swift in Sources */,
 				E7B3D2A71E61AFD1001579D6 /* ResultsModel.swift in Sources */,
 				E7A608AB1E4CAC8500D120CC /* PaddedUILabel.swift in Sources */,
 				9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */,
