@@ -39,9 +39,6 @@ class GamesService: BaseService, GamesServiceProtocol {
     
     private func getAuthToken() -> String {
         let userData = self.coreDataManager.fetchUser()!
-        print("**********************************")
-        print(userData)
-        print("**********************************")
         return userData.authToken!
     }
 }

@@ -19,13 +19,19 @@ class AvailableGameTableViewCell: UITableViewCell {
         self.usernameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         self.usernameLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/2).isActive = true
         self.usernameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+
+        self.joinButton.setTitle("Join", for: .normal)
+        self.joinButton.setTitleColor(.black, for: .normal)
+        self.joinButton.backgroundColor = .white
+        self.joinButton.layer.borderColor = UIColor.black.cgColor
+        self.joinButton.layer.borderWidth = 2
+        self.joinButton.layer.cornerRadius = 10
         
         self.joinButton.translatesAutoresizingMaskIntoConstraints = false
         self.joinButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        self.joinButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/2).isActive = true
+        self.joinButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3).isActive = true
         self.joinButton.leadingAnchor.constraint(equalTo: self.usernameLabel.trailingAnchor).isActive = true
-        self.joinButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        
+
         self.joinButton.addTarget(self, action: #selector(joinButtonPressed), for: .touchUpInside)
     }
     
