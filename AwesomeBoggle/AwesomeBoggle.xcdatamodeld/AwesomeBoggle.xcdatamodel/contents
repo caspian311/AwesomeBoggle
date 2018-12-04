@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G3025" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CurrentGame" representedClassName="CurrentGame" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="Game" representedClassName="Game" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,7 +21,8 @@
     </entity>
     <elements>
         <element name="Game" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="Word" positionX="142" positionY="-18" width="128" height="88"/>
         <element name="User" positionX="36" positionY="18" width="128" height="90"/>
+        <element name="Word" positionX="142" positionY="-18" width="128" height="88"/>
+        <element name="CurrentGame" positionX="36" positionY="27" width="128" height="60"/>
     </elements>
 </model>

@@ -96,7 +96,7 @@ class CoreDataManager: CoreDataManagerProtocol {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "Game", in: managedContext)
+        let entity = NSEntityDescription.entity(forEntityName: "CurrentGame", in: managedContext)
         let item = NSManagedObject(entity: entity!, insertInto: managedContext)
         
         item.setValue(currentGame.id, forKey: "id")
