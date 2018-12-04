@@ -10,6 +10,7 @@ protocol CoreDataManagerProtocol: class {
     func fetchUser() -> UserData?
     
     func save(currentGame: GameData)
+    func fetchCurrentGame() -> GameData?
 }
 
 class CoreDataManager: CoreDataManagerProtocol {
@@ -100,12 +101,35 @@ class CoreDataManager: CoreDataManagerProtocol {
         let item = NSManagedObject(entity: entity!, insertInto: managedContext)
         
         item.setValue(currentGame.id, forKey: "id")
-//        item.setValue(currentGame.createdDate, forKey: "createdDate")
+        item.setValue(currentGame.grid, forKey: "grid")
         
         do {
             try managedContext.save()
         } catch let error as NSError {
             print("Could not save. \(error)")
         }
+    }
+    
+    func fetchCurrentGame() -> GameData? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CurrentGame")
+        
+        var game: GameData? = nil
+        do {
+            let dataResults = try managedContext.fetch(fetchRequest)
+            
+            if let data = dataResults.first {
+                let id = data.value(forKey: "id") as! Int
+                let grid = data.value(forKey: "grid") as! String
+                
+                game = GameData(id: id, grid: grid)
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error)")
+        }
+        
+        return game
     }
 }

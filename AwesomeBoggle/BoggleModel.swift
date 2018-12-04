@@ -27,11 +27,8 @@ class BoggleModel {
     }
     
     func populateGrid() {
-        var letters = [String]()
-        for _ in 0...15 {
-            letters += [getRandomString()]
-        }
-        
+        let grid = self.coreDataManager.fetchCurrentGame()!.grid
+        let letters = Array(grid).map(String.init)
         self.delegate?.populateNewLettersToGrid(letters)
         updateReadyToReceive()
     }
