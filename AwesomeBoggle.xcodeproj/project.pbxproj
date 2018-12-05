@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F419DBF21B6B3AA00C574EC /* WaitingForOthersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DBE21B6B3AA00C574EC /* WaitingForOthersViewController.swift */; };
+		9F419DC121B6B48400C574EC /* WaitingForOthersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DC021B6B48400C574EC /* WaitingForOthersView.swift */; };
+		9F419DC321B6BF0D00C574EC /* WaitingForOthersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */; };
 		9F678A6D21AEB948002435A2 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A6C21AEB948002435A2 /* RegisterViewController.swift */; };
 		9F678A6F21AEBA5D002435A2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A6E21AEBA5D002435A2 /* RegisterView.swift */; };
 		9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A7021AEBA69002435A2 /* RegisterModel.swift */; };
@@ -73,6 +76,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F419DBE21B6B3AA00C574EC /* WaitingForOthersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersViewController.swift; sourceTree = "<group>"; };
+		9F419DC021B6B48400C574EC /* WaitingForOthersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersView.swift; sourceTree = "<group>"; };
+		9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersModel.swift; sourceTree = "<group>"; };
 		9F678A6C21AEB948002435A2 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9F678A6E21AEBA5D002435A2 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		9F678A7021AEBA69002435A2 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 		E77676D51E3A394B006B8739 = {
 			isa = PBXGroup;
 			children = (
+				9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */,
 				E77676E01E3A394B006B8739 /* AwesomeBoggle */,
 				E77676F81E3A394B006B8739 /* AwesomeBoggleTests */,
 				E77677031E3A394B006B8739 /* AwesomeBoggleUITests */,
@@ -180,6 +187,7 @@
 				9F7CCE7B21B388D3000688D4 /* AvailableGamesModel.swift */,
 				9F7CCE7921B388AE000688D4 /* AvailableGamesView.swift */,
 				9F7CCE7721B3880D000688D4 /* AvailableGamesViewController.swift */,
+				9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */,
 				E77676E81E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld */,
 				9F7CCE7321B196A6000688D4 /* BaseService.swift */,
 				E74F01451E6B6C5D005065BB /* BoggleGame.swift */,
@@ -212,10 +220,11 @@
 				9F678A7221AEC39F002435A2 /* RegistrationService.swift */,
 				E7B3D2A61E61AFD1001579D6 /* ResultsModel.swift */,
 				E7B3D2A81E61AFEB001579D6 /* ResultsView.swift */,
-				9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */,
 				E7B3D2A41E61AF12001579D6 /* ResultsViewController.swift */,
 				9FCE453E21AEF16E008AADC0 /* TextField.swift */,
 				9F7CCE7521B2B7A1000688D4 /* UserData.swift */,
+				9F419DC021B6B48400C574EC /* WaitingForOthersView.swift */,
+				9F419DBE21B6B3AA00C574EC /* WaitingForOthersViewController.swift */,
 				E7FD0EB91E65C0CE00C2E2F1 /* WordDetailModel.swift */,
 				E7B3D2A01E5F2648001579D6 /* WordDetailView.swift */,
 				E7B3D2A21E5F2661001579D6 /* WordDetailViewController.swift */,
@@ -383,6 +392,7 @@
 			files = (
 				9F678A7321AEC39F002435A2 /* RegistrationService.swift in Sources */,
 				9F7CCE8221B42E91000688D4 /* CheckAvailabilityData.swift in Sources */,
+				9F419DC321B6BF0D00C574EC /* WaitingForOthersModel.swift in Sources */,
 				9F8139A921B4E80E00930C5C /* AvailableGameTableViewCell.swift in Sources */,
 				E7B3D2A71E61AFD1001579D6 /* ResultsModel.swift in Sources */,
 				E7A608AB1E4CAC8500D120CC /* PaddedUILabel.swift in Sources */,
@@ -392,6 +402,7 @@
 				E7B3D2A31E5F2661001579D6 /* WordDetailViewController.swift in Sources */,
 				E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */,
 				E7A525501E6CB25300BCB328 /* MainView.swift in Sources */,
+				9F419DC121B6B48400C574EC /* WaitingForOthersView.swift in Sources */,
 				E7B3D2A51E61AF12001579D6 /* ResultsViewController.swift in Sources */,
 				E77676EA1E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld in Sources */,
 				9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */,
@@ -410,6 +421,7 @@
 				E7B3D2A11E5F2648001579D6 /* WordDetailView.swift in Sources */,
 				9F7CCE7E21B409DE000688D4 /* GamesService.swift in Sources */,
 				E7A525581E6CB87C00BCB328 /* GameHistoryModel.swift in Sources */,
+				9F419DBF21B6B3AA00C574EC /* WaitingForOthersViewController.swift in Sources */,
 				E7FD0EBA1E65C0CE00C2E2F1 /* WordDetailModel.swift in Sources */,
 				E77677131E3A3BEF006B8739 /* BoggleView.swift in Sources */,
 				E7A5254E1E6CB1B500BCB328 /* MainViewController.swift in Sources */,

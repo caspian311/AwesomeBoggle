@@ -35,6 +35,19 @@ class BaseService {
         makeCall(request, callback)
     }
     
+    func put<T:Decodable>(url: URL, auth: String, requestData: [String:Any], callback: @escaping (ErrorMessage?, T?) -> ()) {
+        let jsonData = try? JSONSerialization.data(withJSONObject: requestData)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Api-Key \(auth)", forHTTPHeaderField: "Authorization")
+        request.httpBody = jsonData
+        
+        makeCall(request, callback)
+    }
+    
     func post<T:Decodable>(url: URL, requestData: [String:Any], callback: @escaping (ErrorMessage?, T?) -> ()) {
         let jsonData = try? JSONSerialization.data(withJSONObject: requestData)
         

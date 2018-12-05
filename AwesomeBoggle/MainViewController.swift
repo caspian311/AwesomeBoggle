@@ -3,10 +3,12 @@ import UIKit
 class MainViewController: UIViewController {
     let mainView: MainView
     let mainModel: MainModel
+    let coreDataManager: CoreDataManagerProtocol
     
-    init(mainView: MainView = MainView(), mainModel: MainModel = MainModel()) {
+    init(mainView: MainView = MainView(), mainModel: MainModel = MainModel(), coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
         self.mainView = mainView
         self.mainModel = mainModel
+        self.coreDataManager = coreDataManager
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -63,7 +65,12 @@ extension MainViewController: MainViewProtocol {
     func initializeScreen() {
         self.mainModel.registrationCheck() { (isRegistered) in
             if isRegistered {
-                self.mainView.showUserMainScreen()
+                if coreDataManager.fetchCurrentGame() == nil {
+                    self.mainView.showUserMainScreen()
+                } else {
+                    self.navigationController?.pushViewController(WaitingForOthersViewController(), animated: true)
+                }
+                
             } else {
                 self.mainView.showNewUserMainScreen()
             }
