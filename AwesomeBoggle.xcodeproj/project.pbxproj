@@ -161,11 +161,11 @@
 		E77676D51E3A394B006B8739 = {
 			isa = PBXGroup;
 			children = (
-				9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */,
 				E77676E01E3A394B006B8739 /* AwesomeBoggle */,
 				E77676F81E3A394B006B8739 /* AwesomeBoggleTests */,
 				E77677031E3A394B006B8739 /* AwesomeBoggleUITests */,
 				E77676DF1E3A394B006B8739 /* Products */,
+				9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */,
 			);
 			sourceTree = "<group>";
 		};

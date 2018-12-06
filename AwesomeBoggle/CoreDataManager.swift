@@ -123,8 +123,9 @@ class CoreDataManager: CoreDataManagerProtocol {
             if let data = dataResults.first {
                 let id = data.value(forKey: "id") as! Int
                 let grid = data.value(forKey: "grid") as! String
+                let isReady = data.value(forKey: "isReady") as! Bool
                 
-                game = GameData(id: id, grid: grid)
+                game = GameData(id: id, grid: grid, isReady: isReady)
             }
         } catch let error as NSError {
             print("Could not fetch. \(error)")

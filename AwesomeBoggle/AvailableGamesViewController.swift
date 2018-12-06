@@ -45,10 +45,10 @@ extension AvailableGamesViewController: AvailableGamesViewProtocol {
 }
 
 extension AvailableGamesViewController: AvailableGamesModelProtocol {
-    func gameStarted(_ game: GameData) {
+    func waitForOthersToJoin(_ game: GameData) {
         DispatchQueue.main.async {
             self.coreDataManager.save(currentGame: game)
-            self.navigationController?.pushViewController(BoggleViewController(), animated: true)
+            self.navigationController?.pushViewController(WaitingForOthersViewController(), animated: true)
         }
     }
     

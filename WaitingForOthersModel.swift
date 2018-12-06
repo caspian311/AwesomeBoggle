@@ -20,22 +20,27 @@ class WaitingForOthersModel {
         self.haveAllPlayersJoined = false
         self.errorOccurred = false
     }
-    
-    func waitForOthers() {
+
+    func joinGame() {
         let currentGame = self.coreDataManager.fetchCurrentGame()!
-        self.gamesService.readyToPlay(currentGame.id) { (errorOptional) in
+        
+        self.gamesService.joinGame(currentGame.id) { (errorOptional) in
             if let error = errorOptional {
                 self.errorOccurred = true
                 self.delegate!.errorOccurred(error.message)
             }
         }
+    }
+    
+    func waitForOthers() {
+        let currentGame = self.coreDataManager.fetchCurrentGame()!
         
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { timer in
             if self.haveAllPlayersJoined || self.errorOccurred {
                 timer.invalidate()
             }
             
-            self.gamesService.isGameReady(currentGame.id) {(errorOptional: ErrorMessage?, isReady: Bool?) in
+            self.gamesService.isGameReady(currentGame.id) {(errorOptional, isReady: Bool?) in
                 if let error = errorOptional {
                     self.errorOccurred = true
                     self.delegate!.errorOccurred(error.message)
