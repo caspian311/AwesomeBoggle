@@ -30,8 +30,8 @@ class GamesService: BaseService, GamesServiceProtocol {
     func inviteToGame(_ gameId: Int, _ opponenets: [Int], _ callback: @escaping (ErrorMessage?, GameData?) -> ()) {
         let authToken = getAuthToken()
         
-        let data: [String:Any] = ["gameId": gameId, "userIds": opponenets]
-        self.post(url: self.baseUrl.appendingPathComponent("/invitations)"), auth: authToken, requestData: data) { (errorOptional, game: GameData?) in
+        let data: [String:Any] = [ "userIds": opponenets ]
+        self.post(url: self.baseUrl.appendingPathComponent("/games/\(gameId)/invitations)"), auth: authToken, requestData: data) { (errorOptional, game: GameData?) in
             if let error = errorOptional {
                 callback(error, nil)
             } else {
