@@ -55,7 +55,7 @@ class GamesService: BaseService, GamesServiceProtocol {
     func joinGame(_ gameId: Int, _ callback: @escaping (ErrorMessage?) -> ()) {
         let authToken = getAuthToken()
         
-        self.put(url: self.baseUrl.appendingPathComponent("/games/\(gameId)"), auth: authToken, requestData: [:]) { (errorOptional, game: GameData?) in
+        self.put(url: self.baseUrl.appendingPathComponent("/games/\(gameId)/invitations"), auth: authToken, requestData: [:]) { (errorOptional, game: GameData?) in
             if let error = errorOptional {
                 callback(error)
             } else {
