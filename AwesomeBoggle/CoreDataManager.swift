@@ -11,6 +11,10 @@ protocol CoreDataManagerProtocol: class {
     
     func save(currentGame: GameData)
     func fetchCurrentGame() -> GameData?
+    
+    func fetchDictionaryWords() -> [DictWord]
+    func save(dictionaryWord: DictWord)
+    func fetchWordBy(text: String) -> DictWord?
 }
 
 class CoreDataManager: CoreDataManagerProtocol {
@@ -132,5 +136,57 @@ class CoreDataManager: CoreDataManagerProtocol {
         }
         
         return game
+    }
+    
+    func fetchDictionaryWords() -> [DictWord] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DictionaryWord")
+        
+        var wordList: [DictWord] = []
+        do {
+            let dataResults = try managedContext.fetch(fetchRequest)
+            
+            wordList = dataResults.map{ DictWord(text: $0.value(forKey: "text") as! String) }
+        } catch let error as NSError {
+            print("Could not fetch. \(error)")
+        }
+        return wordList
+    }
+    
+    func save(dictionaryWord: DictWord) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "DictionaryWord", in: managedContext)
+        let item = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
+        item.setValue(dictionaryWord.text, forKey: "text")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error)")
+        }
+    }
+    
+    func fetchWordBy(text: String) -> DictWord? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DictionaryWord")
+        
+        var word: DictWord? = nil
+        do {
+            fetchRequest.predicate = NSPredicate(format: "text = @", text)
+            let dataResults = try managedContext.fetch(fetchRequest)
+            if let data = dataResults.first {
+                word = DictWord(text: data.value(forKey: "text") as! String)
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error)")
+        }
+        return word
     }
 }

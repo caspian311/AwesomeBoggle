@@ -27,6 +27,8 @@
 		9F8139A921B4E80E00930C5C /* AvailableGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */; };
 		9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A22AB21A5D6440027A7B4 /* GradientView.swift */; };
 		9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE453E21AEF16E008AADC0 /* TextField.swift */; };
+		9FF3282721C5A7C700601161 /* DictionaryDataLoeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282621C5A7C700601161 /* DictionaryDataLoeader.swift */; };
+		9FF3282921C5A9D900601161 /* DictionaryWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282821C5A9D900601161 /* DictionaryWord.swift */; };
 		E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70D111F1E6861A3003932CB /* CoreDataManager.swift */; };
 		E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */; };
 		E74F01461E6B6C5D005065BB /* BoggleGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F01451E6B6C5D005065BB /* BoggleGame.swift */; };
@@ -96,6 +98,8 @@
 		9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGameTableViewCell.swift; sourceTree = "<group>"; };
 		9F9A22AB21A5D6440027A7B4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		9FCE453E21AEF16E008AADC0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		9FF3282621C5A7C700601161 /* DictionaryDataLoeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDataLoeader.swift; sourceTree = "<group>"; };
+		9FF3282821C5A9D900601161 /* DictionaryWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryWord.swift; sourceTree = "<group>"; };
 		E70D111F1E6861A3003932CB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleTableViewCell.swift; sourceTree = "<group>"; };
 		E74F01451E6B6C5D005065BB /* BoggleGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleGame.swift; sourceTree = "<group>"; };
@@ -165,7 +169,6 @@
 				E77676F81E3A394B006B8739 /* AwesomeBoggleTests */,
 				E77677031E3A394B006B8739 /* AwesomeBoggleUITests */,
 				E77676DF1E3A394B006B8739 /* Products */,
-				9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,7 +202,9 @@
 				E7B3D2AA1E61B500001579D6 /* BoggleWord.swift */,
 				9F7CCE8121B42E91000688D4 /* CheckAvailabilityData.swift */,
 				E70D111F1E6861A3003932CB /* CoreDataManager.swift */,
+				9FF3282621C5A7C700601161 /* DictionaryDataLoeader.swift */,
 				E799D9421E55E98C00C19CC7 /* DictionaryService.swift */,
+				9FF3282821C5A9D900601161 /* DictionaryWord.swift */,
 				9F7CCE6F21B021AB000688D4 /* ErrorMessage.swift */,
 				9F7CCE7F21B40A5E000688D4 /* GameData.swift */,
 				E7A525571E6CB87C00BCB328 /* GameHistoryModel.swift */,
@@ -223,6 +228,7 @@
 				E7B3D2A41E61AF12001579D6 /* ResultsViewController.swift */,
 				9FCE453E21AEF16E008AADC0 /* TextField.swift */,
 				9F7CCE7521B2B7A1000688D4 /* UserData.swift */,
+				9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */,
 				9F419DC021B6B48400C574EC /* WaitingForOthersView.swift */,
 				9F419DBE21B6B3AA00C574EC /* WaitingForOthersViewController.swift */,
 				E7FD0EB91E65C0CE00C2E2F1 /* WordDetailModel.swift */,
@@ -402,8 +408,10 @@
 				E7B3D2A31E5F2661001579D6 /* WordDetailViewController.swift in Sources */,
 				E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */,
 				E7A525501E6CB25300BCB328 /* MainView.swift in Sources */,
+				9FF3282721C5A7C700601161 /* DictionaryDataLoeader.swift in Sources */,
 				9F419DC121B6B48400C574EC /* WaitingForOthersView.swift in Sources */,
 				E7B3D2A51E61AF12001579D6 /* ResultsViewController.swift in Sources */,
+				9FF3282921C5A9D900601161 /* DictionaryWord.swift in Sources */,
 				E77676EA1E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld in Sources */,
 				9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */,
 				9F7CCE7421B196A6000688D4 /* BaseService.swift in Sources */,

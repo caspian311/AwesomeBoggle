@@ -3,43 +3,23 @@ import UIKit
 
 protocol DictionaryServiceProtocol: class {
     func checkValidityOf(word: String, callback: @escaping (Bool, Int?) -> ())
+    func fetchAllWords(callback: @escaping (ErrorMessage?, [String]?) -> ())
 }
 
-class DictionaryService: DictionaryServiceProtocol {
-    let appID = "72562bc6"
-    let appKey = "1ca3b176a71b51ecb6bf5efdbf545bcf"
-    let language = "en"
-    let baseUrl: URL
-    
-    init() {
-        baseUrl = URL(string: "https://od-api.oxforddictionaries.com:443/api/v1/entries/\(language)/")!
+class DictionaryService: BaseService, DictionaryServiceProtocol {
+    func checkValidityOf(word: String, callback: @escaping (Bool, Int?) -> ()) {
+        callback(false, 0)
     }
     
-    func checkValidityOf(word: String, callback: @escaping (Bool, Int?) -> ()) {
-        let url = baseUrl.appendingPathComponent(word.lowercased())
+    func fetchAllWords(callback: @escaping (ErrorMessage?, [String]?) -> ()) {
+        let url = self.baseUrl.appendingPathComponent("/words")
         
-        makeCall(url: url) { (response, data) in
-            if response.statusCode == 200 {
-                callback(true, word.count)
-            } else {
-                callback(false, 0)
+        self.get(url: url) { (errorOptional, dataOptional: [String]?) in
+            if let error = errorOptional {
+                callback(ErrorMessage(message: error.message), nil)
+            } else if let data = dataOptional {
+                callback(nil, data)
             }
         }
-    }
-    
-    private func makeCall(url: URL, callback: @escaping (HTTPURLResponse, Data?) -> ()) {
-        var request = URLRequest(url: url)
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue(appID, forHTTPHeaderField: "app_id")
-        request.addValue(appKey, forHTTPHeaderField: "app_key")
-        
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: request) { (dataOptional, responseOptional, errorOptional) in
-            let httpResponse = responseOptional as! HTTPURLResponse
-            
-            callback(httpResponse, dataOptional)
-        }
-        task.resume()
     }
 }

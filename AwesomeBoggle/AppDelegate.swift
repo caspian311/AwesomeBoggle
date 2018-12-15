@@ -12,6 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.makeKeyAndVisible()
         }
         
+        DictionaryDataLoeader().preloadData();
+        
         return true
     }
 
