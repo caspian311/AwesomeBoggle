@@ -61,11 +61,11 @@ class BaseService {
     }
 
     private func makeCall<T:Decodable>(_ request: URLRequest, _ callback: @escaping (ErrorMessage?, T?) -> ()) {
-        LogHelper.log(request: request)
+//        LogHelper.log(request: request)
         
         let task = URLSession.shared.dataTask(with: request) { (dataOptional, responseOptional, errorOptional) in
             let response = responseOptional as! HTTPURLResponse?
-            LogHelper.log(data: dataOptional, response: response, error: errorOptional)
+//            LogHelper.log(data: dataOptional, response: response, error: errorOptional)
             
             if let error = errorOptional {
                 callback(ErrorMessage(message: error.localizedDescription), nil)

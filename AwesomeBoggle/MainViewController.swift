@@ -70,7 +70,6 @@ extension MainViewController: MainViewProtocol {
                 } else {
                     self.navigationController?.pushViewController(WaitingForOthersViewController(), animated: true)
                 }
-                
             } else {
                 self.mainView.showNewUserMainScreen()
             }

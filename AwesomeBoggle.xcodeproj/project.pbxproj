@@ -25,6 +25,9 @@
 		9F7CCE8221B42E91000688D4 /* CheckAvailabilityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE8121B42E91000688D4 /* CheckAvailabilityData.swift */; };
 		9F8139A721B499EE00930C5C /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8139A621B499EE00930C5C /* LogHelper.swift */; };
 		9F8139A921B4E80E00930C5C /* AvailableGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */; };
+		9F8694C021C6A86F00088238 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8694BF21C6A86F00088238 /* LoadingViewController.swift */; };
+		9F8694C221C6A93000088238 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8694C121C6A93000088238 /* LoadingView.swift */; };
+		9F8694C421C6A95600088238 /* LoadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8694C321C6A95600088238 /* LoadingModel.swift */; };
 		9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A22AB21A5D6440027A7B4 /* GradientView.swift */; };
 		9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE453E21AEF16E008AADC0 /* TextField.swift */; };
 		9FF3282721C5A7C700601161 /* DictionaryDataLoeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282621C5A7C700601161 /* DictionaryDataLoeader.swift */; };
@@ -96,6 +99,9 @@
 		9F7CCE8121B42E91000688D4 /* CheckAvailabilityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAvailabilityData.swift; sourceTree = "<group>"; };
 		9F8139A621B499EE00930C5C /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
 		9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGameTableViewCell.swift; sourceTree = "<group>"; };
+		9F8694BF21C6A86F00088238 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		9F8694C121C6A93000088238 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		9F8694C321C6A95600088238 /* LoadingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingModel.swift; sourceTree = "<group>"; };
 		9F9A22AB21A5D6440027A7B4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		9FCE453E21AEF16E008AADC0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		9FF3282621C5A7C700601161 /* DictionaryDataLoeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDataLoeader.swift; sourceTree = "<group>"; };
@@ -214,6 +220,9 @@
 				9F9A22AB21A5D6440027A7B4 /* GradientView.swift */,
 				E77676F01E3A394B006B8739 /* Info.plist */,
 				E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */,
+				9F8694C321C6A95600088238 /* LoadingModel.swift */,
+				9F8694C121C6A93000088238 /* LoadingView.swift */,
+				9F8694BF21C6A86F00088238 /* LoadingViewController.swift */,
 				9F8139A621B499EE00930C5C /* LogHelper.swift */,
 				E7A525511E6CB27B00BCB328 /* MainModel.swift */,
 				E7A5254F1E6CB25300BCB328 /* MainView.swift */,
@@ -401,12 +410,15 @@
 				9F419DC321B6BF0D00C574EC /* WaitingForOthersModel.swift in Sources */,
 				9F8139A921B4E80E00930C5C /* AvailableGameTableViewCell.swift in Sources */,
 				E7B3D2A71E61AFD1001579D6 /* ResultsModel.swift in Sources */,
+				9F8694C221C6A93000088238 /* LoadingView.swift in Sources */,
 				E7A608AB1E4CAC8500D120CC /* PaddedUILabel.swift in Sources */,
 				9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */,
 				9F7CCE8021B40A5E000688D4 /* GameData.swift in Sources */,
 				E7B3D2A91E61AFEB001579D6 /* ResultsView.swift in Sources */,
+				9F8694C021C6A86F00088238 /* LoadingViewController.swift in Sources */,
 				E7B3D2A31E5F2661001579D6 /* WordDetailViewController.swift in Sources */,
 				E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */,
+				9F8694C421C6A95600088238 /* LoadingModel.swift in Sources */,
 				E7A525501E6CB25300BCB328 /* MainView.swift in Sources */,
 				9FF3282721C5A7C700601161 /* DictionaryDataLoeader.swift in Sources */,
 				9F419DC121B6B48400C574EC /* WaitingForOthersView.swift in Sources */,
