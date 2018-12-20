@@ -1,0 +1,6 @@
+module Pods_AwesomeBoggle {
+  umbrella header "Pods-AwesomeBoggle-umbrella.h"
+
+  export *
+  module * { export * }
+}
