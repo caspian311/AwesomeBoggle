@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 protocol MainModelProtocol: class {
     func startGame()
@@ -10,7 +11,7 @@ class MainModel {
     weak var delegate: MainModelProtocol?
     let coreDataManager: CoreDataManager
     
-    init(coreDataManager: CoreDataManager = CoreDataManager()) {
+    init(coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
         self.coreDataManager = coreDataManager
     }
     

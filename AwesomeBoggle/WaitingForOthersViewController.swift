@@ -6,7 +6,7 @@ class WaitingForOthersViewController: UIViewController {
     let waitingForOthersView: WaitingForOthersView
     let waitingForOthersModel: WaitingForOthersModel
     
-    init(waitingForOthersView: WaitingForOthersView = WaitingForOthersView(), waitingForOthersModel: WaitingForOthersModel = WaitingForOthersModel(), coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
+    init(waitingForOthersView: WaitingForOthersView = WaitingForOthersView(), waitingForOthersModel: WaitingForOthersModel = WaitingForOthersModel(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
         self.waitingForOthersView = waitingForOthersView
         self.waitingForOthersModel = waitingForOthersModel
         self.coreDataManager = coreDataManager

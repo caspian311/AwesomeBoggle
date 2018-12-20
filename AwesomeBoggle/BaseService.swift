@@ -64,7 +64,7 @@ class BaseService {
 //        LogHelper.log(request: request)
         
         let task = URLSession.shared.dataTask(with: request) { (dataOptional, responseOptional, errorOptional) in
-            let response = responseOptional as! HTTPURLResponse?
+//            let response = responseOptional as! HTTPURLResponse?
 //            LogHelper.log(data: dataOptional, response: response, error: errorOptional)
             
             if let error = errorOptional {

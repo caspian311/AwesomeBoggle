@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 protocol GamesServiceProtocol: class {
     func fetchAvailableGames(callback: @escaping (ErrorMessage?, [UserData]?) -> ())
@@ -11,7 +12,7 @@ protocol GamesServiceProtocol: class {
 class GamesService: BaseService, GamesServiceProtocol {
     let coreDataManager: CoreDataManagerProtocol
     
-    init(coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
+    init(coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
         self.coreDataManager = coreDataManager
     }
     

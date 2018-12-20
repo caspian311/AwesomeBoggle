@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 protocol AvailableGamesModelProtocol: class {
     func waitForOthersToJoin(_ game: GameData)
@@ -13,7 +14,7 @@ class AvailableGamesModel {
     private let gameService: GamesServiceProtocol
     private let coreDataManager: CoreDataManagerProtocol
     
-    init(gameService: GamesServiceProtocol = GamesService(), coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
+    init(gameService: GamesServiceProtocol = GamesService(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
         self.gameService = gameService
         self.coreDataManager = coreDataManager
     }

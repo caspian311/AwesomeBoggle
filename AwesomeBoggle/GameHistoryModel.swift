@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 protocol GameHistoryModelProtocol: class {
     func showGameList(_ gameList: [GameHistoryEntry])
@@ -9,7 +10,7 @@ class GameHistoryModel {
     
     let coreDataManager: CoreDataManagerProtocol
     
-    init(coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
+    init(coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
         self.coreDataManager = coreDataManager
     }
     

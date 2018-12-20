@@ -19,6 +19,7 @@ class LoadingViewController: UIViewController {
         self.loadingModel.delegate = self
         self.loadingView.delegate = self
         
+        print("loading data...")
         self.loadingModel.loadData()
     }
     
@@ -39,9 +40,15 @@ extension LoadingViewController: LoadingViewProtocol {
 }
 
 extension LoadingViewController: LoadingModelProtocol {
-    func showError() {
+    func updateProgress(_ statusMessage: String) {
         DispatchQueue.main.async {
-            self.loadingView.showError()
+            self.loadingView.updateProgress(statusMessage)
+        }
+    }
+    
+    func showError(_ message: String) {
+        DispatchQueue.main.async {
+            self.loadingView.showError(message)
         }
     }
     

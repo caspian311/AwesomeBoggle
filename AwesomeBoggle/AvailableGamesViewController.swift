@@ -6,7 +6,7 @@ class AvailableGamesViewController: UIViewController {
     let availableGamesView: AvailableGamesView
     let availableGamesModel: AvailableGamesModel
     
-    init(availableGamesView: AvailableGamesView = AvailableGamesView(), availableGamesModel: AvailableGamesModel = AvailableGamesModel(), coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
+    init(availableGamesView: AvailableGamesView = AvailableGamesView(), availableGamesModel: AvailableGamesModel = AvailableGamesModel(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
         self.availableGamesView = availableGamesView
         self.availableGamesModel = availableGamesModel
         self.coreDataManager = coreDataManager

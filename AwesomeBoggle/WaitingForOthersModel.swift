@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 protocol WaitingForOthersModelProtocol: class {
     func errorOccurred(_ errorMessage: String)
@@ -13,7 +14,7 @@ class WaitingForOthersModel {
     private var haveAllPlayersJoined: Bool
     private var errorOccurred: Bool
     
-    init(coreDataManager: CoreDataManagerProtocol = CoreDataManager(), gamesService: GamesServiceProtocol = GamesService()) {
+    init(coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate), gamesService: GamesServiceProtocol = GamesService()) {
         self.coreDataManager = coreDataManager
         self.gamesService = gamesService
         

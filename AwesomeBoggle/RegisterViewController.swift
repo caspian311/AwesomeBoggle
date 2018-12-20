@@ -5,7 +5,7 @@ class RegisterViewController: UIViewController {
     let registerView: RegisterView
     let registerModel: RegisterModel
     
-    init(registerView: RegisterView = RegisterView(), registerModel: RegisterModel = RegisterModel(), coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
+    init(registerView: RegisterView = RegisterView(), registerModel: RegisterModel = RegisterModel(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
         self.registerView = registerView
         self.registerModel = registerModel
         self.coreDataManager = coreDataManager

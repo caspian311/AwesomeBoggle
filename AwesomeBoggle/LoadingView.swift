@@ -7,9 +7,11 @@ protocol LoadingViewProtocol: class {
 class LoadingView: GradientView {
     weak var delegate: LoadingViewProtocol?
     
+    private let loadingSpinner: UILabel;
+    
     init() {
         let titleLabel = UILabel()
-        let loadingSpinner = UILabel()
+        self.loadingSpinner = UILabel()
         
         super.init(frame: CGRect.zero)
         
@@ -36,15 +38,15 @@ class LoadingView: GradientView {
         titleLabel.bottomAnchor.constraint(equalTo: loadingSpinner.topAnchor, constant: -30).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        loadingSpinner.textAlignment = .center
-        loadingSpinner.backgroundColor = .clear
-        loadingSpinner.font = UIFont(name:"HelveticaNeue-Bold", size: 30)
-        loadingSpinner.numberOfLines = 0
-        loadingSpinner.text = "Loading..."
+        self.loadingSpinner.textAlignment = .center
+        self.loadingSpinner.backgroundColor = .clear
+        self.loadingSpinner.font = UIFont(name:"HelveticaNeue-Bold", size: 30)
+        self.loadingSpinner.numberOfLines = 0
+        self.loadingSpinner.text = "Loading..."
         
-        loadingSpinner.translatesAutoresizingMaskIntoConstraints = false
-        loadingSpinner.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        loadingSpinner.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.loadingSpinner.translatesAutoresizingMaskIntoConstraints = false
+        self.loadingSpinner.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.loadingSpinner.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
     }
     
@@ -52,7 +54,12 @@ class LoadingView: GradientView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func showError() {
+    func showError(_ message: String) {
         print("An error occurred while loading the data...")
+        print(message)
+    }
+    
+    func updateProgress(_ statusMessage: String) {
+        self.loadingSpinner.text = statusMessage
     }
 }

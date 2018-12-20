@@ -13,13 +13,18 @@ protocol CoreDataManagerProtocol: class {
     func fetchCurrentGame() -> GameData?
     
     func fetchDictionaryWords() -> [DictWord]
-    func save(dictionaryWord: DictWord)
+    func save(dictionaryWords: [DictWord])
     func fetchWordBy(text: String) -> DictWord?
 }
 
 class CoreDataManager: CoreDataManagerProtocol {
+    private let appDelegate: AppDelegate;
+    
+    init(_ appDelegate: AppDelegate) {
+        self.appDelegate = appDelegate
+    }
+    
     func fetchGames() -> [BoggleGame] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Game")
@@ -36,7 +41,6 @@ class CoreDataManager: CoreDataManagerProtocol {
     }
 
     func save(game: BoggleGame) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let entity = NSEntityDescription.entity(forEntityName: "Game", in: managedContext)
@@ -56,7 +60,6 @@ class CoreDataManager: CoreDataManagerProtocol {
     }
     
     func fetchUser() -> UserData? {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "User")
@@ -80,7 +83,6 @@ class CoreDataManager: CoreDataManagerProtocol {
     }
     
     func save(user: UserData) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let entity = NSEntityDescription.entity(forEntityName: "User", in: managedContext)
@@ -98,7 +100,6 @@ class CoreDataManager: CoreDataManagerProtocol {
     }
     
     func save(currentGame: GameData) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let entity = NSEntityDescription.entity(forEntityName: "CurrentGame", in: managedContext)
@@ -115,7 +116,6 @@ class CoreDataManager: CoreDataManagerProtocol {
     }
     
     func fetchCurrentGame() -> GameData? {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CurrentGame")
@@ -139,7 +139,6 @@ class CoreDataManager: CoreDataManagerProtocol {
     }
     
     func fetchDictionaryWords() -> [DictWord] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DictionaryWord")
@@ -155,14 +154,13 @@ class CoreDataManager: CoreDataManagerProtocol {
         return wordList
     }
     
-    func save(dictionaryWord: DictWord) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    func save(dictionaryWords: [DictWord]) {
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "DictionaryWord", in: managedContext)
-        let item = NSManagedObject(entity: entity!, insertInto: managedContext)
-        
-        item.setValue(dictionaryWord.text, forKey: "text")
+        dictionaryWords.forEach { (dictionaryWord) in
+            let word = NSEntityDescription.insertNewObject(forEntityName: "DictionaryWord", into: managedContext) as! DictionaryWord
+            word.text = dictionaryWord.text
+        }
         
         do {
             try managedContext.save()
@@ -172,7 +170,6 @@ class CoreDataManager: CoreDataManagerProtocol {
     }
     
     func fetchWordBy(text: String) -> DictWord? {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DictionaryWord")

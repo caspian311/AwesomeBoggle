@@ -5,7 +5,7 @@ class MainViewController: UIViewController {
     let mainModel: MainModel
     let coreDataManager: CoreDataManagerProtocol
     
-    init(mainView: MainView = MainView(), mainModel: MainModel = MainModel(), coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
+    init(mainView: MainView = MainView(), mainModel: MainModel = MainModel(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
         self.mainView = mainView
         self.mainModel = mainModel
         self.coreDataManager = coreDataManager

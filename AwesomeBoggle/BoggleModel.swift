@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 protocol BoggleModelProtocol: class {
     func populateNewLettersToGrid(_ letters: Array<String>)
@@ -21,7 +22,7 @@ class BoggleModel {
     private var currentGame: BoggleGame?
     
     init(dictionaryService: DictionaryServiceProtocol = DictionaryService(),
-         coreDataManager: CoreDataManagerProtocol = CoreDataManager()) {
+         coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
         self.dictionaryService = dictionaryService
         self.coreDataManager = coreDataManager
     }
