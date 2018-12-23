@@ -35,7 +35,6 @@
 		9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE453E21AEF16E008AADC0 /* TextField.swift */; };
 		9FF3282721C5A7C700601161 /* DictionaryDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282621C5A7C700601161 /* DictionaryDataLoader.swift */; };
 		9FF3282921C5A9D900601161 /* DictionaryWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282821C5A9D900601161 /* DictionaryWord.swift */; };
-		E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70D111F1E6861A3003932CB /* CoreDataManager.swift */; };
 		E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */; };
 		E74F01461E6B6C5D005065BB /* BoggleGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F01451E6B6C5D005065BB /* BoggleGame.swift */; };
 		E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77676E11E3A394B006B8739 /* AppDelegate.swift */; };
@@ -112,7 +111,6 @@
 		9FCE453E21AEF16E008AADC0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		9FF3282621C5A7C700601161 /* DictionaryDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDataLoader.swift; sourceTree = "<group>"; };
 		9FF3282821C5A9D900601161 /* DictionaryWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryWord.swift; sourceTree = "<group>"; };
-		E70D111F1E6861A3003932CB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleTableViewCell.swift; sourceTree = "<group>"; };
 		E74F01451E6B6C5D005065BB /* BoggleGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleGame.swift; sourceTree = "<group>"; };
 		E77676DE1E3A394B006B8739 /* AwesomeBoggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeBoggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,11 +222,11 @@
 				E77676E31E3A394B006B8739 /* BoggleViewController.swift */,
 				E7B3D2AA1E61B500001579D6 /* BoggleWord.swift */,
 				9F7CCE8121B42E91000688D4 /* CheckAvailabilityData.swift */,
-				E70D111F1E6861A3003932CB /* CoreDataManager.swift */,
+				9F58514621CBE9C200ABC493 /* DataLayer.swift */,
+				9F8694C621C7D36E00088238 /* DataLoadingStatus.swift */,
 				9FF3282621C5A7C700601161 /* DictionaryDataLoader.swift */,
 				E799D9421E55E98C00C19CC7 /* DictionaryService.swift */,
 				9FF3282821C5A9D900601161 /* DictionaryWord.swift */,
-				9F8694C621C7D36E00088238 /* DataLoadingStatus.swift */,
 				9F7CCE6F21B021AB000688D4 /* ErrorMessage.swift */,
 				9F7CCE7F21B40A5E000688D4 /* GameData.swift */,
 				E7A525571E6CB87C00BCB328 /* GameHistoryModel.swift */,
@@ -261,7 +259,6 @@
 				E7FD0EB91E65C0CE00C2E2F1 /* WordDetailModel.swift */,
 				E7B3D2A01E5F2648001579D6 /* WordDetailView.swift */,
 				E7B3D2A21E5F2661001579D6 /* WordDetailViewController.swift */,
-				9F58514621CBE9C200ABC493 /* DataLayer.swift */,
 			);
 			path = AwesomeBoggle;
 			sourceTree = "<group>";
@@ -529,7 +526,6 @@
 				9F7CCE7621B2B7A1000688D4 /* UserData.swift in Sources */,
 				9F8139A721B499EE00930C5C /* LogHelper.swift in Sources */,
 				9F678A6D21AEB948002435A2 /* RegisterViewController.swift in Sources */,
-				E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */,
 				E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
