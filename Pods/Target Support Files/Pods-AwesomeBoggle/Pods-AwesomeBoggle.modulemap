@@ -1,4 +1,4 @@
-module Pods_AwesomeBoggle {
+framework module Pods_AwesomeBoggle {
   umbrella header "Pods-AwesomeBoggle-umbrella.h"
 
   export *

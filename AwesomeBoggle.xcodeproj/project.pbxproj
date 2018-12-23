@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A86A847F4283A573680E573 /* Pods_AwesomeBoggle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5814A9BDC5EAAEEAD12C0396 /* Pods_AwesomeBoggle.framework */; };
 		9F419DBF21B6B3AA00C574EC /* WaitingForOthersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DBE21B6B3AA00C574EC /* WaitingForOthersViewController.swift */; };
 		9F419DC121B6B48400C574EC /* WaitingForOthersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DC021B6B48400C574EC /* WaitingForOthersView.swift */; };
 		9F419DC321B6BF0D00C574EC /* WaitingForOthersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */; };
+		9F58514721CBE9C200ABC493 /* DataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F58514621CBE9C200ABC493 /* DataLayer.swift */; };
 		9F678A6D21AEB948002435A2 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A6C21AEB948002435A2 /* RegisterViewController.swift */; };
 		9F678A6F21AEBA5D002435A2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A6E21AEBA5D002435A2 /* RegisterView.swift */; };
 		9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A7021AEBA69002435A2 /* RegisterModel.swift */; };
@@ -33,13 +35,11 @@
 		9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE453E21AEF16E008AADC0 /* TextField.swift */; };
 		9FF3282721C5A7C700601161 /* DictionaryDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282621C5A7C700601161 /* DictionaryDataLoader.swift */; };
 		9FF3282921C5A9D900601161 /* DictionaryWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282821C5A9D900601161 /* DictionaryWord.swift */; };
-		CB8A6535D16250881960FE8F /* libPods-AwesomeBoggle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E266ECFADED48C007F2BCC4 /* libPods-AwesomeBoggle.a */; };
 		E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70D111F1E6861A3003932CB /* CoreDataManager.swift */; };
 		E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */; };
 		E74F01461E6B6C5D005065BB /* BoggleGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F01451E6B6C5D005065BB /* BoggleGame.swift */; };
 		E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77676E11E3A394B006B8739 /* AppDelegate.swift */; };
 		E77676E41E3A394B006B8739 /* BoggleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77676E31E3A394B006B8739 /* BoggleViewController.swift */; };
-		E77676EA1E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E77676E81E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld */; };
 		E77676EC1E3A394B006B8739 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77676EB1E3A394B006B8739 /* Assets.xcassets */; };
 		E77676EF1E3A394B006B8739 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */; };
 		E77677051E3A394B006B8739 /* AwesomeBoggleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77677041E3A394B006B8739 /* AwesomeBoggleUITests.swift */; };
@@ -84,10 +84,11 @@
 
 /* Begin PBXFileReference section */
 		2A610691C0D424E885DA4E4F /* Pods-AwesomeBoggle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeBoggle.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeBoggle/Pods-AwesomeBoggle.release.xcconfig"; sourceTree = "<group>"; };
-		4E266ECFADED48C007F2BCC4 /* libPods-AwesomeBoggle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AwesomeBoggle.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5814A9BDC5EAAEEAD12C0396 /* Pods_AwesomeBoggle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomeBoggle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F419DBE21B6B3AA00C574EC /* WaitingForOthersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersViewController.swift; sourceTree = "<group>"; };
 		9F419DC021B6B48400C574EC /* WaitingForOthersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersView.swift; sourceTree = "<group>"; };
 		9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersModel.swift; sourceTree = "<group>"; };
+		9F58514621CBE9C200ABC493 /* DataLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLayer.swift; sourceTree = "<group>"; };
 		9F678A6C21AEB948002435A2 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9F678A6E21AEBA5D002435A2 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		9F678A7021AEBA69002435A2 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
@@ -117,7 +118,6 @@
 		E77676DE1E3A394B006B8739 /* AwesomeBoggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeBoggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77676E11E3A394B006B8739 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E77676E31E3A394B006B8739 /* BoggleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoggleViewController.swift; sourceTree = "<group>"; };
-		E77676E91E3A394B006B8739 /* AwesomeBoggle.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AwesomeBoggle.xcdatamodel; sourceTree = "<group>"; };
 		E77676EB1E3A394B006B8739 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E77676EE1E3A394B006B8739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E77676F01E3A394B006B8739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB8A6535D16250881960FE8F /* libPods-AwesomeBoggle.a in Frameworks */,
+				5A86A847F4283A573680E573 /* Pods_AwesomeBoggle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +215,6 @@
 				9F7CCE7921B388AE000688D4 /* AvailableGamesView.swift */,
 				9F7CCE7721B3880D000688D4 /* AvailableGamesViewController.swift */,
 				9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */,
-				E77676E81E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld */,
 				9F7CCE7321B196A6000688D4 /* BaseService.swift */,
 				E74F01451E6B6C5D005065BB /* BoggleGame.swift */,
 				E7A525591E6CBDFB00BCB328 /* BoggleGameTableViewCell.swift */,
@@ -262,6 +261,7 @@
 				E7FD0EB91E65C0CE00C2E2F1 /* WordDetailModel.swift */,
 				E7B3D2A01E5F2648001579D6 /* WordDetailView.swift */,
 				E7B3D2A21E5F2661001579D6 /* WordDetailViewController.swift */,
+				9F58514621CBE9C200ABC493 /* DataLayer.swift */,
 			);
 			path = AwesomeBoggle;
 			sourceTree = "<group>";
@@ -288,7 +288,7 @@
 		F3C197D65FECFC53A987526C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4E266ECFADED48C007F2BCC4 /* libPods-AwesomeBoggle.a */,
+				5814A9BDC5EAAEEAD12C0396 /* Pods_AwesomeBoggle.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -304,6 +304,7 @@
 				E77676DA1E3A394B006B8739 /* Sources */,
 				E77676DB1E3A394B006B8739 /* Frameworks */,
 				E77676DC1E3A394B006B8739 /* Resources */,
+				19FF305904AD7A83E7F9CF7B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -429,6 +430,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		19FF305904AD7A83E7F9CF7B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeBoggle/Pods-AwesomeBoggle-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeBoggle/Pods-AwesomeBoggle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6F51C5683782CAC0FFE6413A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -469,6 +492,7 @@
 				9F7CCE8021B40A5E000688D4 /* GameData.swift in Sources */,
 				E7B3D2A91E61AFEB001579D6 /* ResultsView.swift in Sources */,
 				9F8694C021C6A86F00088238 /* LoadingViewController.swift in Sources */,
+				9F58514721CBE9C200ABC493 /* DataLayer.swift in Sources */,
 				E7B3D2A31E5F2661001579D6 /* WordDetailViewController.swift in Sources */,
 				E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */,
 				9F8694C421C6A95600088238 /* LoadingModel.swift in Sources */,
@@ -477,7 +501,6 @@
 				9F419DC121B6B48400C574EC /* WaitingForOthersView.swift in Sources */,
 				E7B3D2A51E61AF12001579D6 /* ResultsViewController.swift in Sources */,
 				9FF3282921C5A9D900601161 /* DictionaryWord.swift in Sources */,
-				E77676EA1E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld in Sources */,
 				9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */,
 				9F7CCE7421B196A6000688D4 /* BaseService.swift in Sources */,
 				E7A525521E6CB27B00BCB328 /* MainModel.swift in Sources */,
@@ -796,19 +819,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E77676E81E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E77676E91E3A394B006B8739 /* AwesomeBoggle.xcdatamodel */,
-			);
-			currentVersion = E77676E91E3A394B006B8739 /* AwesomeBoggle.xcdatamodel */;
-			path = AwesomeBoggle.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E77676D61E3A394B006B8739 /* Project object */;
 }

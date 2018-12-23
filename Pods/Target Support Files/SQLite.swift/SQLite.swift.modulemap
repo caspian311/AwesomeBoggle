@@ -1,4 +1,4 @@
-module SQLite {
+framework module SQLite {
   umbrella header "SQLite.swift-umbrella.h"
 
   export *
