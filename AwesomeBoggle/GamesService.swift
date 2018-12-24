@@ -10,10 +10,10 @@ protocol GamesServiceProtocol: class {
 }
 
 class GamesService: BaseService, GamesServiceProtocol {
-    let coreDataManager: CoreDataManagerProtocol
+    private let dataLayer: DataLayerProtocol
     
-    init(coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
-        self.coreDataManager = coreDataManager
+    init(dataLayer: DataLayerProtocol = DataLayer()) {
+        self.dataLayer = dataLayer
     }
     
     func fetchAvailableGames(callback: @escaping (ErrorMessage?, [UserData]?) -> ()) {
@@ -81,7 +81,7 @@ class GamesService: BaseService, GamesServiceProtocol {
     }
     
     private func getAuthToken() -> String {
-        let userData = self.coreDataManager.fetchUser()!
+        let userData = self.dataLayer.fetchUser()!
         return userData.authToken!
     }
 }

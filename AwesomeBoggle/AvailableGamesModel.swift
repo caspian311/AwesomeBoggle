@@ -12,11 +12,11 @@ class AvailableGamesModel {
     weak var delegate: AvailableGamesModelProtocol?
     
     private let gameService: GamesServiceProtocol
-    private let coreDataManager: CoreDataManagerProtocol
+    private let dataLayer: DataLayerProtocol
     
-    init(gameService: GamesServiceProtocol = GamesService(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
+    init(gameService: GamesServiceProtocol = GamesService(), dataLayer: DataLayerProtocol = DataLayer()) {
         self.gameService = gameService
-        self.coreDataManager = coreDataManager
+        self.dataLayer = dataLayer
     }
     
     func fetchAvailableGames() {
@@ -36,7 +36,7 @@ class AvailableGamesModel {
     }
     
     func startGame(with opponentUserId: Int) {
-        let userId = self.coreDataManager.fetchUser()!.id
+        let userId = self.dataLayer.fetchUser()!.id
         
         self.gameService.startGame() {(errorOptional, gameOptional) in
             if let error = errorOptional {

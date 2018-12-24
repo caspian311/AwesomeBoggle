@@ -1,14 +1,14 @@
 import UIKit
 
 class RegisterViewController: UIViewController {
-    let coreDataManager: CoreDataManagerProtocol
-    let registerView: RegisterView
-    let registerModel: RegisterModel
+    private let dataLayer: DataLayerProtocol
+    private let registerView: RegisterView
+    private let registerModel: RegisterModel
     
-    init(registerView: RegisterView = RegisterView(), registerModel: RegisterModel = RegisterModel(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
+    init(registerView: RegisterView = RegisterView(), registerModel: RegisterModel = RegisterModel(), dataLayer: DataLayer = DataLayer()) {
         self.registerView = registerView
         self.registerModel = registerModel
-        self.coreDataManager = coreDataManager
+        self.dataLayer = dataLayer
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -37,7 +37,7 @@ extension RegisterViewController: RegisterModelProtocol {
     func done(_ userOptional: UserData?) {
         DispatchQueue.main.async {
             if let user = userOptional {
-                self.coreDataManager.save(user: user)
+                self.dataLayer.save(user: user)
             }
             self.navigationController?.pushViewController(MainViewController(), animated: true)
         }

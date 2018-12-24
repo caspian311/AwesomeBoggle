@@ -2,14 +2,14 @@ import Foundation
 import UIKit
 
 class WaitingForOthersViewController: UIViewController {
-    let coreDataManager: CoreDataManagerProtocol
-    let waitingForOthersView: WaitingForOthersView
-    let waitingForOthersModel: WaitingForOthersModel
+    private let dataLayer: DataLayerProtocol
+    private let waitingForOthersView: WaitingForOthersView
+    private let waitingForOthersModel: WaitingForOthersModel
     
-    init(waitingForOthersView: WaitingForOthersView = WaitingForOthersView(), waitingForOthersModel: WaitingForOthersModel = WaitingForOthersModel(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
+    init(waitingForOthersView: WaitingForOthersView = WaitingForOthersView(), waitingForOthersModel: WaitingForOthersModel = WaitingForOthersModel(), dataLayer: DataLayerProtocol = DataLayer()) {
         self.waitingForOthersView = waitingForOthersView
         self.waitingForOthersModel = waitingForOthersModel
-        self.coreDataManager = coreDataManager
+        self.dataLayer = dataLayer
         
         super.init(nibName: nil, bundle: nil)
     }

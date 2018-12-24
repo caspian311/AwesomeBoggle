@@ -17,18 +17,18 @@ class BoggleModel {
     
     weak var delegate: BoggleModelProtocol?
     
-    private let coreDataManager: CoreDataManagerProtocol
+    private let dataLayer: DataLayerProtocol
     private let dictionaryService: DictionaryServiceProtocol
     private var currentGame: BoggleGame?
     
     init(dictionaryService: DictionaryServiceProtocol = DictionaryService(),
-         coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
+         dataLayer: DataLayerProtocol = DataLayer()) {
         self.dictionaryService = dictionaryService
-        self.coreDataManager = coreDataManager
+        self.dataLayer = dataLayer
     }
     
     func populateGrid() {
-        let grid = self.coreDataManager.fetchCurrentGame()!.grid
+        let grid = self.dataLayer.fetchCurrentGame()!.grid
         let letters = Array(grid).map(String.init)
         self.delegate?.populateNewLettersToGrid(letters)
         updateReadyToReceive()
@@ -84,7 +84,7 @@ class BoggleModel {
             date: Date(),
             score: self.submittedWords.map{ $0.count }.reduce(0, { $0 + $1 }))
         
-        self.coreDataManager.save(game: game)
+        self.dataLayer.save(newGame: game)
         
         self.delegate?.goToScoreBoard()
     }

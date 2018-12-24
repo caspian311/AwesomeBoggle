@@ -2,16 +2,16 @@ import Foundation
 import UIKit
 
 class DictionaryDataLoader {
-    private let coreDataManager: CoreDataManagerProtocol;
+    private let dataLayer: DataLayerProtocol;
     private let dictionaryService: DictionaryServiceProtocol;
     
-    init(coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate), dictionaryService: DictionaryServiceProtocol = DictionaryService()) {
-        self.coreDataManager = coreDataManager
+    init(dataLayer: DataLayerProtocol = DataLayer(), dictionaryService: DictionaryServiceProtocol = DictionaryService()) {
+        self.dataLayer = dataLayer
         self.dictionaryService = dictionaryService
     }
 
     func preloadData(_ callback: @escaping (DataLoadingStatus) -> ()) {
-        if self.coreDataManager.fetchDictionaryWords().count == 0 {
+        if self.dataLayer.fetchDictionaryWords().count == 0 {
             print("need to get data")
             self.dictionaryService.fetchAllWords() { (errorOptional, dataOptional) in
                 if let error = errorOptional {
@@ -31,36 +31,25 @@ class DictionaryDataLoader {
                     status.progress = 0
                     callback(status)
                     
-                    status.status = .Loading
-                    var dictionaryWords = data.map{ DictWord(text: $0.text) }
-                    
-                    let batchSize = 100
-                    while !dictionaryWords.isEmpty {
-                        print("saving \(batchSize) elements - \(data.count - dictionaryWords.count) out of \(data.count)")
+                    if let data = dataOptional {
+                        status.status = .Loading
+                        callback(status)
+
+                        let dictionaryWords = data.map{ DictWord(id: nil, text: $0.text) }
                         
-                        let bunch = dictionaryWords.prefix(batchSize)
-                        self.coreDataManager.save(dictionaryWords: Array(bunch))
-                        dictionaryWords = Array(dictionaryWords.dropFirst(batchSize))
+                        for (index, word) in dictionaryWords.enumerated() {
+                            print("saving \(index) out of \(dictionaryWords.count)")
+                            
+                            self.dataLayer.save(dictionaryWord: word)
+                            
+                            status.progress = index
+                            callback(status)
+                        }
+                        
+                        print("done processing the data")
+                        status.status = .Done
+                        callback(status)
                     }
-                    
-//                    self.coreDataManager.save(dictionaryWords: dictionaryWords)
-//                    for (index, element) in (dictionaryWords).enumerated() {
-//                        print("saving: \(element) - \(index) out of \(data.count)")
-//
-//                        self.coreDataManager.save(dictionaryWord: element)
-//
-//                        if index % 100 == 0 {
-//                            status.progress = index
-//                            callback(status)
-//                        }
-//
-//                        if index == data.count {
-//                            print("done processing the data")
-//                            status.status = .Done
-//                            callback(status)
-//                        }
-//                    }
-                    
                 }
             }
         } else {
