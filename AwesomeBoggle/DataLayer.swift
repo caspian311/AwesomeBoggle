@@ -11,8 +11,8 @@ protocol DataLayerProtocol: class {
     func save(currentGame: GameData)
     func fetchCurrentGame() -> GameData?
     
-    func fetchDictionaryWords() -> [DictWord]
-    func save(dictionaryWord: DictWord)
+    func fetchWordCount() -> Int
+    func save(dictionaryWords: [String])
     func fetchWordBy(text: String) -> DictWord?
 }
 
@@ -128,13 +128,18 @@ class DataLayer: DataLayerProtocol {
         return Array(try! db.prepare(currentGame).map { GameData(id: $0[currentGameId], grid: $0[currentGameGrid], isReady: $0[currentGameIsReady]) }).first
     }
     
-    func fetchDictionaryWords() -> [DictWord] {
-        return Array(try! db.prepare(dictWord).map { DictWord(id: $0[dictWordId], text: $0[dictWordText]) })
+    func fetchWordCount() -> Int {
+        return try! db.scalar(dictWord.count)
     }
     
-    func save(dictionaryWord: DictWord) {
-        let insert = dictWord.insert(dictWordText <- dictionaryWord.text)
-        try! db.run(insert)
+    func save(dictionaryWords: [String]) {
+        let insertStatement = try! db.prepare("INSERT INTO DictWord (text) VALUES (?)")
+        
+        try! db.transaction(.deferred) { () -> Void in
+            for text in dictionaryWords {
+                try! insertStatement.run(text)
+            }
+        }
     }
     
     func fetchWordBy(text: String) -> DictWord? {

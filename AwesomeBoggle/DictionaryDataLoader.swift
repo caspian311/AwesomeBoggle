@@ -11,13 +11,15 @@ class DictionaryDataLoader {
     }
 
     func preloadData(_ callback: @escaping (DataLoadingStatus) -> ()) {
-        if self.dataLayer.fetchDictionaryWords().count == 0 {
+        if self.dataLayer.fetchWordCount() == 0 {
             print("need to get data")
             self.dictionaryService.fetchAllWords() { (errorOptional, dataOptional) in
+                let status = DataLoadingStatus()
+                
                 if let error = errorOptional {
                     print("Error when retrieving word list")
                     print(error.message)
-                    let status = DataLoadingStatus()
+                    
                     status.status = .Error
                     status.message = error.message
                     callback(status)
@@ -25,31 +27,33 @@ class DictionaryDataLoader {
                 }
                 
                 if let data = dataOptional {
-                    let status = DataLoadingStatus()
                     status.status = .Fetched
                     status.total = data.count
                     status.progress = 0
                     callback(status)
-                    
-                    if let data = dataOptional {
-                        status.status = .Loading
-                        callback(status)
 
-                        let dictionaryWords = data.map{ DictWord(id: nil, text: $0.text) }
+                    var dictionaryWords = data.map{ $0.text }
+
+                    status.status = .Loading
+                    callback(status)
+
+                    let batchSize = 1000
+                    while !dictionaryWords.isEmpty {
+                        let bunch = Array(dictionaryWords.prefix(batchSize))
                         
-                        for (index, word) in dictionaryWords.enumerated() {
-                            print("saving \(index) out of \(dictionaryWords.count)")
-                            
-                            self.dataLayer.save(dictionaryWord: word)
-                            
-                            status.progress = index
-                            callback(status)
-                        }
+                        print("saving \(batchSize) - \(dictionaryWords.count) out of \(String(describing: status.total))")
                         
-                        print("done processing the data")
-                        status.status = .Done
+                        self.dataLayer.save(dictionaryWords: bunch)
+                        
+                        status.progress = status.total! - dictionaryWords.count
                         callback(status)
+                        
+                        dictionaryWords = Array(dictionaryWords.dropLast(batchSize))
                     }
+
+                    print("done processing the data")
+                    status.status = .Done
+                    callback(status)
                 }
             }
         } else {
