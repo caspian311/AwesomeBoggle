@@ -8,6 +8,6 @@ struct UserData:Codable {
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case username = "username"
-        case authToken = "auth_token"
+        case authToken = "authToken"
     }
 }

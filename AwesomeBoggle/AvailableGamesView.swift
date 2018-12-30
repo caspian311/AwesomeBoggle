@@ -35,7 +35,7 @@ class AvailableGamesView: GradientView, UITableViewDelegate, UITableViewDataSour
         self.gamesLabel.attributedText = NSMutableAttributedString(string: "Choose your opponent", attributes: gameLabelTextAttributes)
         
         self.gamesLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.gamesLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        self.gamesLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
         self.gamesLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
         self.availableGamesTableView.delegate = self
@@ -47,7 +47,7 @@ class AvailableGamesView: GradientView, UITableViewDelegate, UITableViewDataSour
         
         self.availableGamesTableView.translatesAutoresizingMaskIntoConstraints = false
         self.availableGamesTableView.topAnchor.constraint(equalTo: self.gamesLabel.bottomAnchor, constant: 10).isActive = true
-        self.availableGamesTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        self.availableGamesTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
         self.availableGamesTableView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         self.availableGamesTableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         

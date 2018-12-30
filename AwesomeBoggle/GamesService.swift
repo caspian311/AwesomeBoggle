@@ -3,7 +3,7 @@ import UIKit
 
 protocol GamesServiceProtocol: class {
     func fetchAvailableGames(callback: @escaping (ErrorMessage?, [UserData]?) -> ())
-    func inviteToGame(_ gameId: Int, _ opponenets: [Int], _ callback: @escaping (ErrorMessage?, GameData?) -> ())
+    func inviteToGame(_ gameId: Int, _ opponenets: [Int], _ callback: @escaping (ErrorMessage?, InvitationData?) -> ())
     func startGame(_ callback: @escaping (ErrorMessage?, GameData?) -> ())
     func joinGame(_ gameId: Int, _ callback: @escaping (ErrorMessage?) -> ())
     func isGameReady(_ gameId: Int, _ callback: @escaping (ErrorMessage?, Bool?) -> ())
@@ -28,16 +28,17 @@ class GamesService: BaseService, GamesServiceProtocol {
         }
     }
     
-    func inviteToGame(_ gameId: Int, _ opponenets: [Int], _ callback: @escaping (ErrorMessage?, GameData?) -> ()) {
+    func inviteToGame(_ gameId: Int, _ opponenets: [Int], _ callback: @escaping (ErrorMessage?, InvitationData?) -> ()) {
         let authToken = getAuthToken()
         
         let data: [String:Any] = [ "userIds": opponenets ]
-        self.post(url: self.baseUrl.appendingPathComponent("/games/\(gameId)/invitations)"), auth: authToken, requestData: data) { (errorOptional, game: GameData?) in
+        self.post(url: self.baseUrl.appendingPathComponent("/games/\(gameId)/invitations"), auth: authToken, requestData: data) { (errorOptional, invitations: InvitationData?) in
             if let error = errorOptional {
                 callback(error, nil)
-            } else {
-                callback(nil, game)
-            }
+                return
+            } 
+
+            callback(nil, invitations)
         }
     }
     
@@ -47,9 +48,10 @@ class GamesService: BaseService, GamesServiceProtocol {
         self.post(url: self.baseUrl.appendingPathComponent("/games"), auth: authToken, requestData: [:]) { (errorOptional, game: GameData?) in
             if let error = errorOptional {
                 callback(error, nil)
-            } else {
-                callback(nil, game)
+                return
             }
+            
+            callback(nil, game)
         }
     }
     

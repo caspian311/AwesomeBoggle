@@ -34,11 +34,15 @@ class RegisterViewController: UIViewController {
 }
 
 extension RegisterViewController: RegisterModelProtocol {
-    func done(_ userOptional: UserData?) {
+    func done(_ user: UserData) {
         DispatchQueue.main.async {
-            if let user = userOptional {
-                self.dataLayer.save(user: user)
-            }
+            self.dataLayer.save(user: user)
+            self.navigationController?.pushViewController(MainViewController(), animated: true)
+        }
+    }
+    
+    func cancel() {
+        DispatchQueue.main.async {
             self.navigationController?.pushViewController(MainViewController(), animated: true)
         }
     }

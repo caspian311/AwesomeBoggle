@@ -45,9 +45,9 @@ extension AvailableGamesViewController: AvailableGamesViewProtocol {
 }
 
 extension AvailableGamesViewController: AvailableGamesModelProtocol {
-    func waitForOthersToJoin(_ game: GameData) {
+    func waitForOthersToJoin(_ invititations: [Invitation]) {
         DispatchQueue.main.async {
-            self.dataLayer.save(currentGame: game)
+            self.dataLayer.save(invitations: invititations)
             self.navigationController?.pushViewController(WaitingForOthersViewController(), animated: true)
         }
     }

@@ -2,8 +2,8 @@ import Foundation
 import SQLite
 
 protocol DataLayerProtocol: class {
-    func save(newGame: BoggleGame)
-    func fetchGames() -> [BoggleGame]
+//    func save(newGame: BoggleGame)
+//    func fetchGames() -> [BoggleGame]
     
     func save(user: UserData)
     func fetchUser() -> UserData?
@@ -14,6 +14,8 @@ protocol DataLayerProtocol: class {
     func fetchWordCount() -> Int
     func save(dictionaryWords: [String])
     func fetchWordBy(text: String) -> DictWord?
+    
+    func save(invitations: [Invitation])
 }
 
 class DataLayer: DataLayerProtocol {
@@ -27,10 +29,10 @@ class DataLayer: DataLayerProtocol {
     private let userDataUsername: Expression<String>
     private let userDataAuthToken: Expression<String?>
     
-    private let game: Table
-    private let gameId: Expression<String>
-    private let gameDate: Expression<Date>
-    private let gameScore: Expression<Int>
+//    private let game: Table
+//    private let gameId: Expression<String>
+//    private let gameDate: Expression<Date>
+//    private let gameScore: Expression<Int>
 
     private let dictionaryWord: Table
     private let dictionaryWordId: Expression<Int>
@@ -45,18 +47,27 @@ class DataLayer: DataLayerProtocol {
     private let dictWordId: Expression<Int>
     private let dictWordText: Expression<String>
     
+    private let invitation: Table
+    private let invitationId: Expression<Int>
+    private let invitationGameId: Expression<Int>
+    private let invitationUserId: Expression<Int>
+    private let invitationUsername: Expression<String>
+    private let invitationAccepted: Expression<Bool>
+    
     init() {
-        db = try! Connection("\(path)/db.sqlite3")
+        let databasePath = "\(path)/db.sqlite3"
+        print("using database path: \(databasePath)")
+        db = try! Connection(databasePath)
         
         userData = Table("UserData")
         userDataId = Expression<Int>("id")
         userDataUsername = Expression<String>("username")
         userDataAuthToken = Expression<String?>("authToken")
         
-        game = Table("Game")
-        gameId = Expression<String>("id")
-        gameDate = Expression<Date>("date")
-        gameScore = Expression<Int>("score")
+//        game = Table("Game")
+//        gameId = Expression<String>("id")
+//        gameDate = Expression<Date>("date")
+//        gameScore = Expression<Int>("score")
         
         dictionaryWord = Table("DictionaryWord")
         dictionaryWordId = Expression<Int>("id")
@@ -71,17 +82,24 @@ class DataLayer: DataLayerProtocol {
         dictWordId = Expression<Int>("id")
         dictWordText = Expression<String>("text")
         
+        invitation = Table("invitation")
+        invitationId = Expression<Int>("invitationId")
+        invitationGameId = Expression<Int>("invitationGameId")
+        invitationUserId = Expression<Int>("invitationUserId")
+        invitationUsername = Expression<String>("invitationUsername")
+        invitationAccepted = Expression<Bool>("invitationAccepted")
+        
         try! db.run(userData.create(ifNotExists: true) { t in
             t.column(userDataId, primaryKey: .autoincrement)
             t.column(userDataUsername, unique: true)
             t.column(userDataAuthToken, unique: true)
         })
         
-        try! db.run(game.create(ifNotExists: true) { t in
-            t.column(gameId, primaryKey: true)
-            t.column(gameDate)
-            t.column(gameScore, defaultValue: 0)
-        })
+//        try! db.run(game.create(ifNotExists: true) { t in
+//            t.column(gameId, primaryKey: true)
+//            t.column(gameDate)
+//            t.column(gameScore, defaultValue: 0)
+//        })
         
         try! db.run(dictionaryWord.create(ifNotExists: true) { t in
             t.column(dictionaryWordId, primaryKey: .autoincrement)
@@ -98,17 +116,25 @@ class DataLayer: DataLayerProtocol {
             t.column(dictWordId, primaryKey: .autoincrement)
             t.column(dictWordText, defaultValue: "")
         })
-    }
-    
-    func save(newGame: BoggleGame) {
-        let insert = game.insert(gameId <- newGame.id, gameDate <- newGame.date, gameScore <- newGame.score)
-        try! db.run(insert)
-    }
-    
-    func fetchGames() -> [BoggleGame] {
-        return Array(try! db.prepare(game).map { BoggleGame(id: $0[gameId], date: $0[gameDate], score: $0[gameScore]) })
         
+        
+        try! db.run(invitation.create(ifNotExists: true) { t in
+            t.column(invitationId, primaryKey: .autoincrement)
+            t.column(invitationGameId)
+            t.column(invitationUserId)
+            t.column(invitationUsername)
+            t.column(invitationAccepted, defaultValue: false)
+        })
     }
+    
+//    func save(newGame: BoggleGame) {
+//        let insert = game.insert(gameId <- newGame.id, gameDate <- newGame.date, gameScore <- newGame.score)
+//        try! db.run(insert)
+//    }
+    
+//    func fetchGames() -> [BoggleGame] {
+//        return Array(try! db.prepare(game).map { BoggleGame(id: $0[gameId], date: $0[gameDate], score: $0[gameScore]) })
+//    }
     
     func save(user: UserData) {
         let insert = userData.insert(userDataId <- user.id, userDataUsername <- user.username, userDataAuthToken <- user.authToken)
@@ -120,7 +146,7 @@ class DataLayer: DataLayerProtocol {
     }
     
     func save(currentGame: GameData) {
-        let insert = game.insert(currentGameGrid <- currentGame.grid, currentGameIsReady <- currentGame.isReady)
+        let insert = self.currentGame.insert(currentGameGrid <- currentGame.grid, currentGameIsReady <- currentGame.isReady)
         try! db.run(insert)
     }
     
@@ -144,5 +170,12 @@ class DataLayer: DataLayerProtocol {
     
     func fetchWordBy(text: String) -> DictWord? {
         return Array(try! db.prepare(dictWord.where(dictWordText == text)).map { DictWord(id: $0[dictWordId], text: $0[dictWordText]) }).first
+    }
+    
+    func save(invitations: [Invitation]) {
+        invitations.forEach {
+            let insert = invitation.insert(invitationGameId <- $0.gameId, invitationUserId <- $0.userId, invitationUsername <- $0.username, invitationAccepted <- $0.accepted)
+            try! db.run(insert)
+        }
     }
 }

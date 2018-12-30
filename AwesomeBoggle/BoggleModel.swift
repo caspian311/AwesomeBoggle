@@ -84,7 +84,7 @@ class BoggleModel {
             date: Date(),
             score: self.submittedWords.map{ $0.count }.reduce(0, { $0 + $1 }))
         
-        self.dataLayer.save(newGame: game)
+//        self.dataLayer.save(newGame: game)
         
         self.delegate?.goToScoreBoard()
     }

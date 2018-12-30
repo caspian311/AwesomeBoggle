@@ -37,6 +37,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: MainModelProtocol {
     func startGame() {
+        print("starting game...")
         self.navigationController?.pushViewController(AvailableGamesViewController(), animated: true)
     }
     

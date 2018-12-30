@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 protocol AvailableGamesModelProtocol: class {
-    func waitForOthersToJoin(_ game: GameData)
+    func waitForOthersToJoin(_ invitations: [Invitation])
     func errorOcurred(_ errorMessage: ErrorMessage)
     func showNoUsersAreAvailable()
     func showGames(_ availableGames: [UserData])
@@ -41,21 +41,29 @@ class AvailableGamesModel {
         self.gameService.startGame() {(errorOptional, gameOptional) in
             if let error = errorOptional {
                 self.delegate!.errorOcurred(error)
-            } else if let game = gameOptional {
-                let opponents = [userId, opponentUserId]
+                return
+            }
+            
+            if let game = gameOptional {
+                self.dataLayer.save(currentGame: game)
                 
-                self.gameService.inviteToGame(game.id, opponents) {(errorOptional, gameOptional) in
+                self.gameService.inviteToGame(game.id, [userId, opponentUserId]) {(errorOptional, invitationsOptional) in
                     if let error = errorOptional {
                         self.delegate!.errorOcurred(error)
-                    } else if let game = gameOptional {
-                        self.delegate!.waitForOthersToJoin(game)
-                    } else {
-                        self.delegate!.errorOcurred(ErrorMessage(message: "Unknown error"))
+                        return
                     }
+                    
+                    if let invitations = invitationsOptional {
+                        self.delegate!.waitForOthersToJoin(invitations.invitations)
+                        return
+                    }
+                    
+                    self.delegate!.errorOcurred(ErrorMessage(message: "Unknown error"))
                 }
-            } else {
-                self.delegate!.errorOcurred(ErrorMessage(message: "Unknown error"))
+                return
             }
+            
+            self.delegate!.errorOcurred(ErrorMessage(message: "Unknown error"))
         }
     }
 }

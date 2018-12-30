@@ -47,11 +47,14 @@ class LogHelper {
         if let host = components?.host{
             responseLog += "Host: \(host)\n"
         }
+        
         for (key,value) in response?.allHeaderFields ?? [:] {
             responseLog += "\(key): \(value)\n"
         }
         if let body = data{
-            responseLog += "\n\(NSString(data: body, encoding: String.Encoding.utf8.rawValue)!)\n"
+            let originalData = NSString(data: body, encoding: String.Encoding.utf8.rawValue)! as String
+            let trimmedData = originalData.prefix(200)
+            responseLog += "\n\(trimmedData)\n"
         }
         if error != nil{
             responseLog += "\nError: \(error!.localizedDescription)\n"
