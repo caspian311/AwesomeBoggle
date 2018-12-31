@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A86A847F4283A573680E573 /* Pods_AwesomeBoggle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5814A9BDC5EAAEEAD12C0396 /* Pods_AwesomeBoggle.framework */; };
+		9F39CC7A21DAB09E002212AA /* HttpErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F39CC7921DAB09E002212AA /* HttpErrorMessage.swift */; };
 		9F419DBF21B6B3AA00C574EC /* WaitingForOthersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DBE21B6B3AA00C574EC /* WaitingForOthersViewController.swift */; };
 		9F419DC121B6B48400C574EC /* WaitingForOthersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DC021B6B48400C574EC /* WaitingForOthersView.swift */; };
 		9F419DC321B6BF0D00C574EC /* WaitingForOthersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */; };
+		9F58514721CBE9C200ABC493 /* DataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F58514621CBE9C200ABC493 /* DataLayer.swift */; };
 		9F678A6D21AEB948002435A2 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A6C21AEB948002435A2 /* RegisterViewController.swift */; };
 		9F678A6F21AEBA5D002435A2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A6E21AEBA5D002435A2 /* RegisterView.swift */; };
 		9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F678A7021AEBA69002435A2 /* RegisterModel.swift */; };
@@ -23,22 +26,20 @@
 		9F7CCE7E21B409DE000688D4 /* GamesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7D21B409DE000688D4 /* GamesService.swift */; };
 		9F7CCE8021B40A5E000688D4 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7F21B40A5E000688D4 /* GameData.swift */; };
 		9F7CCE8221B42E91000688D4 /* CheckAvailabilityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE8121B42E91000688D4 /* CheckAvailabilityData.swift */; };
-		9F8139A721B499EE00930C5C /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8139A621B499EE00930C5C /* LogHelper.swift */; };
 		9F8139A921B4E80E00930C5C /* AvailableGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */; };
 		9F8694C021C6A86F00088238 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8694BF21C6A86F00088238 /* LoadingViewController.swift */; };
 		9F8694C221C6A93000088238 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8694C121C6A93000088238 /* LoadingView.swift */; };
 		9F8694C421C6A95600088238 /* LoadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8694C321C6A95600088238 /* LoadingModel.swift */; };
 		9F8694C721C7D36E00088238 /* DataLoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8694C621C7D36E00088238 /* DataLoadingStatus.swift */; };
 		9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A22AB21A5D6440027A7B4 /* GradientView.swift */; };
+		9FB3A71821D7FE20007823B2 /* Invitiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3A71721D7FE20007823B2 /* Invitiation.swift */; };
 		9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE453E21AEF16E008AADC0 /* TextField.swift */; };
 		9FF3282721C5A7C700601161 /* DictionaryDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282621C5A7C700601161 /* DictionaryDataLoader.swift */; };
 		9FF3282921C5A9D900601161 /* DictionaryWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282821C5A9D900601161 /* DictionaryWord.swift */; };
-		E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70D111F1E6861A3003932CB /* CoreDataManager.swift */; };
 		E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */; };
 		E74F01461E6B6C5D005065BB /* BoggleGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F01451E6B6C5D005065BB /* BoggleGame.swift */; };
 		E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77676E11E3A394B006B8739 /* AppDelegate.swift */; };
 		E77676E41E3A394B006B8739 /* BoggleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77676E31E3A394B006B8739 /* BoggleViewController.swift */; };
-		E77676EA1E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E77676E81E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld */; };
 		E77676EC1E3A394B006B8739 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77676EB1E3A394B006B8739 /* Assets.xcassets */; };
 		E77676EF1E3A394B006B8739 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */; };
 		E77677051E3A394B006B8739 /* AwesomeBoggleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77677041E3A394B006B8739 /* AwesomeBoggleUITests.swift */; };
@@ -82,9 +83,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A610691C0D424E885DA4E4F /* Pods-AwesomeBoggle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeBoggle.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeBoggle/Pods-AwesomeBoggle.release.xcconfig"; sourceTree = "<group>"; };
+		5814A9BDC5EAAEEAD12C0396 /* Pods_AwesomeBoggle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomeBoggle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F39CC7921DAB09E002212AA /* HttpErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpErrorMessage.swift; sourceTree = "<group>"; };
 		9F419DBE21B6B3AA00C574EC /* WaitingForOthersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersViewController.swift; sourceTree = "<group>"; };
 		9F419DC021B6B48400C574EC /* WaitingForOthersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersView.swift; sourceTree = "<group>"; };
 		9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersModel.swift; sourceTree = "<group>"; };
+		9F58514621CBE9C200ABC493 /* DataLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLayer.swift; sourceTree = "<group>"; };
 		9F678A6C21AEB948002435A2 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9F678A6E21AEBA5D002435A2 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		9F678A7021AEBA69002435A2 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
@@ -98,23 +103,21 @@
 		9F7CCE7D21B409DE000688D4 /* GamesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesService.swift; sourceTree = "<group>"; };
 		9F7CCE7F21B40A5E000688D4 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		9F7CCE8121B42E91000688D4 /* CheckAvailabilityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAvailabilityData.swift; sourceTree = "<group>"; };
-		9F8139A621B499EE00930C5C /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
 		9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGameTableViewCell.swift; sourceTree = "<group>"; };
 		9F8694BF21C6A86F00088238 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		9F8694C121C6A93000088238 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		9F8694C321C6A95600088238 /* LoadingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingModel.swift; sourceTree = "<group>"; };
 		9F8694C621C7D36E00088238 /* DataLoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingStatus.swift; sourceTree = "<group>"; };
 		9F9A22AB21A5D6440027A7B4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		9FB3A71721D7FE20007823B2 /* Invitiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invitiation.swift; sourceTree = "<group>"; };
 		9FCE453E21AEF16E008AADC0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		9FF3282621C5A7C700601161 /* DictionaryDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDataLoader.swift; sourceTree = "<group>"; };
 		9FF3282821C5A9D900601161 /* DictionaryWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryWord.swift; sourceTree = "<group>"; };
-		E70D111F1E6861A3003932CB /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E74DF91C1E5A5A810061275E /* BoggleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleTableViewCell.swift; sourceTree = "<group>"; };
 		E74F01451E6B6C5D005065BB /* BoggleGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleGame.swift; sourceTree = "<group>"; };
 		E77676DE1E3A394B006B8739 /* AwesomeBoggle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeBoggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77676E11E3A394B006B8739 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E77676E31E3A394B006B8739 /* BoggleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoggleViewController.swift; sourceTree = "<group>"; };
-		E77676E91E3A394B006B8739 /* AwesomeBoggle.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AwesomeBoggle.xcdatamodel; sourceTree = "<group>"; };
 		E77676EB1E3A394B006B8739 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E77676EE1E3A394B006B8739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E77676F01E3A394B006B8739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 		E7B3D2AC1E622698001579D6 /* ResultsModelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsModelTest.swift; sourceTree = "<group>"; };
 		E7F19BCC1E48F7A600C0043F /* BoggleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoggleModel.swift; sourceTree = "<group>"; };
 		E7FD0EB91E65C0CE00C2E2F1 /* WordDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDetailModel.swift; sourceTree = "<group>"; };
+		EFB8B94730E7791494BA5DDE /* Pods-AwesomeBoggle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeBoggle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeBoggle/Pods-AwesomeBoggle.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A86A847F4283A573680E573 /* Pods_AwesomeBoggle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,13 +175,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F0063F6AD348256E2B68A67 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EFB8B94730E7791494BA5DDE /* Pods-AwesomeBoggle.debug.xcconfig */,
+				2A610691C0D424E885DA4E4F /* Pods-AwesomeBoggle.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E77676D51E3A394B006B8739 = {
 			isa = PBXGroup;
 			children = (
+				9F39CC7921DAB09E002212AA /* HttpErrorMessage.swift */,
 				E77676E01E3A394B006B8739 /* AwesomeBoggle */,
 				E77676F81E3A394B006B8739 /* AwesomeBoggleTests */,
 				E77677031E3A394B006B8739 /* AwesomeBoggleUITests */,
 				E77676DF1E3A394B006B8739 /* Products */,
+				6F0063F6AD348256E2B68A67 /* Pods */,
+				F3C197D65FECFC53A987526C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,7 +216,6 @@
 				9F7CCE7921B388AE000688D4 /* AvailableGamesView.swift */,
 				9F7CCE7721B3880D000688D4 /* AvailableGamesViewController.swift */,
 				9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */,
-				E77676E81E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld */,
 				9F7CCE7321B196A6000688D4 /* BaseService.swift */,
 				E74F01451E6B6C5D005065BB /* BoggleGame.swift */,
 				E7A525591E6CBDFB00BCB328 /* BoggleGameTableViewCell.swift */,
@@ -209,11 +225,11 @@
 				E77676E31E3A394B006B8739 /* BoggleViewController.swift */,
 				E7B3D2AA1E61B500001579D6 /* BoggleWord.swift */,
 				9F7CCE8121B42E91000688D4 /* CheckAvailabilityData.swift */,
-				E70D111F1E6861A3003932CB /* CoreDataManager.swift */,
+				9F58514621CBE9C200ABC493 /* DataLayer.swift */,
+				9F8694C621C7D36E00088238 /* DataLoadingStatus.swift */,
 				9FF3282621C5A7C700601161 /* DictionaryDataLoader.swift */,
 				E799D9421E55E98C00C19CC7 /* DictionaryService.swift */,
 				9FF3282821C5A9D900601161 /* DictionaryWord.swift */,
-				9F8694C621C7D36E00088238 /* DataLoadingStatus.swift */,
 				9F7CCE6F21B021AB000688D4 /* ErrorMessage.swift */,
 				9F7CCE7F21B40A5E000688D4 /* GameData.swift */,
 				E7A525571E6CB87C00BCB328 /* GameHistoryModel.swift */,
@@ -222,11 +238,11 @@
 				9F7CCE7D21B409DE000688D4 /* GamesService.swift */,
 				9F9A22AB21A5D6440027A7B4 /* GradientView.swift */,
 				E77676F01E3A394B006B8739 /* Info.plist */,
+				9FB3A71721D7FE20007823B2 /* Invitiation.swift */,
 				E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */,
 				9F8694C321C6A95600088238 /* LoadingModel.swift */,
 				9F8694C121C6A93000088238 /* LoadingView.swift */,
 				9F8694BF21C6A86F00088238 /* LoadingViewController.swift */,
-				9F8139A621B499EE00930C5C /* LogHelper.swift */,
 				E7A525511E6CB27B00BCB328 /* MainModel.swift */,
 				E7A5254F1E6CB25300BCB328 /* MainView.swift */,
 				E7A5254D1E6CB1B500BCB328 /* MainViewController.swift */,
@@ -269,6 +285,14 @@
 			path = AwesomeBoggleUITests;
 			sourceTree = "<group>";
 		};
+		F3C197D65FECFC53A987526C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5814A9BDC5EAAEEAD12C0396 /* Pods_AwesomeBoggle.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -276,9 +300,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E77677091E3A394B006B8739 /* Build configuration list for PBXNativeTarget "AwesomeBoggle" */;
 			buildPhases = (
+				6F51C5683782CAC0FFE6413A /* [CP] Check Pods Manifest.lock */,
 				E77676DA1E3A394B006B8739 /* Sources */,
 				E77676DB1E3A394B006B8739 /* Frameworks */,
 				E77676DC1E3A394B006B8739 /* Resources */,
+				19FF305904AD7A83E7F9CF7B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -403,6 +429,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		19FF305904AD7A83E7F9CF7B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeBoggle/Pods-AwesomeBoggle-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeBoggle/Pods-AwesomeBoggle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F51C5683782CAC0FFE6413A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AwesomeBoggle-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E77676DA1E3A394B006B8739 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -419,19 +494,21 @@
 				9F7CCE8021B40A5E000688D4 /* GameData.swift in Sources */,
 				E7B3D2A91E61AFEB001579D6 /* ResultsView.swift in Sources */,
 				9F8694C021C6A86F00088238 /* LoadingViewController.swift in Sources */,
+				9F58514721CBE9C200ABC493 /* DataLayer.swift in Sources */,
 				E7B3D2A31E5F2661001579D6 /* WordDetailViewController.swift in Sources */,
 				E74DF91D1E5A5A810061275E /* BoggleTableViewCell.swift in Sources */,
 				9F8694C421C6A95600088238 /* LoadingModel.swift in Sources */,
 				E7A525501E6CB25300BCB328 /* MainView.swift in Sources */,
+				9F39CC7A21DAB09E002212AA /* HttpErrorMessage.swift in Sources */,
 				9FF3282721C5A7C700601161 /* DictionaryDataLoader.swift in Sources */,
 				9F419DC121B6B48400C574EC /* WaitingForOthersView.swift in Sources */,
 				E7B3D2A51E61AF12001579D6 /* ResultsViewController.swift in Sources */,
 				9FF3282921C5A9D900601161 /* DictionaryWord.swift in Sources */,
-				E77676EA1E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld in Sources */,
 				9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */,
 				9F7CCE7421B196A6000688D4 /* BaseService.swift in Sources */,
 				E7A525521E6CB27B00BCB328 /* MainModel.swift in Sources */,
 				9F678A6F21AEBA5D002435A2 /* RegisterView.swift in Sources */,
+				9FB3A71821D7FE20007823B2 /* Invitiation.swift in Sources */,
 				E7F19BCD1E48F7A600C0043F /* BoggleModel.swift in Sources */,
 				9F8694C721C7D36E00088238 /* DataLoadingStatus.swift in Sources */,
 				E74F01461E6B6C5D005065BB /* BoggleGame.swift in Sources */,
@@ -454,9 +531,7 @@
 				9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */,
 				9F7CCE7021B021AB000688D4 /* ErrorMessage.swift in Sources */,
 				9F7CCE7621B2B7A1000688D4 /* UserData.swift in Sources */,
-				9F8139A721B499EE00930C5C /* LogHelper.swift in Sources */,
 				9F678A6D21AEB948002435A2 /* RegisterViewController.swift in Sources */,
-				E70D11201E6861A3003932CB /* CoreDataManager.swift in Sources */,
 				E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,6 +691,7 @@
 		};
 		E776770A1E3A394B006B8739 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFB8B94730E7791494BA5DDE /* Pods-AwesomeBoggle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2A4BC23G3E;
@@ -630,6 +706,7 @@
 		};
 		E776770B1E3A394B006B8739 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A610691C0D424E885DA4E4F /* Pods-AwesomeBoggle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2A4BC23G3E;
@@ -744,19 +821,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E77676E81E3A394B006B8739 /* AwesomeBoggle.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E77676E91E3A394B006B8739 /* AwesomeBoggle.xcdatamodel */,
-			);
-			currentVersion = E77676E91E3A394B006B8739 /* AwesomeBoggle.xcdatamodel */;
-			path = AwesomeBoggle.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E77676D61E3A394B006B8739 /* Project object */;
 }

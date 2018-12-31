@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 protocol AvailableGamesModelProtocol: class {
-    func waitForOthersToJoin(_ game: GameData)
+    func waitForOthersToJoin(_ invitations: [Invitation])
     func errorOcurred(_ errorMessage: ErrorMessage)
     func showNoUsersAreAvailable()
     func showGames(_ availableGames: [UserData])
@@ -12,50 +12,57 @@ class AvailableGamesModel {
     weak var delegate: AvailableGamesModelProtocol?
     
     private let gameService: GamesServiceProtocol
-    private let coreDataManager: CoreDataManagerProtocol
+    private let dataLayer: DataLayerProtocol
     
-    init(gameService: GamesServiceProtocol = GamesService(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
+    init(gameService: GamesServiceProtocol = GamesService(), dataLayer: DataLayerProtocol = DataLayer()) {
         self.gameService = gameService
-        self.coreDataManager = coreDataManager
+        self.dataLayer = dataLayer
     }
     
     func fetchAvailableGames() {
-        self.gameService.fetchAvailableGames { (errorOptional, availableUsersOptional) in
+        self.gameService.fetchAvailableGames { (errorOptional, availableUsers) in
             if let error = errorOptional {
                 self.delegate!.errorOcurred(error)
-            } else if let availableGames = availableUsersOptional {
-                if (availableGames.count == 0) {
-                    self.delegate!.showNoUsersAreAvailable()
-                } else {
-                    self.delegate!.showGames(availableGames)
-                }
+                return
+            }
+            
+            if (availableUsers!.count == 0) {
+                self.delegate!.showNoUsersAreAvailable()
             } else {
-                self.delegate!.errorOcurred(ErrorMessage(message: "Unknown error"))
+                self.delegate!.showGames(availableUsers!)
             }
         }
     }
     
     func startGame(with opponentUserId: Int) {
-        let userId = self.coreDataManager.fetchUser()!.id
+        let userId = self.dataLayer.fetchUser()!.id
         
         self.gameService.startGame() {(errorOptional, gameOptional) in
             if let error = errorOptional {
                 self.delegate!.errorOcurred(error)
-            } else if let game = gameOptional {
-                let opponents = [userId, opponentUserId]
+                return
+            }
+            
+            if let game = gameOptional {
+                self.dataLayer.save(currentGame: game)
                 
-                self.gameService.inviteToGame(game.id, opponents) {(errorOptional, gameOptional) in
+                self.gameService.inviteToGame(game.id, [userId, opponentUserId]) {(errorOptional, invitationsOptional) in
                     if let error = errorOptional {
                         self.delegate!.errorOcurred(error)
-                    } else if let game = gameOptional {
-                        self.delegate!.waitForOthersToJoin(game)
-                    } else {
-                        self.delegate!.errorOcurred(ErrorMessage(message: "Unknown error"))
+                        return
                     }
+                    
+                    if let invitations = invitationsOptional {
+                        self.delegate!.waitForOthersToJoin(invitations)
+                        return
+                    }
+                    
+                    self.delegate!.errorOcurred(ErrorMessage(message: "Unknown error"))
                 }
-            } else {
-                self.delegate!.errorOcurred(ErrorMessage(message: "Unknown error"))
+                return
             }
+            
+            self.delegate!.errorOcurred(ErrorMessage(message: "Unknown error"))
         }
     }
 }

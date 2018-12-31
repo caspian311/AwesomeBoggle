@@ -1,14 +1,14 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    let mainView: MainView
-    let mainModel: MainModel
-    let coreDataManager: CoreDataManagerProtocol
+    private let mainView: MainView
+    private let mainModel: MainModel
+    private let dataLayer: DataLayerProtocol
     
-    init(mainView: MainView = MainView(), mainModel: MainModel = MainModel(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
+    init(mainView: MainView = MainView(), mainModel: MainModel = MainModel(), dataLayer: DataLayerProtocol = DataLayer()) {
         self.mainView = mainView
         self.mainModel = mainModel
-        self.coreDataManager = coreDataManager
+        self.dataLayer = dataLayer
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -37,6 +37,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: MainModelProtocol {
     func startGame() {
+        print("starting game...")
         self.navigationController?.pushViewController(AvailableGamesViewController(), animated: true)
     }
     
@@ -65,7 +66,7 @@ extension MainViewController: MainViewProtocol {
     func initializeScreen() {
         self.mainModel.registrationCheck() { (isRegistered) in
             if isRegistered {
-                if coreDataManager.fetchCurrentGame() == nil {
+                if self.dataLayer.fetchCurrentGame() == nil {
                     self.mainView.showUserMainScreen()
                 } else {
                     self.navigationController?.pushViewController(WaitingForOthersViewController(), animated: true)

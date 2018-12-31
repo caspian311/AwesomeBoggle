@@ -1,13 +1,7 @@
 import Foundation
 
-struct UserData:Codable {
+struct UserData {
     let id: Int
     let username: String
     let authToken: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case username = "username"
-        case authToken = "auth_token"
-    }
 }

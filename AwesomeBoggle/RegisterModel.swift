@@ -1,7 +1,8 @@
 import Foundation
 
 protocol RegisterModelProtocol: class {
-    func done(_ user: UserData?)
+    func done(_ user: UserData)
+    func cancel()
     func usernameAvailable()
     func usernameIsTaken()
     func showErrorMessage(_ errorMessage: String)
@@ -21,7 +22,7 @@ class RegisterModel {
     }
     
     func cancel() {
-        self.delegate?.done(nil)
+        self.delegate?.cancel()
     }
     
     func checkUsername() {
@@ -40,8 +41,17 @@ class RegisterModel {
 
     func register() {
         self.registrationService.register(username: self.username) { (errorOptional, userOptional) in
-            self.delegate?.done(userOptional)
-//                self.delegate?.showErrorMessage(error.message)
+            if let error = errorOptional {
+                self.delegate?.showErrorMessage(error.message)
+                return
+            }
+            
+            if let user = userOptional {
+                print("user has been registered: \(user)")
+                self.delegate?.done(user)
+            } else {
+                self.delegate?.showErrorMessage("No error reported and no user returned")
+            }
         }
     }
 }

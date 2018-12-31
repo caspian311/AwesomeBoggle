@@ -3,19 +3,20 @@ import UIKit
 
 protocol WaitingForOthersModelProtocol: class {
     func errorOccurred(_ errorMessage: String)
+    func doneWaiting()
 }
 
 class WaitingForOthersModel {
     weak var delegate: WaitingForOthersModelProtocol?
     
-    private let coreDataManager: CoreDataManagerProtocol
+    private let dataLayer: DataLayerProtocol
     private let gamesService: GamesServiceProtocol
     
     private var haveAllPlayersJoined: Bool
     private var errorOccurred: Bool
     
-    init(coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate), gamesService: GamesServiceProtocol = GamesService()) {
-        self.coreDataManager = coreDataManager
+    init(dataLayer: DataLayerProtocol = DataLayer(), gamesService: GamesServiceProtocol = GamesService()) {
+        self.dataLayer = dataLayer
         self.gamesService = gamesService
         
         self.haveAllPlayersJoined = false
@@ -23,7 +24,7 @@ class WaitingForOthersModel {
     }
 
     func joinGame() {
-        let currentGame = self.coreDataManager.fetchCurrentGame()!
+        let currentGame = self.dataLayer.fetchCurrentGame()!
         
         self.gamesService.joinGame(currentGame.id) { (errorOptional) in
             if let error = errorOptional {
@@ -34,19 +35,20 @@ class WaitingForOthersModel {
     }
     
     func waitForOthers() {
-        let currentGame = self.coreDataManager.fetchCurrentGame()!
+        let currentGame = self.dataLayer.fetchCurrentGame()!
         
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { timer in
-            if self.haveAllPlayersJoined || self.errorOccurred {
-                timer.invalidate()
-            }
-            
-            self.gamesService.isGameReady(currentGame.id) {(errorOptional, isReady: Bool?) in
+            self.gamesService.isGameReady(currentGame.id) {(errorOptional, isReady) in
                 if let error = errorOptional {
                     self.errorOccurred = true
                     self.delegate!.errorOccurred(error.message)
+                    timer.invalidate()
                 }
-                self.haveAllPlayersJoined = isReady!
+                
+                if isReady {
+                    self.delegate!.doneWaiting()
+                    timer.invalidate()
+                }
             }
         }
     }

@@ -9,10 +9,10 @@ protocol MainModelProtocol: class {
 
 class MainModel {
     weak var delegate: MainModelProtocol?
-    let coreDataManager: CoreDataManager
+    let dataLayer: DataLayerProtocol
     
-    init(coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
-        self.coreDataManager = coreDataManager
+    init(dataLayer: DataLayerProtocol = DataLayer()) {
+        self.dataLayer = dataLayer
     }
     
     func startGame() {
@@ -28,7 +28,7 @@ class MainModel {
     }
     
     func registrationCheck(_ callback: (Bool) -> ()) {
-        let userOptional = coreDataManager.fetchUser()
+        let userOptional = self.dataLayer.fetchUser()
         
         if userOptional != nil {
             callback(true)

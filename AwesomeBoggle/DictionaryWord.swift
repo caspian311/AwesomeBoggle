@@ -1,9 +1,6 @@
 import Foundation
 
-struct DictWord: Codable {
+struct DictWord {
+    let id: Int?
     let text: String
-    
-    enum CodingKeys: String, CodingKey {
-        case text = "text"
-    }
 }

@@ -14,12 +14,16 @@ class DictionaryService: BaseService, DictionaryServiceProtocol {
     func fetchAllWords(callback: @escaping (ErrorMessage?, [DictWord]?) -> ()) {
         let url = self.baseUrl.appendingPathComponent("/words")
         
-        self.get(url: url) { (errorOptional, dataOptional: [DictWord]?) in
+        self.get(url: url) { (errorOptional, dataOptional) in
             if let error = errorOptional {
                 callback(ErrorMessage(message: error.message), nil)
-            } else if let data = dataOptional {
-                callback(nil, data)
+                return
             }
+            
+            let data = dataOptional as! [[String:Any]]
+            let words = data.map { DictWord(id: nil, text: $0["text"] as! String) }
+            
+            callback(nil, words)
         }
     }
 }

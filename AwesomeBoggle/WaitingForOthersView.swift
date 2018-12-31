@@ -11,6 +11,9 @@ class WaitingForOthersView: GradientView {
     init() {
         super.init(frame: CGRect.zero)
         
+        self.startColor = UIColor(red: 0.6, green: 0.8, blue: 1.00, alpha: 1.00)
+        self.endColor = UIColor(red: 0.2, green: 0.6, blue: 1.00, alpha: 1.00)
+        
         let titleLabel = UILabel()
         
         self.addSubview(titleLabel)
@@ -22,7 +25,7 @@ class WaitingForOthersView: GradientView {
             NSAttributedStringKey.strokeColor : UIColor.black,
             NSAttributedStringKey.foregroundColor : UIColor.white,
             NSAttributedStringKey.strokeWidth : -4.0,
-            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 60)!]
+            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 20)!]
             as [NSAttributedStringKey : Any]
         titleLabel.attributedText = NSMutableAttributedString(string: "Waiting for others to join...", attributes: strokeTextAttributes)
         

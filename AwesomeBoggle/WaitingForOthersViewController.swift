@@ -2,14 +2,14 @@ import Foundation
 import UIKit
 
 class WaitingForOthersViewController: UIViewController {
-    let coreDataManager: CoreDataManagerProtocol
-    let waitingForOthersView: WaitingForOthersView
-    let waitingForOthersModel: WaitingForOthersModel
+    private let dataLayer: DataLayerProtocol
+    private let waitingForOthersView: WaitingForOthersView
+    private let waitingForOthersModel: WaitingForOthersModel
     
-    init(waitingForOthersView: WaitingForOthersView = WaitingForOthersView(), waitingForOthersModel: WaitingForOthersModel = WaitingForOthersModel(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
+    init(waitingForOthersView: WaitingForOthersView = WaitingForOthersView(), waitingForOthersModel: WaitingForOthersModel = WaitingForOthersModel(), dataLayer: DataLayerProtocol = DataLayer()) {
         self.waitingForOthersView = waitingForOthersView
         self.waitingForOthersModel = waitingForOthersModel
-        self.coreDataManager = coreDataManager
+        self.dataLayer = dataLayer
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -21,6 +21,7 @@ class WaitingForOthersViewController: UIViewController {
         self.waitingForOthersModel.delegate = self
         self.waitingForOthersView.delegate = self
         
+        self.waitingForOthersModel.joinGame()
         self.waitingForOthersModel.waitForOthers()
     }
     
@@ -42,5 +43,11 @@ extension WaitingForOthersViewController: WaitingForOthersViewProtocol {
 extension WaitingForOthersViewController: WaitingForOthersModelProtocol {
     func errorOccurred(_ errorMessage: String) {
         self.waitingForOthersView.showError(errorMessage)
+    }
+    
+    func doneWaiting() {
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(BoggleViewController(), animated: true)
+        }
     }
 }

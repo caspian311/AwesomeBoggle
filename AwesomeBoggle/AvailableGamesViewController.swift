@@ -2,14 +2,14 @@ import Foundation
 import UIKit
 
 class AvailableGamesViewController: UIViewController {
-    let coreDataManager: CoreDataManagerProtocol
-    let availableGamesView: AvailableGamesView
-    let availableGamesModel: AvailableGamesModel
+    private let dataLayer: DataLayerProtocol
+    private let availableGamesView: AvailableGamesView
+    private let availableGamesModel: AvailableGamesModel
     
-    init(availableGamesView: AvailableGamesView = AvailableGamesView(), availableGamesModel: AvailableGamesModel = AvailableGamesModel(), coreDataManager: CoreDataManager = CoreDataManager(UIApplication.shared.delegate! as! AppDelegate)) {
+    init(availableGamesView: AvailableGamesView = AvailableGamesView(), availableGamesModel: AvailableGamesModel = AvailableGamesModel(), dataLayer: DataLayerProtocol = DataLayer()) {
         self.availableGamesView = availableGamesView
         self.availableGamesModel = availableGamesModel
-        self.coreDataManager = coreDataManager
+        self.dataLayer = dataLayer
         
         super.init(nibName: nil, bundle: nil)
         
@@ -45,9 +45,9 @@ extension AvailableGamesViewController: AvailableGamesViewProtocol {
 }
 
 extension AvailableGamesViewController: AvailableGamesModelProtocol {
-    func waitForOthersToJoin(_ game: GameData) {
+    func waitForOthersToJoin(_ invititations: [Invitation]) {
         DispatchQueue.main.async {
-            self.coreDataManager.save(currentGame: game)
+            self.dataLayer.save(invitations: invititations)
             self.navigationController?.pushViewController(WaitingForOthersViewController(), animated: true)
         }
     }
