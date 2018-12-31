@@ -33,7 +33,6 @@
 		9F8694C721C7D36E00088238 /* DataLoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8694C621C7D36E00088238 /* DataLoadingStatus.swift */; };
 		9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A22AB21A5D6440027A7B4 /* GradientView.swift */; };
 		9FB3A71821D7FE20007823B2 /* Invitiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3A71721D7FE20007823B2 /* Invitiation.swift */; };
-		9FB3A71C21D86A63007823B2 /* InvitationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3A71B21D86A63007823B2 /* InvitationData.swift */; };
 		9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE453E21AEF16E008AADC0 /* TextField.swift */; };
 		9FF3282721C5A7C700601161 /* DictionaryDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282621C5A7C700601161 /* DictionaryDataLoader.swift */; };
 		9FF3282921C5A9D900601161 /* DictionaryWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282821C5A9D900601161 /* DictionaryWord.swift */; };
@@ -111,7 +110,6 @@
 		9F8694C621C7D36E00088238 /* DataLoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingStatus.swift; sourceTree = "<group>"; };
 		9F9A22AB21A5D6440027A7B4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		9FB3A71721D7FE20007823B2 /* Invitiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invitiation.swift; sourceTree = "<group>"; };
-		9FB3A71B21D86A63007823B2 /* InvitationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationData.swift; sourceTree = "<group>"; };
 		9FCE453E21AEF16E008AADC0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		9FF3282621C5A7C700601161 /* DictionaryDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDataLoader.swift; sourceTree = "<group>"; };
 		9FF3282821C5A9D900601161 /* DictionaryWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryWord.swift; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 				9F7CCE7D21B409DE000688D4 /* GamesService.swift */,
 				9F9A22AB21A5D6440027A7B4 /* GradientView.swift */,
 				E77676F01E3A394B006B8739 /* Info.plist */,
-				9FB3A71B21D86A63007823B2 /* InvitationData.swift */,
 				9FB3A71721D7FE20007823B2 /* Invitiation.swift */,
 				E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */,
 				9F8694C321C6A95600088238 /* LoadingModel.swift */,
@@ -442,12 +439,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AwesomeBoggle/Pods-AwesomeBoggle-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,7 +503,6 @@
 				9F419DC121B6B48400C574EC /* WaitingForOthersView.swift in Sources */,
 				E7B3D2A51E61AF12001579D6 /* ResultsViewController.swift in Sources */,
 				9FF3282921C5A9D900601161 /* DictionaryWord.swift in Sources */,
-				9FB3A71C21D86A63007823B2 /* InvitationData.swift in Sources */,
 				9F678A7121AEBA69002435A2 /* RegisterModel.swift in Sources */,
 				9F7CCE7421B196A6000688D4 /* BaseService.swift in Sources */,
 				E7A525521E6CB27B00BCB328 /* MainModel.swift in Sources */,

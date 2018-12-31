@@ -46,6 +46,7 @@ class WaitingForOthersModel {
                     self.errorOccurred = true
                     self.delegate!.errorOccurred(error.message)
                 }
+                
                 self.haveAllPlayersJoined = isReady!
             }
         }

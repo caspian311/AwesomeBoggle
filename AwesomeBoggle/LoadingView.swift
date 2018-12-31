@@ -55,8 +55,9 @@ class LoadingView: GradientView {
     }
     
     func showError(_ message: String) {
-        print("An error occurred while loading the data...")
-        print(message)
+        print("Error: \(message)")
+        self.loadingSpinner.textColor = .red
+        self.loadingSpinner.text = message
     }
     
     func updateProgress(_ statusMessage: String) {

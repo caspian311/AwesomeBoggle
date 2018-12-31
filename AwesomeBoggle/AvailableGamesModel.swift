@@ -20,17 +20,16 @@ class AvailableGamesModel {
     }
     
     func fetchAvailableGames() {
-        self.gameService.fetchAvailableGames { (errorOptional, availableUsersOptional) in
+        self.gameService.fetchAvailableGames { (errorOptional, availableUsers) in
             if let error = errorOptional {
                 self.delegate!.errorOcurred(error)
-            } else if let availableGames = availableUsersOptional {
-                if (availableGames.count == 0) {
-                    self.delegate!.showNoUsersAreAvailable()
-                } else {
-                    self.delegate!.showGames(availableGames)
-                }
+                return
+            }
+            
+            if (availableUsers!.count == 0) {
+                self.delegate!.showNoUsersAreAvailable()
             } else {
-                self.delegate!.errorOcurred(ErrorMessage(message: "Unknown error"))
+                self.delegate!.showGames(availableUsers!)
             }
         }
     }
@@ -54,7 +53,7 @@ class AvailableGamesModel {
                     }
                     
                     if let invitations = invitationsOptional {
-                        self.delegate!.waitForOthersToJoin(invitations.invitations)
+                        self.delegate!.waitForOthersToJoin(invitations)
                         return
                     }
                     

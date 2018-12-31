@@ -1,87 +1,101 @@
 import Foundation
+import Alamofire
 
 class BaseService {
     let baseUrl: URL
+    private let queue: DispatchQueue
     
     init() {
         baseUrl = URL(string: "http://localhost:8080/api/v1.0")!
+        queue = DispatchQueue(label: "net.todd.AwesomeBoggle.response-queue", qos: .utility, attributes: [.concurrent])
     }
     
-    func get<T:Decodable>(url: URL, callback: @escaping (ErrorMessage?, T?) -> ()) {
-        var request = URLRequest(url: url)
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        makeCall(request, callback)
-    }
-    
-    func get<T:Decodable>(url: URL, auth: String, callback: @escaping (ErrorMessage?, T?) -> ()) {
-        var request = URLRequest(url: url)
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("Api-Key \(auth)", forHTTPHeaderField: "Authorization")
-        
-        makeCall(request, callback)
-    }
-    
-    func post<T:Decodable>(url: URL, auth: String, requestData: [String:Any], callback: @escaping (ErrorMessage?, T?) -> ()) {
-        let jsonData = try? JSONSerialization.data(withJSONObject: requestData)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Api-Key \(auth)", forHTTPHeaderField: "Authorization")
-        request.httpBody = jsonData
-        
-        makeCall(request, callback)
-    }
-    
-    func put<T:Decodable>(url: URL, auth: String, requestData: [String:Any], callback: @escaping (ErrorMessage?, T?) -> ()) {
-        let jsonData = try? JSONSerialization.data(withJSONObject: requestData)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "PUT"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Api-Key \(auth)", forHTTPHeaderField: "Authorization")
-        request.httpBody = jsonData
-        
-        makeCall(request, callback)
-    }
-    
-    func post<T:Decodable>(url: URL, requestData: [String:Any], callback: @escaping (ErrorMessage?, T?) -> ()) {
-        let jsonData = try? JSONSerialization.data(withJSONObject: requestData)
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonData
-        
-        makeCall(request, callback)
-    }
-
-    private func makeCall<T:Decodable>(_ request: URLRequest, _ callback: @escaping (ErrorMessage?, T?) -> ()) {
-        LogHelper.log(request: request)
-        
-        let task = URLSession.shared.dataTask(with: request) { (dataOptional, responseOptional, errorOptional) in
-            let response = responseOptional as! HTTPURLResponse?
-            LogHelper.log(data: dataOptional, response: response, error: errorOptional)
-            
-            if let error = errorOptional {
-                callback(ErrorMessage(message: error.localizedDescription), nil)
-            } else {
-                var data: T?
-                do {
-                    if let jsonData = try JSONDecoder().decode(T?.self, from: dataOptional!) {
-                        data = jsonData
-                    }
-                } catch let error {
+    func get(url: URL, callback: @escaping (ErrorMessage?, Any?) -> ()) {
+        let headers = ["Accept": "application/json"]
+        Alamofire.request(url, encoding: JSONEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJSON(queue: queue) { response in
+                switch response.result {
+                case .success:
+                    callback(nil, response.result.value)
+                case .failure(let error):
                     callback(ErrorMessage(message: error.localizedDescription), nil)
                 }
-                
-                callback(nil, data)
-            }
         }
-        task.resume()
+    }
+    
+    func get(url: URL, auth: String, callback: @escaping (ErrorMessage?, Any?) -> ()) {
+        let headers = [
+            "Accept": "application/json",
+            "Authorization": "Api-Key \(auth)"
+        ]
+        Alamofire.request(url, encoding: JSONEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJSON(queue: queue) { response in
+                switch response.result {
+                case .success:
+                    callback(nil, response.result.value)
+                case .failure(let error):
+                    callback(ErrorMessage(message: error.localizedDescription), nil)
+                }
+        }
+    }
+    
+    func post(url: URL,requestData: Parameters?, callback: @escaping (ErrorMessage?, Any?) -> ()) {
+        let headers = [
+            "Accept": "application/json",
+        ]
+        let parameters = requestData
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJSON(queue: queue) { response in
+                switch response.result {
+                case .success:
+                    callback(nil, response.result.value)
+                case .failure(let error):
+                    callback(ErrorMessage(message: error.localizedDescription), nil)
+                }
+        }
+    }
+    
+    func post(url: URL, auth: String, requestData: Parameters?, callback: @escaping (ErrorMessage?, Any?) -> ()) {
+        let headers = [
+            "Accept": "application/json",
+            "Authorization": "Api-Key \(auth)"
+        ]
+        let parameters = requestData
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJSON(queue: queue) { response in
+                switch response.result {
+                case .success:
+                    callback(nil, response.result.value)
+                case .failure(let error):
+                    callback(ErrorMessage(message: error.localizedDescription), nil)
+                }
+        }
+    }
+    
+    func put(url: URL, auth: String, requestData: Parameters?, callback: @escaping (ErrorMessage?, Any?) -> ()) {
+        let headers = [
+            "Accept": "application/json",
+            "Authorization": "Api-Key \(auth)"
+        ]
+        let parameters = requestData
+        Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJSON(queue: queue) { response in
+                switch response.result {
+                case .success:
+                    callback(nil, response.result.value)
+                case .failure(let error):
+                    callback(ErrorMessage(message: error.localizedDescription), nil)
+                }
+        }
     }
 }

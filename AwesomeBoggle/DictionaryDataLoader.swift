@@ -17,9 +17,6 @@ class DictionaryDataLoader {
                 let status = DataLoadingStatus()
                 
                 if let error = errorOptional {
-                    print("Error when retrieving word list")
-                    print(error.message)
-                    
                     status.status = .Error
                     status.message = error.message
                     callback(status)
@@ -41,8 +38,6 @@ class DictionaryDataLoader {
                     while !dictionaryWords.isEmpty {
                         let bunch = Array(dictionaryWords.prefix(batchSize))
                         
-                        print("saving \(batchSize) - \(dictionaryWords.count) out of \(String(describing: status.total))")
-                        
                         self.dataLayer.save(dictionaryWords: bunch)
                         
                         status.progress = status.total! - dictionaryWords.count
@@ -51,7 +46,6 @@ class DictionaryDataLoader {
                         dictionaryWords = Array(dictionaryWords.dropLast(batchSize))
                     }
 
-                    print("done processing the data")
                     status.status = .Done
                     callback(status)
                 }
