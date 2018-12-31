@@ -6,7 +6,7 @@ protocol GamesServiceProtocol: class {
     func inviteToGame(_ gameId: Int, _ opponenets: [Int], _ callback: @escaping (ErrorMessage?, [Invitation]?) -> ())
     func startGame(_ callback: @escaping (ErrorMessage?, GameData?) -> ())
     func joinGame(_ gameId: Int, _ callback: @escaping (ErrorMessage?) -> ())
-    func isGameReady(_ gameId: Int, _ callback: @escaping (ErrorMessage?, Bool?) -> ())
+    func isGameReady(_ gameId: Int, _ callback: @escaping (ErrorMessage?, Bool) -> ())
 }
 
 class GamesService: BaseService, GamesServiceProtocol {
@@ -87,13 +87,13 @@ class GamesService: BaseService, GamesServiceProtocol {
         }
     }
     
-    func isGameReady(_ gameId: Int, _ callback: @escaping (ErrorMessage?, Bool?) -> ()) {
+    func isGameReady(_ gameId: Int, _ callback: @escaping (ErrorMessage?, Bool) -> ()) {
         let authToken = getAuthToken()
         let url = self.baseUrl.appendingPathComponent("/games/\(gameId)")
         self.get(url: url, auth: authToken) {(errorOptional, gameOptional) in
             
             if let error = errorOptional {
-                callback(error, nil)
+                callback(error, false)
                 return
             }
             

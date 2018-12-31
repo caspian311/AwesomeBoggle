@@ -21,6 +21,7 @@ class WaitingForOthersViewController: UIViewController {
         self.waitingForOthersModel.delegate = self
         self.waitingForOthersView.delegate = self
         
+        self.waitingForOthersModel.joinGame()
         self.waitingForOthersModel.waitForOthers()
     }
     
@@ -42,5 +43,11 @@ extension WaitingForOthersViewController: WaitingForOthersViewProtocol {
 extension WaitingForOthersViewController: WaitingForOthersModelProtocol {
     func errorOccurred(_ errorMessage: String) {
         self.waitingForOthersView.showError(errorMessage)
+    }
+    
+    func doneWaiting() {
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(BoggleViewController(), animated: true)
+        }
     }
 }

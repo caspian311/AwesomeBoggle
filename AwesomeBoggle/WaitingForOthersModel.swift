@@ -3,6 +3,7 @@ import UIKit
 
 protocol WaitingForOthersModelProtocol: class {
     func errorOccurred(_ errorMessage: String)
+    func doneWaiting()
 }
 
 class WaitingForOthersModel {
@@ -37,17 +38,17 @@ class WaitingForOthersModel {
         let currentGame = self.dataLayer.fetchCurrentGame()!
         
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { timer in
-            if self.haveAllPlayersJoined || self.errorOccurred {
-                timer.invalidate()
-            }
-            
-            self.gamesService.isGameReady(currentGame.id) {(errorOptional, isReady: Bool?) in
+            self.gamesService.isGameReady(currentGame.id) {(errorOptional, isReady) in
                 if let error = errorOptional {
                     self.errorOccurred = true
                     self.delegate!.errorOccurred(error.message)
+                    timer.invalidate()
                 }
                 
-                self.haveAllPlayersJoined = isReady!
+                if isReady {
+                    self.delegate!.doneWaiting()
+                    timer.invalidate()
+                }
             }
         }
     }
