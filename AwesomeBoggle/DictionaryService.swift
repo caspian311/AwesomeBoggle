@@ -16,7 +16,7 @@ class DictionaryService: BaseService, DictionaryServiceProtocol {
         
         self.get(url: url) { (errorOptional, dataOptional) in
             if let error = errorOptional {
-                callback(error, nil)
+                callback(ErrorMessage(message: error.message), nil)
                 return
             }
             

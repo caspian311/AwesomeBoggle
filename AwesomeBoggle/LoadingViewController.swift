@@ -42,7 +42,6 @@ extension LoadingViewController: LoadingViewProtocol {
 extension LoadingViewController: LoadingModelProtocol {
     func updateProgress(_ statusMessage: String) {
         DispatchQueue.main.async {
-            print("updating view...")
             self.loadingView.updateProgress(statusMessage)
         }
     }

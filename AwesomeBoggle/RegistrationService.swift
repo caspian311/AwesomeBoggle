@@ -12,12 +12,16 @@ class RegistrationService: BaseService, RegistrationServiceProtocol {
         
         self.get(url: url) { (errorOptional, dataOptional) in
             if let error = errorOptional {
-                callback(error, false)
+                if error.status == 409 {
+                    callback(nil, false)
+                    return
+                }
+                
+                callback(ErrorMessage(message: error.message), false)
                 return
             }
             
-            let data = dataOptional as! [String:Any]
-            callback(nil, data["isAvailable"] as! Bool)
+            callback(nil, true)
         }
     }
     

@@ -10,7 +10,7 @@ class BaseService {
         queue = DispatchQueue(label: "net.todd.AwesomeBoggle.response-queue", qos: .utility, attributes: [.concurrent])
     }
     
-    func get(url: URL, callback: @escaping (ErrorMessage?, Any?) -> ()) {
+    func get(url: URL, callback: @escaping (HttpErrorMessage?, Any?) -> ()) {
         let headers = ["Accept": "application/json"]
         Alamofire.request(url, encoding: JSONEncoding.default, headers: headers)
             .validate(statusCode: 200..<300)
@@ -20,7 +20,7 @@ class BaseService {
                 case .success:
                     callback(nil, response.result.value)
                 case .failure(let error):
-                    callback(ErrorMessage(message: error.localizedDescription), nil)
+                    callback(HttpErrorMessage(status: response.response?.statusCode, message: error.localizedDescription), nil)
                 }
         }
     }

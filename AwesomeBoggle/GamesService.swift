@@ -89,9 +89,7 @@ class GamesService: BaseService, GamesServiceProtocol {
     
     func isGameReady(_ gameId: Int, _ callback: @escaping (ErrorMessage?, Bool?) -> ()) {
         let authToken = getAuthToken()
-        let url = self.baseUrl
-            .appendingPathComponent("game")
-            .appendingPathComponent("\(gameId)")
+        let url = self.baseUrl.appendingPathComponent("/games/\(gameId)")
         self.get(url: url, auth: authToken) {(errorOptional, gameOptional) in
             
             if let error = errorOptional {
@@ -100,7 +98,7 @@ class GamesService: BaseService, GamesServiceProtocol {
             }
             
             let gameData = gameOptional as! [String:Any]
-            let isReady = gameData["isRead"] as! Bool
+            let isReady = gameData["isReady"] as! Bool
             callback(nil, isReady)
         }
         

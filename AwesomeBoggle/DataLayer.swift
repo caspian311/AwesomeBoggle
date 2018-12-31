@@ -107,7 +107,7 @@ class DataLayer: DataLayerProtocol {
         })
         
         try! db.run(currentGame.create(ifNotExists: true) { t in
-            t.column(currentGameId, primaryKey: .autoincrement)
+            t.column(currentGameId, unique: true)
             t.column(currentGameGrid, defaultValue: "")
             t.column(currentGameIsReady, defaultValue: false)
         })
@@ -146,7 +146,7 @@ class DataLayer: DataLayerProtocol {
     }
     
     func save(currentGame: GameData) {
-        let insert = self.currentGame.insert(currentGameGrid <- currentGame.grid, currentGameIsReady <- currentGame.isReady)
+        let insert = self.currentGame.insert(currentGameId <- currentGame.id, currentGameGrid <- currentGame.grid, currentGameIsReady <- currentGame.isReady)
         try! db.run(insert)
     }
     
