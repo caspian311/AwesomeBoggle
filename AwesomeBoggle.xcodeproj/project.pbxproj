@@ -25,7 +25,6 @@
 		9F7CCE7E21B409DE000688D4 /* GamesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7D21B409DE000688D4 /* GamesService.swift */; };
 		9F7CCE8021B40A5E000688D4 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE7F21B40A5E000688D4 /* GameData.swift */; };
 		9F7CCE8221B42E91000688D4 /* CheckAvailabilityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7CCE8121B42E91000688D4 /* CheckAvailabilityData.swift */; };
-		9F8139A721B499EE00930C5C /* LogHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8139A621B499EE00930C5C /* LogHelper.swift */; };
 		9F8139A921B4E80E00930C5C /* AvailableGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */; };
 		9F8694C021C6A86F00088238 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8694BF21C6A86F00088238 /* LoadingViewController.swift */; };
 		9F8694C221C6A93000088238 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8694C121C6A93000088238 /* LoadingView.swift */; };
@@ -102,7 +101,6 @@
 		9F7CCE7D21B409DE000688D4 /* GamesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesService.swift; sourceTree = "<group>"; };
 		9F7CCE7F21B40A5E000688D4 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		9F7CCE8121B42E91000688D4 /* CheckAvailabilityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAvailabilityData.swift; sourceTree = "<group>"; };
-		9F8139A621B499EE00930C5C /* LogHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHelper.swift; sourceTree = "<group>"; };
 		9F8139A821B4E80E00930C5C /* AvailableGameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableGameTableViewCell.swift; sourceTree = "<group>"; };
 		9F8694BF21C6A86F00088238 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		9F8694C121C6A93000088238 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -242,7 +240,6 @@
 				9F8694C321C6A95600088238 /* LoadingModel.swift */,
 				9F8694C121C6A93000088238 /* LoadingView.swift */,
 				9F8694BF21C6A86F00088238 /* LoadingViewController.swift */,
-				9F8139A621B499EE00930C5C /* LogHelper.swift */,
 				E7A525511E6CB27B00BCB328 /* MainModel.swift */,
 				E7A5254F1E6CB25300BCB328 /* MainView.swift */,
 				E7A5254D1E6CB1B500BCB328 /* MainViewController.swift */,
@@ -530,7 +527,6 @@
 				9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */,
 				9F7CCE7021B021AB000688D4 /* ErrorMessage.swift in Sources */,
 				9F7CCE7621B2B7A1000688D4 /* UserData.swift in Sources */,
-				9F8139A721B499EE00930C5C /* LogHelper.swift in Sources */,
 				9F678A6D21AEB948002435A2 /* RegisterViewController.swift in Sources */,
 				E77676E21E3A394B006B8739 /* AppDelegate.swift in Sources */,
 			);
