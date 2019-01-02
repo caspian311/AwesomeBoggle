@@ -2,13 +2,28 @@ import Foundation
 import UIKit
 
 protocol DictionaryServiceProtocol: class {
-    func checkValidityOf(word: String, callback: @escaping (Bool, Int?) -> ())
+    func checkValidityOf(word: String, callback: @escaping (Bool, Int) -> ())
     func fetchAllWords(callback: @escaping (ErrorMessage?, [DictWord]?) -> ())
 }
 
 class DictionaryService: BaseService, DictionaryServiceProtocol {
-    func checkValidityOf(word: String, callback: @escaping (Bool, Int?) -> ()) {
-        callback(false, 0)
+    private let dataLayer: DataLayerProtocol
+    
+    init(dataLayer: DataLayerProtocol = DataLayer()) {
+        self.dataLayer = dataLayer
+    }
+    
+    func checkValidityOf(word text: String, callback: @escaping (Bool, Int) -> ()) {
+        print("checking for \(text) for validity...")
+        if let word = dataLayer.fetchWordBy(text: text) {
+            print("it is worth \(word.text.count) points")
+            
+            callback(true, word.text.count)
+        } else {
+            print("not a word")
+            
+            callback(false, 0)
+        }
     }
     
     func fetchAllWords(callback: @escaping (ErrorMessage?, [DictWord]?) -> ()) {

@@ -61,6 +61,7 @@ class BoggleModel {
     func addCurrentWordToList() {
         self.dictionaryService.checkValidityOf(word: self.currentWord) { (isValid, score) in
             let message: String
+            
             if isValid {
                 self.submittedWords.append(self.currentWord)
 
@@ -68,6 +69,7 @@ class BoggleModel {
             } else {
                 message = self.createFailureMessage()
             }
+            
             self.self.delegate?.updateSubmissionResultMessage(message)
         }
     }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A86A847F4283A573680E573 /* Pods_AwesomeBoggle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5814A9BDC5EAAEEAD12C0396 /* Pods_AwesomeBoggle.framework */; };
 		9F39CC7A21DAB09E002212AA /* HttpErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F39CC7921DAB09E002212AA /* HttpErrorMessage.swift */; };
+		9F39CC7C21DBD6A9002212AA /* DictionaryDataLoaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F39CC7B21DBD6A9002212AA /* DictionaryDataLoaderTest.swift */; };
 		9F419DBF21B6B3AA00C574EC /* WaitingForOthersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DBE21B6B3AA00C574EC /* WaitingForOthersViewController.swift */; };
 		9F419DC121B6B48400C574EC /* WaitingForOthersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DC021B6B48400C574EC /* WaitingForOthersView.swift */; };
 		9F419DC321B6BF0D00C574EC /* WaitingForOthersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */; };
@@ -86,6 +87,7 @@
 		2A610691C0D424E885DA4E4F /* Pods-AwesomeBoggle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeBoggle.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeBoggle/Pods-AwesomeBoggle.release.xcconfig"; sourceTree = "<group>"; };
 		5814A9BDC5EAAEEAD12C0396 /* Pods_AwesomeBoggle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomeBoggle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F39CC7921DAB09E002212AA /* HttpErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpErrorMessage.swift; sourceTree = "<group>"; };
+		9F39CC7B21DBD6A9002212AA /* DictionaryDataLoaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDataLoaderTest.swift; sourceTree = "<group>"; };
 		9F419DBE21B6B3AA00C574EC /* WaitingForOthersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersViewController.swift; sourceTree = "<group>"; };
 		9F419DC021B6B48400C574EC /* WaitingForOthersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersView.swift; sourceTree = "<group>"; };
 		9F419DC221B6BF0D00C574EC /* WaitingForOthersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForOthersModel.swift; sourceTree = "<group>"; };
@@ -269,8 +271,9 @@
 		E77676F81E3A394B006B8739 /* AwesomeBoggleTests */ = {
 			isa = PBXGroup;
 			children = (
-				E77676FB1E3A394B006B8739 /* Info.plist */,
 				E7A608AE1E4CB85300D120CC /* BoggleModelTest.swift */,
+				9F39CC7B21DBD6A9002212AA /* DictionaryDataLoaderTest.swift */,
+				E77676FB1E3A394B006B8739 /* Info.plist */,
 				E7B3D2AC1E622698001579D6 /* ResultsModelTest.swift */,
 			);
 			path = AwesomeBoggleTests;
@@ -540,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F39CC7C21DBD6A9002212AA /* DictionaryDataLoaderTest.swift in Sources */,
 				E7B3D2AD1E622698001579D6 /* ResultsModelTest.swift in Sources */,
 				E7A608AF1E4CB85300D120CC /* BoggleModelTest.swift in Sources */,
 			);

@@ -1,0 +1,69 @@
+@testable import AwesomeBoggle
+import XCTest
+
+class DictionaryDataLoaderTest: XCTestCase {
+    var testObject: DictionaryDataLoader!
+    var testDataLayer: DataLayerProtocol!
+    
+    var temporaryFileURL: URL!
+    
+    override func setUp() {
+        super.setUp()
+        
+//        let destinationURL: URL
+//        let temporaryDirectoryURL =
+//            try! FileManager.default.url(for: .itemReplacementDirectory,
+//                                        in: .userDomainMask,
+//                                        appropriateFor: destinationURL,
+//                                        create: true)
+//        let temporaryFilename = ProcessInfo().globallyUniqueString
+//
+//        temporaryFileURL =
+//            temporaryDirectoryURL.appendingPathComponent(temporaryFilename)
+//        let dataFile = temporaryFileURL.absoluteString
+        let dataFile = "/Users/toddm/Desktop/hello.sqlite"
+        
+        testDataLayer = DataLayer(dataFile)
+        
+        testObject = DictionaryDataLoader(dataLayer: testDataLayer)
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+        
+//        try! FileManager.default.removeItem(at: temporaryFileURL)
+    }
+    
+    func test_doing_stuff() {
+        let expectation = XCTestExpectation(description: "preload the data")
+        
+        var errorOccurred = false
+        var count = 0
+        var initialized = 0
+        var fetched = 0
+        var loading = 0
+        testObject.preloadData {status in
+            count = count + 1
+            switch status.status {
+            case .Error:
+                errorOccurred = true
+            case .Initialized:
+                initialized = count
+            case .Fetched:
+                fetched = count
+            case.Loading:
+                loading = count
+            case.Done:
+                expectation.fulfill()
+            }
+        }
+        
+        wait(for: [expectation], timeout: 30.0)
+        
+        XCTAssertFalse(errorOccurred)
+        XCTAssertEqual(initialized, 0)
+        XCTAssertEqual(fetched, 1)
+        XCTAssertGreaterThan(loading, 2)
+    }
+}
+

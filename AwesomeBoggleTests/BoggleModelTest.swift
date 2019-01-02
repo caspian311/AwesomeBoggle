@@ -78,22 +78,28 @@ class BoggleModelTest: XCTestCase {
 class TestDictionaryService: DictionaryServiceProtocol {
     var wordToBeChecked: String?
     var checkValidityCalled = false
-    var callback: ((Bool, Int?) -> ())?
-    
-    func checkValidityOf(word: String, callback: @escaping (Bool, Int?) -> ()) {
+    var callback: ((Bool, Int) -> ())?
+
+    func checkValidityOf(word: String, callback: @escaping (Bool, Int) -> ()) {
         wordToBeChecked = word
         checkValidityCalled = true
         self.callback = callback
     }
+    
+    func fetchAllWords(callback: @escaping (ErrorMessage?, [DictWord]?) -> ()) {
+    }
 }
 
 class TestBoggleModelDelegate: BoggleModelProtocol {
-    func goToScoreBoard() {
-    }
-    
     var populatedNewLettersToGrid = [String]()
     var updatedWordList = [String]()
     var currentWordHasChanged = false
+    
+    func startTimer() {
+    }
+    
+    func goToScoreBoard() {
+    }
     
     func populateNewLettersToGrid(_ letters: [String]) {
         populatedNewLettersToGrid = letters

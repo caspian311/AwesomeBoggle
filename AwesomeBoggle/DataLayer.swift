@@ -54,9 +54,12 @@ class DataLayer: DataLayerProtocol {
     private let invitationUsername: Expression<String>
     private let invitationAccepted: Expression<Bool>
     
-    init() {
-        let databasePath = "\(path)/db.sqlite3"
+    init(_ dbPath: String? = nil) {
+        let defaultPath = "\(path)/db.sqlite3"
+        
+        let databasePath = dbPath ?? defaultPath
         print("using database path: \(databasePath)")
+        
         db = try! Connection(databasePath)
         
         userData = Table("UserData")
@@ -169,7 +172,7 @@ class DataLayer: DataLayerProtocol {
     }
     
     func fetchWordBy(text: String) -> DictWord? {
-        return Array(try! db.prepare(dictWord.where(dictWordText == text)).map { DictWord(id: $0[dictWordId], text: $0[dictWordText]) }).first
+        return Array(try! db.prepare(dictWord.where(dictWordText == text.lowercased())).map { DictWord(id: $0[dictWordId], text: $0[dictWordText]) }).first
     }
     
     func save(invitations: [Invitation]) {
