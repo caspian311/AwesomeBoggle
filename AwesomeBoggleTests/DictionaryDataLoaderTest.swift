@@ -63,7 +63,14 @@ class DictionaryDataLoaderTest: XCTestCase {
         XCTAssertFalse(errorOccurred)
         XCTAssertEqual(initialized, 0)
         XCTAssertEqual(fetched, 1)
-        XCTAssertGreaterThan(loading, 2)
+        XCTAssertGreaterThan(loading, 400)
+        
+        XCTAssertEqual(415767, testDataLayer.fetchWordCount())
+        
+        [ "aardvark", "bad", "land", "monkey", "yourself", "zany" ].forEach { word in
+            let dictWord = testDataLayer.fetchWordBy(text: word)
+            XCTAssertEqual(word, dictWord?.text, "could not find \(word)")
+        }
     }
 }
 

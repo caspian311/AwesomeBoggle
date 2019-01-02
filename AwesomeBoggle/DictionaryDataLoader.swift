@@ -50,7 +50,7 @@ class DictionaryDataLoader {
                 status.progress = status.total! - dictionaryWords.count
                 callback(status)
                 
-                dictionaryWords = Array(dictionaryWords.dropLast(batchSize))
+                dictionaryWords = Array(dictionaryWords.dropFirst(batchSize))
             }
 
             status.status = .Done
