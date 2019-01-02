@@ -10,18 +10,11 @@ class DictionaryDataLoaderTest: XCTestCase {
     override func setUp() {
         super.setUp()
         
-//        let destinationURL: URL
-//        let temporaryDirectoryURL =
-//            try! FileManager.default.url(for: .itemReplacementDirectory,
-//                                        in: .userDomainMask,
-//                                        appropriateFor: destinationURL,
-//                                        create: true)
-//        let temporaryFilename = ProcessInfo().globallyUniqueString
-//
-//        temporaryFileURL =
-//            temporaryDirectoryURL.appendingPathComponent(temporaryFilename)
-//        let dataFile = temporaryFileURL.absoluteString
-        let dataFile = "/Users/toddm/Desktop/hello.sqlite"
+        let temporaryDirectoryURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+        let temporaryFilename = ProcessInfo().globallyUniqueString
+
+        temporaryFileURL = temporaryDirectoryURL.appendingPathComponent(temporaryFilename)
+        let dataFile = temporaryFileURL.absoluteString
         
         testDataLayer = DataLayer(dataFile)
         
@@ -31,7 +24,7 @@ class DictionaryDataLoaderTest: XCTestCase {
     override func tearDown() {
         super.tearDown()
         
-//        try! FileManager.default.removeItem(at: temporaryFileURL)
+        try! FileManager.default.removeItem(at: temporaryFileURL)
     }
     
     func test_doing_stuff() {
