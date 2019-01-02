@@ -38,7 +38,7 @@ class BoggleView: GradientView {
         
         gridRows.axis = .vertical
         gridRows.translatesAutoresizingMaskIntoConstraints = false
-        gridRows.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        gridRows.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
         gridRows.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         gridRows.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         gridRows.backgroundColor = .white
