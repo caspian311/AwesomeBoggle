@@ -8,6 +8,7 @@ protocol BoggleModelProtocol: class {
     func readyToReceiveWord(_ ready: Bool)
     func goToScoreBoard()
     func startTimer()
+    func showError(_ message: String)
 }
 
 class BoggleModel {
@@ -20,10 +21,12 @@ class BoggleModel {
     private let dataLayer: DataLayerProtocol
     private let dictionaryService: DictionaryServiceProtocol
     private var currentGame: BoggleGame?
+    private let gameService: GamesServiceProtocol
     
     init(dictionaryService: DictionaryServiceProtocol = DictionaryService(),
-         dataLayer: DataLayerProtocol = DataLayer()) {
+         dataLayer: DataLayerProtocol = DataLayer(), gameService: GamesServiceProtocol = GamesService()) {
         self.dictionaryService = dictionaryService
+        self.gameService = gameService
         self.dataLayer = dataLayer
     }
     
@@ -81,14 +84,17 @@ class BoggleModel {
     }
     
     func saveGame() {
-        let game = BoggleGame(
-            id: UUID.init().uuidString,
-            date: Date(),
-            score: self.submittedWords.map{ $0.count }.reduce(0, { $0 + $1 }))
+        let score = self.submittedWords.map{ $0.count }.reduce(0, { $0 + $1 })
+        let currentGameId = self.dataLayer.fetchCurrentGame()!.id
         
-//        self.dataLayer.save(newGame: game)
-        
-        self.delegate?.goToScoreBoard()
+        self.gameService.completedGame(currentGameId, score) { errorMessageOptional in
+            if let errorMessage = errorMessageOptional {
+                self.delegate?.showError(errorMessage.message)
+                return
+            }
+            
+            self.delegate?.goToScoreBoard()
+        }
     }
     
     func isGameOver() -> Bool {

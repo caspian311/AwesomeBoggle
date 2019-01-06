@@ -159,6 +159,7 @@ class BoggleView: GradientView {
                 
                 buttonToAdd.setTitleColor(.black, for: .normal)
                 buttonToAdd.setTitleColor(.gray, for: .disabled)
+                buttonToAdd.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 40)
                 
                 buttonToAdd.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
                 

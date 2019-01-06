@@ -7,6 +7,7 @@ protocol GamesServiceProtocol: class {
     func startGame(_ callback: @escaping (ErrorMessage?, GameData?) -> ())
     func joinGame(_ gameId: Int, _ callback: @escaping (ErrorMessage?) -> ())
     func isGameReady(_ gameId: Int, _ callback: @escaping (ErrorMessage?, Bool) -> ())
+    func completedGame(_ gameId: Int, _ score: Int, _ callback: @escaping (ErrorMessage?) -> ())
 }
 
 class GamesService: BaseService, GamesServiceProtocol {
@@ -101,11 +102,19 @@ class GamesService: BaseService, GamesServiceProtocol {
             let isReady = gameData["isReady"] as! Bool
             callback(nil, isReady)
         }
-        
     }
     
     private func getAuthToken() -> String {
         let userData = self.dataLayer.fetchUser()!
         return userData.authToken!
+    }
+    
+    func completedGame(_ gameId: Int, _ score: Int, _ callback: @escaping (ErrorMessage?) -> ()) {
+        let authToken = getAuthToken()
+        
+        self.put(url: self.baseUrl.appendingPathComponent("/games/\(gameId)"), auth: authToken, requestData: ["score": score]) { (errorOptional, gameOptional) in
+            
+            callback(errorOptional)
+        }
     }
 }

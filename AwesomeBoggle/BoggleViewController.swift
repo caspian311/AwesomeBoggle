@@ -42,6 +42,10 @@ class BoggleViewController: UIViewController {
 }
 
 extension BoggleViewController: BoggleModelProtocol {
+    func showError(_ message: String) {
+        print("Error: \(message)")
+    }
+    
     func populateNewLettersToGrid(_ letters: Array<String>) {
         self.boggleView.updateLetters(letters)
     }

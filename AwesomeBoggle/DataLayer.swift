@@ -2,9 +2,6 @@ import Foundation
 import SQLite
 
 protocol DataLayerProtocol: class {
-//    func save(newGame: BoggleGame)
-//    func fetchGames() -> [BoggleGame]
-    
     func save(user: UserData)
     func fetchUser() -> UserData?
     
@@ -29,11 +26,6 @@ class DataLayer: DataLayerProtocol {
     private let userDataUsername: Expression<String>
     private let userDataAuthToken: Expression<String?>
     
-//    private let game: Table
-//    private let gameId: Expression<String>
-//    private let gameDate: Expression<Date>
-//    private let gameScore: Expression<Int>
-
     private let dictionaryWord: Table
     private let dictionaryWordId: Expression<Int>
     private let dictionaryWordText: Expression<String>
@@ -67,11 +59,6 @@ class DataLayer: DataLayerProtocol {
         userDataUsername = Expression<String>("username")
         userDataAuthToken = Expression<String?>("authToken")
         
-//        game = Table("Game")
-//        gameId = Expression<String>("id")
-//        gameDate = Expression<Date>("date")
-//        gameScore = Expression<Int>("score")
-        
         dictionaryWord = Table("DictionaryWord")
         dictionaryWordId = Expression<Int>("id")
         dictionaryWordText = Expression<String>("text")
@@ -97,12 +84,6 @@ class DataLayer: DataLayerProtocol {
             t.column(userDataUsername, unique: true)
             t.column(userDataAuthToken, unique: true)
         })
-        
-//        try! db.run(game.create(ifNotExists: true) { t in
-//            t.column(gameId, primaryKey: true)
-//            t.column(gameDate)
-//            t.column(gameScore, defaultValue: 0)
-//        })
         
         try! db.run(dictionaryWord.create(ifNotExists: true) { t in
             t.column(dictionaryWordId, primaryKey: .autoincrement)
