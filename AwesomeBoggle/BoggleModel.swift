@@ -16,11 +16,12 @@ class BoggleModel {
     private var submittedWords = [String]()
     private var timeRemaining = 60
     
+    private var currentGame: GameData?
+    
     weak var delegate: BoggleModelProtocol?
     
     private let dataLayer: DataLayerProtocol
     private let dictionaryService: DictionaryServiceProtocol
-    private var currentGame: BoggleGame?
     private let gameService: GamesServiceProtocol
     
     init(dictionaryService: DictionaryServiceProtocol = DictionaryService(),
@@ -31,8 +32,8 @@ class BoggleModel {
     }
     
     func populateGrid() {
-        let grid = self.dataLayer.fetchCurrentGame()!.grid
-        let letters = Array(grid).map(String.init)
+        self.currentGame = self.dataLayer.fetchCurrentGame()
+        let letters = Array(currentGame!.grid).map(String.init)
         self.delegate?.populateNewLettersToGrid(letters)
         updateReadyToReceive()
     }
@@ -59,6 +60,10 @@ class BoggleModel {
     
     func getWordList() -> [String] {
         return self.submittedWords
+    }
+    
+    func getGameId() -> Int {
+        return self.currentGame!.id
     }
     
     func addCurrentWordToList() {
@@ -93,6 +98,7 @@ class BoggleModel {
                 return
             }
             
+            self.dataLayer.clearCurrentGame()
             self.delegate?.goToScoreBoard()
         }
     }

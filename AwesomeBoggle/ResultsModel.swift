@@ -7,13 +7,15 @@ protocol ResultsModelProtocol: class {
 }
 
 class ResultsModel {
+    private let currentGameId: Int
     private var wordList: [BoggleWord] = []
     private let dictionaryService: DictionaryServiceProtocol
     
     var delegate: ResultsModelProtocol?
     
-    init(_ wordList: [String], dictionaryService: DictionaryServiceProtocol = DictionaryService()) {
+    init(_ currentGameId: Int, _ wordList: [String], dictionaryService: DictionaryServiceProtocol = DictionaryService()) {
         self.dictionaryService = dictionaryService
+        self.currentGameId = currentGameId
         self.wordList = wordList.map{ BoggleWord($0) }
     }
     

@@ -67,8 +67,11 @@ extension BoggleViewController: BoggleModelProtocol {
     }
     
     func goToScoreBoard() {
-        let resultsModel = ResultsModel(self.boggleModel.getWordList())
-        self.navigationController?.pushViewController(ResultsViewController(resultsModel: resultsModel), animated: true)
+        DispatchQueue.main.async {
+            let gameId = self.boggleModel.getGameId()
+            let resultsModel = ResultsModel(gameId, self.boggleModel.getWordList())
+            self.navigationController?.pushViewController(ResultsViewController(resultsModel: resultsModel), animated: true)
+        }
     }
     
     func startTimer() {

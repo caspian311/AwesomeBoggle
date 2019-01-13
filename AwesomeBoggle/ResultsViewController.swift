@@ -20,16 +20,22 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
         self.view = self.resultsView
         self.resultsView.delegate = self
-        self.resultsView.setupNavigationBar(self.navigationItem)
         self.resultsModel.delegate = self
         
         self.resultsModel.populate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isHidden = true
     }
 }
 
 extension ResultsViewController: ResultsViewProtocol {
     func done() {
-        _ = self.navigationController?.popToRootViewController(animated: true)
+        _ = self.navigationController?.pushViewController(MainViewController(), animated: true)
     }
 }
 

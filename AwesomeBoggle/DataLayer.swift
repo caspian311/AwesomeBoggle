@@ -7,6 +7,7 @@ protocol DataLayerProtocol: class {
     
     func save(currentGame: GameData)
     func fetchCurrentGame() -> GameData?
+    func clearCurrentGame() -> ()
     
     func fetchWordCount() -> Int
     func save(dictionaryWords: [String])
@@ -111,15 +112,6 @@ class DataLayer: DataLayerProtocol {
         })
     }
     
-//    func save(newGame: BoggleGame) {
-//        let insert = game.insert(gameId <- newGame.id, gameDate <- newGame.date, gameScore <- newGame.score)
-//        try! db.run(insert)
-//    }
-    
-//    func fetchGames() -> [BoggleGame] {
-//        return Array(try! db.prepare(game).map { BoggleGame(id: $0[gameId], date: $0[gameDate], score: $0[gameScore]) })
-//    }
-    
     func save(user: UserData) {
         let insert = userData.insert(userDataId <- user.id, userDataUsername <- user.username, userDataAuthToken <- user.authToken)
         try! db.run(insert)
@@ -136,6 +128,11 @@ class DataLayer: DataLayerProtocol {
     
     func fetchCurrentGame() -> GameData? {
         return Array(try! db.prepare(currentGame).map { GameData(id: $0[currentGameId], grid: $0[currentGameGrid], isReady: $0[currentGameIsReady]) }).first
+    }
+    
+    func clearCurrentGame() {
+        let del = self.currentGame.delete()
+        try! db.run(del)
     }
     
     func fetchWordCount() -> Int {

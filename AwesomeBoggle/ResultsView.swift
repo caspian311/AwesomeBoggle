@@ -40,7 +40,7 @@ class ResultsView: GradientView, UITableViewDelegate, UITableViewDataSource {
         scoreLabel.attributedText = NSMutableAttributedString(string: "", attributes: self.resultsTextAttributes)
         
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        scoreLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        scoreLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
         scoreLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
         self.wordListTableView.delegate = self
@@ -52,7 +52,6 @@ class ResultsView: GradientView, UITableViewDelegate, UITableViewDataSource {
         
         self.wordListTableView.translatesAutoresizingMaskIntoConstraints = false
         self.wordListTableView.topAnchor.constraint(equalTo: self.scoreLabel.bottomAnchor, constant: 10).isActive = true
-        self.wordListTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
         self.wordListTableView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         self.wordListTableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
@@ -61,11 +60,26 @@ class ResultsView: GradientView, UITableViewDelegate, UITableViewDataSource {
         self.wordListTableView.layer.borderWidth = 2
         self.wordListTableView.layer.cornerRadius = 10
         self.wordListTableView.layer.contentsRect.insetBy(dx: 10, dy: 10)
-    }
-    
-    func setupNavigationBar(_ navigationItem: UINavigationItem) {
-        navigationItem.rightBarButtonItem =
-            UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonClicked))
+        
+        let doneButton = UIButton()
+        self.addSubview(doneButton)
+        
+        doneButton.setTitle("Done", for: .normal)
+        doneButton.setTitleColor(.black, for: .normal)
+        
+        doneButton.backgroundColor = .white
+        doneButton.layer.borderColor = UIColor.black.cgColor
+        doneButton.layer.borderWidth = 2
+        doneButton.layer.cornerRadius = 10
+        
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        doneButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -30).isActive = true
+        doneButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        doneButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        doneButton.topAnchor.constraint(equalTo: self.wordListTableView.bottomAnchor, constant: 10).isActive = true
+        doneButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+        
+        doneButton.addTarget(self, action: #selector(doneButtonClicked), for: .touchUpInside)
     }
     
     @objc
