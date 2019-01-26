@@ -85,12 +85,12 @@ class GameHistoryView: GradientView, UITableViewDelegate, UITableViewDataSource 
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdendifier: String = "BoggleGameTableViewCell"
+        let cellIdendifier = "BoggleGameTableViewCell"
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdendifier, for: indexPath) as! BoggleGameTableViewCell
         
-        cell.column1.text = self.gameList[indexPath.row].date
-        cell.column2.text = "\(self.gameList[indexPath.row].score)"
+        cell.gameDescription.text = self.gameList[indexPath.row].gameDescription
+        cell.scores.text = self.gameList[indexPath.row].scores
         
         cell.sizeToFit()
         

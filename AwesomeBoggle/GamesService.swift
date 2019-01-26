@@ -128,14 +128,7 @@ class GamesService: BaseService, GamesServiceProtocol {
             }
             
             let dataList = gameListOptional as! [[String:Any]]
-            let gameList = dataList.map {
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.locale = Locale(identifier: "en_US")
-//                dateFormatter.setLocalizedDateFormatFromTemplate("MM/dd/YYYY hh:mm:ss a")
-//                let humanReadableDate = dateFormatter.string(from: game.date)
-//
-//                return GameHistoryEntry(score: Int(game.score), date: humanReadableDate)
-                GameHistoryEntry(score: $0["score"] as! Int, date: $0["date"] as! String) }
+            let gameList = dataList.map(HistoryEntityTranslator.translate)
             callback(nil, gameList)
         }
     }

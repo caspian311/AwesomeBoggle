@@ -1,29 +1,33 @@
 import UIKit
 
 class BoggleGameTableViewCell: UITableViewCell {
-    let column1: UILabel = UILabel()
-    let column2: UILabel = UILabel()
+    let gameDescription: UILabel
+    let scores: UILabel
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        gameDescription = UILabel()
+        scores = UILabel()
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.contentView.addSubview(column1)
-        self.contentView.addSubview(column2)
+        self.contentView.addSubview(self.gameDescription)
+        self.contentView.addSubview(self.scores)
         
-        column1.translatesAutoresizingMaskIntoConstraints = false
-        column1.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        column1.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/2).isActive = true
-        column1.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
+        self.gameDescription.translatesAutoresizingMaskIntoConstraints = false
+        self.gameDescription.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        self.gameDescription.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
+        self.gameDescription.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        column2.translatesAutoresizingMaskIntoConstraints = false
-        column2.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        column2.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/2).isActive = true
-        column2.leadingAnchor.constraint(equalTo: column1.trailingAnchor).isActive = true
-        column2.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 5).isActive = true
-        
+        self.scores.translatesAutoresizingMaskIntoConstraints = false
+        self.scores.topAnchor.constraint(equalTo: self.gameDescription.bottomAnchor).isActive = true
+        self.scores.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -40).isActive = true
+        self.scores.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
     
     required init(coder aDecoder: NSCoder) {
+        gameDescription = UILabel()
+        scores = UILabel()
+        
         super.init(coder: aDecoder)!
     }
     

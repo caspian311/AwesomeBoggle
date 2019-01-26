@@ -34,6 +34,7 @@
 		9F8694C721C7D36E00088238 /* DataLoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8694C621C7D36E00088238 /* DataLoadingStatus.swift */; };
 		9F9A22AC21A5D6440027A7B4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A22AB21A5D6440027A7B4 /* GradientView.swift */; };
 		9FB3A71821D7FE20007823B2 /* Invitiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB3A71721D7FE20007823B2 /* Invitiation.swift */; };
+		9FC5B3E721FC763300CF71C3 /* HistoryEntityTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC5B3E621FC763300CF71C3 /* HistoryEntityTranslator.swift */; };
 		9FCE453F21AEF16E008AADC0 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE453E21AEF16E008AADC0 /* TextField.swift */; };
 		9FF3282721C5A7C700601161 /* DictionaryDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282621C5A7C700601161 /* DictionaryDataLoader.swift */; };
 		9FF3282921C5A9D900601161 /* DictionaryWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3282821C5A9D900601161 /* DictionaryWord.swift */; };
@@ -112,6 +113,7 @@
 		9F8694C621C7D36E00088238 /* DataLoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingStatus.swift; sourceTree = "<group>"; };
 		9F9A22AB21A5D6440027A7B4 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		9FB3A71721D7FE20007823B2 /* Invitiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invitiation.swift; sourceTree = "<group>"; };
+		9FC5B3E621FC763300CF71C3 /* HistoryEntityTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntityTranslator.swift; sourceTree = "<group>"; };
 		9FCE453E21AEF16E008AADC0 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		9FF3282621C5A7C700601161 /* DictionaryDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryDataLoader.swift; sourceTree = "<group>"; };
 		9FF3282821C5A9D900601161 /* DictionaryWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryWord.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				E7A525531E6CB7D200BCB328 /* GameHistoryViewController.swift */,
 				9F7CCE7D21B409DE000688D4 /* GamesService.swift */,
 				9F9A22AB21A5D6440027A7B4 /* GradientView.swift */,
+				9FC5B3E621FC763300CF71C3 /* HistoryEntityTranslator.swift */,
 				E77676F01E3A394B006B8739 /* Info.plist */,
 				9FB3A71721D7FE20007823B2 /* Invitiation.swift */,
 				E77676ED1E3A394B006B8739 /* LaunchScreen.storyboard */,
@@ -489,6 +492,7 @@
 				9F678A7321AEC39F002435A2 /* RegistrationService.swift in Sources */,
 				9F7CCE8221B42E91000688D4 /* CheckAvailabilityData.swift in Sources */,
 				9F419DC321B6BF0D00C574EC /* WaitingForOthersModel.swift in Sources */,
+				9FC5B3E721FC763300CF71C3 /* HistoryEntityTranslator.swift in Sources */,
 				9F8139A921B4E80E00930C5C /* AvailableGameTableViewCell.swift in Sources */,
 				E7B3D2A71E61AFD1001579D6 /* ResultsModel.swift in Sources */,
 				9F8694C221C6A93000088238 /* LoadingView.swift in Sources */,

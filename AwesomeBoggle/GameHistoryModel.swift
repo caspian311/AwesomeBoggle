@@ -34,11 +34,11 @@ class GameHistoryModel {
 }
 
 class GameHistoryEntry {
-    let date: String
-    let score: Int
+    let gameDescription: String
+    let scores: String
     
-    init(score: Int, date: String) {
-        self.date = date
-        self.score = score
+    init(gameDescription: String, scores: String) {
+        self.gameDescription = gameDescription
+        self.scores = scores
     }
 }
