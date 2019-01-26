@@ -24,8 +24,8 @@ class GameHistoryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     required init?(coder aDecorder: NSCoder) {
@@ -34,11 +34,23 @@ class GameHistoryViewController: UIViewController {
 }
 
 extension GameHistoryViewController: GameHistoryViewProtocol {
-    
+    func backButtonPressed() {
+        self.gameHistoryModel.goToMainView()
+    }
 }
 
 extension GameHistoryViewController: GameHistoryModelProtocol {
+    func navigateToMain() {
+        self.navigationController?.pushViewController(MainViewController(), animated: true)
+    }
+    
+    func showError(_ error: ErrorMessage) {
+        self.gameHistoryView.showError(error)
+    }
+    
     func showGameList(_ gameList: [GameHistoryEntry]) {
-        self.gameHistoryView.populateGameList(gameList)
+        DispatchQueue.main.async {
+            self.gameHistoryView.populateGameList(gameList)
+        }
     }
 }

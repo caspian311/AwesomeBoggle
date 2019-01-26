@@ -1,9 +1,10 @@
 import UIKit
 
 protocol GameHistoryViewProtocol: class {
+    func backButtonPressed()
 }
 
-class GameHistoryView: UIView, UITableViewDelegate, UITableViewDataSource {
+class GameHistoryView: GradientView, UITableViewDelegate, UITableViewDataSource {
     weak var delegate: GameHistoryViewProtocol?
     
     private let gameListTableView: UITableView
@@ -11,10 +12,48 @@ class GameHistoryView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     init() {
         self.gameListTableView = UITableView()
+        let gamesLabel = UILabel()
+        let backButton = UIButton()
         
         super.init(frame: CGRect.zero)
         
-        self.backgroundColor = .gray
+        self.startColor = UIColor(red: 0.6, green: 0.8, blue: 1.00, alpha: 1.00)
+        self.endColor = UIColor(red: 0.2, green: 0.6, blue: 1.00, alpha: 1.00)
+        
+        self.addSubview(gamesLabel)
+        self.addSubview(backButton)
+        
+        gamesLabel.textAlignment = .center
+        
+        let gameLabelTextAttributes = [
+            NSAttributedStringKey.strokeColor : UIColor.black,
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.strokeWidth : -4.0,
+            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 30)!]
+            as [NSAttributedStringKey : Any]
+        gamesLabel.attributedText = NSMutableAttributedString(string: "Games History", attributes: gameLabelTextAttributes)
+        
+        gamesLabel.translatesAutoresizingMaskIntoConstraints = false
+        gamesLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
+        gamesLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        
+        backButton.setTitle("Back", for: .normal)
+        backButton.setTitleColor(.black, for: .normal)
+        
+        backButton.backgroundColor = .white
+        backButton.layer.borderColor = UIColor.black.cgColor
+        backButton.layer.borderWidth = 2
+        backButton.layer.cornerRadius = 10
+        
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -50).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        backButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        backButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+        
+        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        
         
         self.gameListTableView.delegate = self
         self.gameListTableView.dataSource = self
@@ -25,9 +64,16 @@ class GameHistoryView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         self.gameListTableView.translatesAutoresizingMaskIntoConstraints = false
 
-        self.gameListTableView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.gameListTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.gameListTableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        self.gameListTableView.topAnchor.constraint(equalTo: gamesLabel.bottomAnchor, constant: 10).isActive = true
+        self.gameListTableView.bottomAnchor.constraint(equalTo: backButton.topAnchor, constant: -20).isActive = true
+        self.gameListTableView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
+        self.gameListTableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        self.gameListTableView.layer.masksToBounds = true
+        self.gameListTableView.layer.borderColor = UIColor.black.cgColor
+        self.gameListTableView.layer.borderWidth = 2
+        self.gameListTableView.layer.cornerRadius = 10
+        self.gameListTableView.layer.contentsRect.insetBy(dx: 10, dy: 10)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,5 +100,14 @@ class GameHistoryView: UIView, UITableViewDelegate, UITableViewDataSource {
     func populateGameList(_ gameList: [GameHistoryEntry]) {
         self.gameList = gameList
         self.gameListTableView.reloadData()
+    }
+    
+    func showError(_ error: ErrorMessage) {
+        print("Error: \(error.message)")
+    }
+    
+    @objc
+    private func backButtonPressed() {
+        self.delegate?.backButtonPressed()
     }
 }

@@ -3,27 +3,33 @@ import UIKit
 
 protocol GameHistoryModelProtocol: class {
     func showGameList(_ gameList: [GameHistoryEntry])
+    func showError(_ error: ErrorMessage)
+    func navigateToMain()
 }
 
 class GameHistoryModel {
     weak var delegate: GameHistoryModelProtocol?
     
-    let dataLayer: DataLayerProtocol
+    private let gameService: GamesServiceProtocol
     
-    init(dataLayer: DataLayerProtocol = DataLayer()) {
-        self.dataLayer = dataLayer
+    init(gameService: GamesServiceProtocol = GamesService()) {
+        self.gameService = gameService
     }
     
     func populate() {
-//        let gameList = self.dataLayer.fetchGames().map({ (game: BoggleGame) -> GameHistoryEntry in
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.locale = Locale(identifier: "en_US")
-//            dateFormatter.setLocalizedDateFormatFromTemplate("MM/dd/YYYY hh:mm:ss a")
-//            let humanReadableDate = dateFormatter.string(from: game.date)
-//            
-//            return GameHistoryEntry(score: Int(game.score), date: humanReadableDate)
-//        })
-//        self.delegate?.showGameList(gameList)
+        self.gameService.fetchGameHistory{ (errorOptional, gameHistoryOptional) in
+            if let error = errorOptional {
+                self.delegate?.showError(error)
+                return
+            }
+            
+            let gameHistory = gameHistoryOptional!
+            self.delegate?.showGameList(gameHistory)
+        }
+    }
+    
+    func goToMainView() {
+        self.delegate?.navigateToMain()
     }
 }
 
