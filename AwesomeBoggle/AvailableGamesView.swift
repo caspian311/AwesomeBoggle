@@ -29,10 +29,10 @@ class AvailableGamesView: GradientView, UITableViewDelegate, UITableViewDataSour
         let gameLabelTextAttributes = [
             NSAttributedStringKey.strokeColor : UIColor.black,
             NSAttributedStringKey.foregroundColor : UIColor.white,
-            NSAttributedStringKey.strokeWidth : -4.0,
-            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 30)!]
+            NSAttributedStringKey.strokeWidth : -3.0,
+            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 35)!]
             as [NSAttributedStringKey : Any]
-        self.gamesLabel.attributedText = NSMutableAttributedString(string: "Choose your opponent", attributes: gameLabelTextAttributes)
+        self.gamesLabel.attributedText = NSMutableAttributedString(string: "Pick your opponent", attributes: gameLabelTextAttributes)
         
         self.gamesLabel.translatesAutoresizingMaskIntoConstraints = false
         self.gamesLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true

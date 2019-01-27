@@ -28,8 +28,8 @@ class GameHistoryView: GradientView, UITableViewDelegate, UITableViewDataSource 
         let gameLabelTextAttributes = [
             NSAttributedStringKey.strokeColor : UIColor.black,
             NSAttributedStringKey.foregroundColor : UIColor.white,
-            NSAttributedStringKey.strokeWidth : -4.0,
-            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 30)!]
+            NSAttributedStringKey.strokeWidth : -3.0,
+            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 35)!]
             as [NSAttributedStringKey : Any]
         gamesLabel.attributedText = NSMutableAttributedString(string: "Games History", attributes: gameLabelTextAttributes)
         
@@ -89,8 +89,7 @@ class GameHistoryView: GradientView, UITableViewDelegate, UITableViewDataSource 
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdendifier, for: indexPath) as! BoggleGameTableViewCell
         
-        cell.gameDescription.text = self.gameList[indexPath.row].gameDescription
-        cell.scores.text = self.gameList[indexPath.row].scores
+        cell.update(entry: self.gameList[indexPath.row])
         
         cell.sizeToFit()
         

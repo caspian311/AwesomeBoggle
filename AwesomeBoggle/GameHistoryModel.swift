@@ -34,11 +34,13 @@ class GameHistoryModel {
 }
 
 class GameHistoryEntry {
-    let gameDescription: String
+    let gameResult: Bool
+    let gameTime: String
     let scores: String
     
-    init(gameDescription: String, scores: String) {
-        self.gameDescription = gameDescription
+    init(gameResult: Bool, gameTime: String, scores: String) {
+        self.gameResult = gameResult
+        self.gameTime = gameTime
         self.scores = scores
     }
 }

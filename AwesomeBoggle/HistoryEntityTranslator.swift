@@ -11,19 +11,19 @@ class HistoryEntityTranslator {
         
         let outBoundDateFormatter = DateFormatter()
         outBoundDateFormatter.locale = Locale(identifier: "en_US")
+        
         outBoundDateFormatter.setLocalizedDateFormatFromTemplate("MM/dd/YYYY")
         let humanReadableCreatedOnDate = outBoundDateFormatter.string(from: createdOnDate)
         
-        let outBoundTimeFormatter = DateFormatter()
-        outBoundTimeFormatter.locale = Locale(identifier: "en_US")
-        outBoundTimeFormatter.setLocalizedDateFormatFromTemplate("hh:mm:ss a")
-        let humanReadableCreatedOnTime = outBoundTimeFormatter.string(from: createdOnDate)
+        outBoundDateFormatter.setLocalizedDateFormatFromTemplate("hh:mm:ss a")
+        let humanReadableCreatedOnTime = outBoundDateFormatter.string(from: createdOnDate)
         
-        let humanReadableDescription = "You \((datum["win"] as! Int) == 1 ? "won" : "lost") on \(humanReadableCreatedOnDate) at \(humanReadableCreatedOnTime)"
+        let gameTime = " on \(humanReadableCreatedOnDate) at \(humanReadableCreatedOnTime)"
         
+        let gameResult = (datum["win"] as! Int) == 1
         let rawScores = datum["scores"] as! [[String:Any]]
         let scores: String = rawScores.map(rawToScoreText).joined(separator: ", ")
-        return GameHistoryEntry(gameDescription: humanReadableDescription, scores: scores)
+        return GameHistoryEntry(gameResult: gameResult, gameTime: gameTime, scores: scores)
     }
     
     static func rawToScoreText(rawScore: [String:Any]) -> String {
