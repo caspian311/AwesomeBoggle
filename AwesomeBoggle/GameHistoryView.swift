@@ -97,6 +97,10 @@ class GameHistoryView: GradientView, UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0;
+    }
+    
     func populateGameList(_ gameList: [GameHistoryEntry]) {
         self.gameList = gameList
         self.gameListTableView.reloadData()
