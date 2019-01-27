@@ -37,6 +37,10 @@ class AvailableGamesViewController: UIViewController {
 }
 
 extension AvailableGamesViewController: AvailableGamesViewProtocol {
+    func backButtonPressed() {
+        self.availableGamesModel.goBack()
+    }
+    
     func startGame(with userId: Int) {
         DispatchQueue.main.async {
             self.availableGamesModel.startGame(with: userId)
@@ -45,6 +49,10 @@ extension AvailableGamesViewController: AvailableGamesViewProtocol {
 }
 
 extension AvailableGamesViewController: AvailableGamesModelProtocol {
+    func navigateToMain() {
+        self.navigationController?.pushViewController(MainViewController(), animated: true)
+    }
+    
     func waitForOthersToJoin(_ invititations: [Invitation]) {
         DispatchQueue.main.async {
             self.dataLayer.save(invitations: invititations)

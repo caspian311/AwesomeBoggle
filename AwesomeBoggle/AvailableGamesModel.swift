@@ -6,6 +6,7 @@ protocol AvailableGamesModelProtocol: class {
     func errorOcurred(_ errorMessage: ErrorMessage)
     func showNoUsersAreAvailable()
     func showGames(_ availableGames: [UserData])
+    func navigateToMain()
 }
 
 class AvailableGamesModel {
@@ -64,5 +65,9 @@ class AvailableGamesModel {
             
             self.delegate!.errorOcurred(ErrorMessage(message: "Unknown error"))
         }
+    }
+    
+    func goBack() {
+        self.delegate!.navigateToMain()
     }
 }

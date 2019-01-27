@@ -3,6 +3,7 @@ import UIKit
 
 protocol AvailableGamesViewProtocol: class {
     func startGame(with userId: Int)
+    func backButtonPressed()
 }
 
 class AvailableGamesView: GradientView, UITableViewDelegate, UITableViewDataSource  {
@@ -16,6 +17,7 @@ class AvailableGamesView: GradientView, UITableViewDelegate, UITableViewDataSour
     init() {
         self.gamesLabel = UILabel()
         self.availableGamesTableView = UITableView()
+        let backButton = UIButton()
         
         super.init(frame: CGRect.zero)
         
@@ -23,6 +25,9 @@ class AvailableGamesView: GradientView, UITableViewDelegate, UITableViewDataSour
         self.endColor = UIColor(red: 0.2, green: 0.6, blue: 1.00, alpha: 1.00)
         
         self.addSubview(self.gamesLabel)
+        self.addSubview(self.availableGamesTableView)
+        self.addSubview(backButton)
+        
         
         self.gamesLabel.textAlignment = .center
         
@@ -38,16 +43,33 @@ class AvailableGamesView: GradientView, UITableViewDelegate, UITableViewDataSour
         self.gamesLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
         self.gamesLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
+        
+        backButton.setTitle("Back", for: .normal)
+        backButton.setTitleColor(.black, for: .normal)
+        
+        backButton.backgroundColor = .white
+        backButton.layer.borderColor = UIColor.black.cgColor
+        backButton.layer.borderWidth = 2
+        backButton.layer.cornerRadius = 10
+        
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -50).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        backButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        backButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+        
+        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        
+        
         self.availableGamesTableView.delegate = self
         self.availableGamesTableView.dataSource = self
         
-        self.addSubview(self.availableGamesTableView)
         
         self.availableGamesTableView.register(AvailableGameTableViewCell.self, forCellReuseIdentifier: "AvailableGameTableViewCell")
         
         self.availableGamesTableView.translatesAutoresizingMaskIntoConstraints = false
         self.availableGamesTableView.topAnchor.constraint(equalTo: self.gamesLabel.bottomAnchor, constant: 10).isActive = true
-        self.availableGamesTableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+        self.availableGamesTableView.bottomAnchor.constraint(equalTo: backButton.topAnchor, constant: -20).isActive = true
         self.availableGamesTableView.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true
         self.availableGamesTableView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
@@ -56,6 +78,8 @@ class AvailableGamesView: GradientView, UITableViewDelegate, UITableViewDataSour
         self.availableGamesTableView.layer.borderWidth = 2
         self.availableGamesTableView.layer.cornerRadius = 10
         self.availableGamesTableView.layer.contentsRect.insetBy(dx: 10, dy: 10)
+        
+        
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,5 +121,10 @@ class AvailableGamesView: GradientView, UITableViewDelegate, UITableViewDataSour
     
     func showNoUsersAreAvailable() {
         print("No users are available")
+    }
+    
+    @objc
+    private func backButtonPressed() {
+        self.delegate?.backButtonPressed()
     }
 }
