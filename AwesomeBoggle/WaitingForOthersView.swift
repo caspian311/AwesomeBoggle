@@ -24,8 +24,8 @@ class WaitingForOthersView: GradientView {
         let strokeTextAttributes = [
             NSAttributedStringKey.strokeColor : UIColor.black,
             NSAttributedStringKey.foregroundColor : UIColor.white,
-            NSAttributedStringKey.strokeWidth : -4.0,
-            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 20)!]
+            NSAttributedStringKey.strokeWidth : -1.0,
+            NSAttributedStringKey.font : UIFont(name:"HelveticaNeue-Bold", size: 25)!]
             as [NSAttributedStringKey : Any]
         titleLabel.attributedText = NSMutableAttributedString(string: "Waiting for others to join...", attributes: strokeTextAttributes)
         

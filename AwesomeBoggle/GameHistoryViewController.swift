@@ -40,8 +40,8 @@ extension GameHistoryViewController: GameHistoryViewProtocol {
 }
 
 extension GameHistoryViewController: GameHistoryModelProtocol {
-    func navigateToMain() {
-        self.navigationController?.pushViewController(MainViewController(), animated: true)
+    func goBack() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func showError(_ error: ErrorMessage) {

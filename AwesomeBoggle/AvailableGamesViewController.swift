@@ -49,8 +49,8 @@ extension AvailableGamesViewController: AvailableGamesViewProtocol {
 }
 
 extension AvailableGamesViewController: AvailableGamesModelProtocol {
-    func navigateToMain() {
-        self.navigationController?.pushViewController(MainViewController(), animated: true)
+    func goBack() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func waitForOthersToJoin(_ invititations: [Invitation]) {

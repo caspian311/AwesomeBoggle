@@ -4,7 +4,7 @@ import UIKit
 protocol GameHistoryModelProtocol: class {
     func showGameList(_ gameList: [GameHistoryEntry])
     func showError(_ error: ErrorMessage)
-    func navigateToMain()
+    func goBack()
 }
 
 class GameHistoryModel {
@@ -29,7 +29,7 @@ class GameHistoryModel {
     }
     
     func goToMainView() {
-        self.delegate?.navigateToMain()
+        self.delegate?.goBack()
     }
 }
 

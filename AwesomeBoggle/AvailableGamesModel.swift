@@ -6,7 +6,7 @@ protocol AvailableGamesModelProtocol: class {
     func errorOcurred(_ errorMessage: ErrorMessage)
     func showNoUsersAreAvailable()
     func showGames(_ availableGames: [UserData])
-    func navigateToMain()
+    func goBack()
 }
 
 class AvailableGamesModel {
@@ -68,6 +68,6 @@ class AvailableGamesModel {
     }
     
     func goBack() {
-        self.delegate!.navigateToMain()
+        self.delegate!.goBack()
     }
 }
